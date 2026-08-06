@@ -1,0 +1,4488 @@
+.hero-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-hero p#business-hero-copy,
+.page-hero .hero-subcopy {
+  display: none;
+}
+
+.client-care-eyebrow {
+  font-family: "Copperplate Gothic Light", "Copperplate Gothic", Copperplate, "Palatino Linotype", serif !important;
+  letter-spacing: 0.12em;
+  text-transform: none;
+}
+
+.copperplate-light {
+  font-family: "Copperplate Gothic Light", "Copperplate Gothic", Copperplate, "Palatino Linotype", serif !important;
+  letter-spacing: 0.04em;
+}
+
+.subpage-main .page-hero h1 {
+  font-size: clamp(1.28rem, 2vw, 1.64rem) !important;
+  line-height: 1.12;
+  margin-bottom: 0;
+}
+
+.subpage-main .page-hero {
+  padding: 4px 0 2px;
+}
+
+.subpage-main .content-section {
+  padding: 0 0 90px;
+}
+
+.overview-block {
+  max-width: 100% !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.overview-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 28px;
+  align-items: start;
+  min-height: 420px;
+}
+
+.overview-text {
+  display: grid;
+  gap: 16px;
+  padding-top: 26px;
+}
+
+.overview-text p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.overview-visual {
+  min-height: 420px;
+  border-radius: 24px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+  background-clip: padding-box;
+  background-color: transparent;
+  box-shadow: none;
+  border: 0;
+}
+
+.overview-visual-general { background-image: url("../KakaoTalk_20260510_124609043.png"); background-position: 0% 0%; }
+.overview-visual-translation {
+  background-image: url("./translation/image1-v2.png");
+  background-position: center center;
+  background-size: calc(100% - 12px) calc(100% - 12px);
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-clip: content-box;
+  background-color: #ffffff;
+  padding: 6px;
+  box-sizing: border-box;
+  border-radius: 24px;
+}
+.overview-visual-medical { background-image: url("../KakaoTalk_20260510_124609043.png"); background-position: 0% 100%; }
+.overview-visual-general,
+.overview-visual-medical {
+  border-radius: 24px;
+  background-clip: padding-box;
+  box-shadow: none;
+  border: 0;
+}
+.overview-visual-support { background-image: url("../KakaoTalk_20260510_124609044.png"); background-position: 100% 100%; }
+
+body.business-theme-general .subpage-content.is-overview,
+body.business-theme-translation .subpage-content.is-overview,
+body.business-theme-medical .subpage-content.is-overview,
+.subpage-main .subpage-content.is-overview {
+  overflow: hidden;
+  padding: 36px 36px 34px;
+  border-radius: 34px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(244,248,252,0.9));
+  border: 1px solid rgba(13,39,66,0.08);
+  box-shadow: 0 28px 56px rgba(11,33,55,0.12);
+}
+
+.apostille-doc-layout,
+.consular-doc-layout,
+.general-license-doc-layout,
+.general-rights-doc-layout,
+.general-corporate-doc-layout,
+.general-business-doc-layout,
+.general-civil-doc-layout,
+.general-civil-flow-layout,
+.general-procurement-flow-layout,
+.general-procurement-detail-layout,
+.general-bid-registration-flow-layout,
+.general-item-registration-flow-layout,
+.certification-doc-layout,
+.notarization-doc-layout,
+.business-doc-layout,
+.ip-doc-layout,
+.documents-doc-layout,
+.other-doc-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+  gap: 28px;
+  align-items: start;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.apostille-doc-content,
+.consular-doc-content,
+.general-license-doc-content,
+.general-rights-doc-content,
+.general-corporate-doc-content,
+.general-business-doc-content,
+.general-civil-doc-content,
+.general-civil-flow-content,
+.general-procurement-flow-copy,
+.general-procurement-flow-bottom,
+.general-bid-registration-flow-copy,
+.general-bid-registration-flow-bottom,
+.general-item-registration-flow-copy,
+.general-item-registration-flow-bottom,
+.certification-doc-content,
+.notarization-doc-content,
+.business-doc-content,
+.ip-doc-content,
+.documents-doc-content,
+.other-doc-content {
+  display: grid;
+  gap: 18px;
+}
+
+.translation-full-width-copy {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 18px;
+}
+
+.general-full-width-copy {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 18px;
+}
+
+.apostille-doc-content p,
+.consular-doc-content p,
+.general-license-doc-content p,
+.general-rights-doc-content p,
+.general-corporate-doc-content p,
+.general-business-doc-content p,
+.general-civil-doc-content p,
+.general-civil-flow-content p,
+.general-procurement-flow-copy p,
+.general-procurement-flow-bottom p,
+.general-bid-registration-flow-copy p,
+.general-bid-registration-flow-bottom p,
+.general-item-registration-flow-copy p,
+.general-item-registration-flow-bottom p,
+.certification-doc-content p,
+.notarization-doc-content p,
+.business-doc-content p,
+.ip-doc-content p,
+.documents-doc-content p,
+.other-doc-content p,
+.translation-full-width-copy p,
+.general-full-width-copy p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+.general-land-flow-layout {
+  display: grid;
+  gap: 22px;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.general-land-flow-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.general-land-flow-copy,
+.general-land-flow-bottom,
+.general-land-service-copy {
+  display: grid;
+  gap: 18px;
+}
+
+#general-land .general-land-flow-copy p,
+#general-land .general-land-flow-bottom p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+#general-land .general-land-flow-heading {
+  font-size: 1.08rem;
+  margin: 0;
+  padding-top: 18px;
+}
+
+.general-land-flow-heading-nowrap {
+  white-space: nowrap;
+}
+
+.general-land-solid-underline {
+  display: inline-block;
+  padding-bottom: 0.08em;
+  border-bottom: 2px solid currentColor;
+  line-height: 1.1;
+}
+
+.general-land-flow-image {
+  width: min(100%, 520px);
+  border-radius: 24px;
+}
+
+.general-land-flow-image-top {
+  justify-self: end;
+}
+
+.general-land-flow-image-centered {
+  width: min(100%, 640px);
+  justify-self: center;
+  margin: 4px auto 2px;
+}
+
+.general-land-process-image {
+  border-radius: 0;
+}
+
+.general-land-dot-list,
+.general-land-number-list,
+.general-land-topic-list,
+.general-land-sublist,
+.general-land-deep-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.general-land-dot-list,
+.general-land-number-list,
+.general-land-topic-list {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.general-land-legal-list,
+.general-land-principles-list {
+  padding-left: 18px;
+}
+
+.general-land-sublist,
+.general-land-deep-list {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+}
+
+.general-land-dot-list li,
+.general-land-topic-list > li {
+  display: grid;
+  grid-template-columns: 0.95rem minmax(0, 1fr);
+  column-gap: 0.24rem;
+  align-items: start;
+  line-height: 1.8;
+}
+
+.general-land-number-list li {
+  display: grid;
+  grid-template-columns: 1.55rem minmax(0, 1fr);
+  column-gap: 0.16rem;
+  align-items: start;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.general-land-sublist li {
+  display: grid;
+  grid-template-columns: 0.9rem minmax(0, 1fr);
+  column-gap: 0.22rem;
+  align-items: start;
+  line-height: 1.78;
+}
+
+.general-land-deep-list li {
+  display: grid;
+  grid-template-columns: 0.9rem minmax(0, 1fr);
+  column-gap: 0.22rem;
+  align-items: start;
+  line-height: 1.72;
+}
+
+.general-land-bullet,
+.general-land-number,
+.general-land-sub-bullet,
+.general-land-deep-bullet {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.general-land-topic-title,
+.general-land-service-title,
+.general-land-subtopic-title {
+  margin: 0;
+}
+
+.general-land-topic-list > li + li {
+  margin-top: 2px;
+}
+
+.general-land-sublist {
+  margin-top: 4px;
+}
+
+.general-land-deep-list {
+  margin-top: 4px;
+  padding-left: 0.1rem;
+}
+
+.general-land-service-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  margin-top: 10px;
+}
+
+.general-land-flow-image-inline {
+  width: min(100%, 520px);
+  justify-self: end;
+  align-self: start;
+  margin-top: 58px;
+  border-radius: 24px;
+}
+
+.general-land-service-item {
+  display: grid;
+  gap: 8px;
+}
+
+.general-land-doc-highlight {
+  font-size: 1.06rem;
+  line-height: 1.58 !important;
+  color: #7c1524;
+  margin-top: 28px !important;
+}
+
+.general-land-principles-grid {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(240px, max-content));
+  justify-content: start;
+  justify-items: start;
+  column-gap: 72px;
+  row-gap: 0;
+  width: auto;
+  max-width: 100%;
+  margin-top: -2px;
+  padding-left: 0;
+}
+
+.general-land-principles-list {
+  gap: 8px;
+  width: auto;
+}
+
+.general-land-principles-grid > .general-land-principles-list:last-child {
+  margin-left: 56px;
+}
+
+#general-land .general-land-flow-bottom > .general-land-flow-heading + .general-land-dot-list,
+#general-land .general-land-flow-bottom > .general-land-flow-heading + .general-land-number-list,
+#general-land .general-land-flow-bottom > .general-land-flow-heading + .general-land-topic-list {
+  margin-top: -2px;
+}
+
+#general-land .general-land-flow-bottom > .general-land-flow-heading + .general-land-principles-grid {
+  margin-top: -2px;
+}
+
+#general-land .general-land-service-copy > .general-land-flow-heading {
+  margin-bottom: 4px;
+}
+
+#general-land .general-land-flow-top .general-land-flow-heading {
+  padding-top: 0;
+}
+
+.general-land-service-list {
+  display: grid;
+  gap: 14px;
+}
+
+.general-land-service-list > li {
+  display: grid;
+  grid-template-columns: 0.95rem minmax(0, 1fr);
+  column-gap: 0.24rem;
+  align-items: start;
+  line-height: 1.8;
+}
+
+.general-land-service-title {
+  font-weight: 700;
+}
+
+.general-land-service-list .general-land-sublist {
+  margin-top: 8px;
+}
+
+.general-land-service-list .general-land-sublist li {
+  grid-template-columns: 1rem minmax(0, 1fr);
+}
+
+.general-land-service-list .general-land-deep-list {
+  margin-top: 6px;
+  padding-left: 1.15rem;
+}
+
+.general-land-service-list .general-land-deep-list li {
+  grid-template-columns: 0.8rem minmax(0, 1fr);
+}
+
+.general-land-service-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.general-land-service-tail {
+  display: grid;
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .general-land-flow-top,
+  .general-land-service-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .general-land-flow-image-top,
+  .general-land-flow-image-inline {
+    justify-self: center;
+  }
+
+  .general-land-flow-image,
+  .general-land-flow-image-inline {
+    width: min(100%, 560px);
+  }
+
+  .general-land-principles-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding-left: 12px;
+  }
+}
+
+#translation-apostille .apostille-doc-content p + p,
+#translation-consular .consular-doc-content p + p,
+#translation-certification .certification-doc-content p + p,
+#translation-notarization .notarization-doc-content p + p,
+#general-license .general-license-doc-content p + p,
+#general-rights .general-rights-doc-content p + p,
+#general-corporate .general-corporate-doc-content p + p,
+#general-business .general-business-doc-content p + p,
+#general-civil .general-civil-doc-content p + p,
+#general-civil .general-civil-flow-content p + p,
+#general-procurement .general-procurement-flow-copy p + p,
+#general-procurement .general-procurement-flow-bottom p + p,
+#general-bid-registration .general-bid-registration-flow-copy p + p,
+#general-bid-registration .general-bid-registration-flow-bottom p + p,
+#general-item-registration .general-item-registration-flow-copy p + p,
+#general-item-registration .general-item-registration-flow-bottom p + p,
+#translation-business .business-doc-content p + p,
+#translation-ip .ip-doc-content p + p,
+#translation-documents .documents-doc-content p + p,
+#translation-other .other-doc-content p + p,
+.translation-full-width-copy p + p,
+.general-full-width-copy p + p {
+  margin-top: 0;
+}
+
+.apostille-doc-image,
+.consular-doc-image,
+.general-license-doc-image,
+.general-rights-doc-image,
+.general-corporate-doc-image,
+.general-business-doc-image,
+.general-civil-doc-image,
+.certification-doc-image,
+.notarization-doc-image,
+.business-doc-image,
+.ip-doc-image,
+.documents-doc-image,
+.other-doc-image {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 24px;
+  display: block;
+  justify-self: end;
+}
+
+@media (max-width: 900px) {
+  .overview-layout,
+  .apostille-doc-layout,
+  .consular-doc-layout,
+  .general-license-doc-layout,
+  .general-rights-doc-layout,
+  .general-corporate-doc-layout,
+  .general-business-doc-layout,
+  .general-civil-doc-layout,
+  .general-civil-flow-layout,
+  .general-procurement-flow-layout,
+  .general-procurement-detail-layout,
+  .general-item-registration-flow-layout,
+  .certification-doc-layout,
+  .notarization-doc-layout,
+  .business-doc-layout,
+  .ip-doc-layout,
+  .documents-doc-layout,
+  .other-doc-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-visual,
+  .apostille-doc-image,
+  .consular-doc-image,
+  .general-license-doc-image,
+  .general-rights-doc-image,
+  .general-corporate-doc-image,
+  .general-business-doc-image,
+  .general-civil-doc-image,
+  .certification-doc-image,
+  .notarization-doc-image,
+  .business-doc-image,
+  .ip-doc-image,
+  .documents-doc-image,
+  .other-doc-image {
+    justify-self: start;
+  }
+
+  body.business-theme-general .subpage-content.is-overview,
+  body.business-theme-translation .subpage-content.is-overview,
+  body.business-theme-medical .subpage-content.is-overview,
+  .subpage-main .subpage-content.is-overview {
+    padding: 14px;
+    border-radius: 26px;
+  }
+}
+
+.subpage-layout {
+  gap: 18px !important;
+}
+
+.general-procurement-doc-highlight {
+  display: block;
+  width: auto;
+  padding: 0;
+  font-weight: 800;
+  color: var(--muted) !important;
+  line-height: 1.86 !important;
+  background: transparent;
+}
+
+.general-procurement-flow-layout {
+  display: block;
+}
+
+.general-bid-registration-flow-layout {
+  display: block;
+}
+
+.general-item-registration-flow-layout {
+  display: block;
+}
+
+.general-procurement-detail-layout {
+  display: block;
+}
+
+.general-procurement-flow-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.general-bid-registration-flow-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.general-procurement-detail-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.general-procurement-flow-copy,
+.general-procurement-flow-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.general-bid-registration-flow-copy,
+.general-bid-registration-flow-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.general-item-registration-flow-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.general-procurement-detail-copy,
+.general-procurement-detail-body {
+  display: grid;
+  gap: 18px;
+}
+
+.general-procurement-detail-doc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 0.32fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.general-procurement-detail-doc-copy {
+  min-width: 0;
+}
+
+.general-procurement-flow-image {
+  display: block;
+  width: min(100%, 520px);
+  border-radius: 24px;
+}
+
+.general-bid-registration-flow-image {
+  display: block;
+  width: min(100%, 520px);
+  border-radius: 24px;
+}
+
+.general-item-registration-flow-image {
+  display: block;
+  width: min(100%, 580px);
+  border-radius: 24px;
+}
+
+.general-procurement-detail-image {
+  display: block;
+  width: min(100%, 580px);
+  border-radius: 24px;
+}
+
+.general-procurement-flow-image-top {
+  justify-self: end;
+}
+
+.general-bid-registration-flow-image-top {
+  justify-self: end;
+}
+
+.general-procurement-detail-image-top {
+  justify-self: end;
+}
+
+.general-procurement-flow-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.general-bid-registration-flow-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.general-item-registration-flow-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.general-item-registration-flow-image-hero {
+  width: min(100%, 440px);
+  margin: 0 auto 26px;
+}
+
+.general-procurement-detail-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.general-procurement-detail-image-inline {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.general-procurement-detail-image-logo {
+  width: min(100%, 128px);
+}
+
+.general-procurement-flow-bottom {
+  margin-top: 24px;
+}
+
+.general-bid-registration-flow-bottom {
+  margin-top: 24px;
+}
+
+.general-item-registration-flow-bottom {
+  margin-top: 24px;
+}
+
+.general-bid-registration-flow-heading {
+  font-weight: 800;
+  font-size: inherit;
+  color: var(--muted);
+}
+
+.general-item-registration-flow-heading {
+  font-weight: 800;
+  font-size: inherit;
+  color: var(--muted);
+}
+
+.general-bid-registration-doc-highlight {
+  font-weight: 800;
+  color: var(--muted) !important;
+}
+
+.general-item-registration-doc-highlight {
+  font-weight: 800;
+  color: var(--muted) !important;
+}
+
+.general-bid-registration-underlined {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+  font-weight: 800;
+  font-size: inherit;
+  color: var(--muted) !important;
+}
+
+.general-item-registration-underlined {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+  font-weight: 800;
+  font-size: inherit;
+  color: var(--muted) !important;
+}
+
+.general-bid-registration-flow-pullup {
+  margin-top: -6px;
+}
+
+.general-bid-registration-flow-spacer {
+  height: 10px;
+}
+
+.general-item-registration-flow-spacer {
+  height: 6px;
+}
+
+.general-bid-registration-list-block,
+.general-bid-registration-steps {
+  display: grid;
+  gap: 6px;
+  padding-left: 14px;
+}
+
+.general-bid-registration-list-item {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr);
+  column-gap: 8px;
+  align-items: baseline;
+  margin: 0;
+}
+
+.general-bid-registration-bullet {
+  line-height: 1.2;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transform: translateY(-2px);
+  color: var(--muted);
+}
+
+.general-bid-registration-list-item strong,
+.general-bid-registration-steps strong {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.general-item-registration-flow-subheading {
+  display: inline-block;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.general-item-registration-bullet-list,
+.general-item-registration-check-list {
+  margin: 0;
+  padding-left: 1.7rem;
+  display: grid;
+  gap: 10px;
+}
+
+.general-item-registration-bullet-list li,
+.general-item-registration-check-list li {
+  margin: 0;
+  line-height: 1.86;
+}
+
+.general-item-registration-bullet-list {
+  padding-left: 26px;
+}
+
+.general-item-registration-bullet-list li {
+  list-style-position: outside;
+}
+
+.general-item-registration-bullet-list li::marker {
+  font-size: 0.78em;
+  color: var(--muted);
+}
+
+.general-item-registration-bullet-list em,
+.general-item-registration-check-list em {
+  font-style: italic;
+}
+
+.general-item-registration-check-list {
+  padding-left: 2.6rem;
+}
+
+.general-item-registration-check-list li {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  column-gap: 10px;
+}
+
+.general-item-registration-check-mark {
+  font-weight: 700;
+  line-height: 1.86;
+  color: var(--muted);
+}
+
+.general-item-registration-bullet-list-tight {
+  gap: 4px;
+}
+
+.general-item-registration-bullet-list-compact {
+  gap: 6px;
+}
+
+.general-item-registration-flow-heading + .general-item-registration-bullet-list,
+.general-item-registration-flow-heading + .general-item-registration-check-list {
+  margin-top: -4px;
+}
+
+.general-item-registration-check-list li p,
+.general-item-registration-indented-copy {
+  margin: 0;
+}
+
+.general-item-registration-indented-copy {
+  padding-left: 0.2rem;
+}
+
+.general-gpass-flow-layout {
+  display: block;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.general-gpass-flow-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.general-gpass-flow-copy,
+.general-gpass-flow-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+#general-gpass .detail-item,
+#general-gpass .general-gpass-flow-layout,
+#general-gpass .general-gpass-flow-copy,
+#general-gpass .general-gpass-flow-bottom,
+#general-gpass .general-gpass-flow-copy p,
+#general-gpass .general-gpass-flow-bottom p,
+#general-gpass .general-gpass-bullet-list li,
+#general-gpass .general-gpass-circle-list li,
+#general-gpass .general-gpass-benefit-list li,
+#general-gpass .general-gpass-check-list li,
+#general-gpass .general-gpass-circle-number,
+#general-gpass .general-gpass-benefit-bullet,
+#general-gpass strong,
+#general-gpass span,
+#general-mas .general-procurement-detail-copy p,
+#general-mas .general-procurement-detail-body p,
+#general-mas .general-procurement-detail-list li,
+#general-mas .general-procurement-detail-heading,
+#general-mas .general-procurement-detail-subheading,
+#general-mas .general-procurement-doc-highlight,
+#general-venture-nara .general-procurement-detail-copy p,
+#general-venture-nara .general-procurement-detail-body p,
+#general-venture-nara .general-procurement-detail-list li,
+#general-venture-nara .general-procurement-detail-heading,
+#general-venture-nara .general-procurement-detail-subheading,
+#general-venture-nara .general-procurement-doc-highlight,
+#general-item-registration .general-item-registration-flow-bottom p,
+#general-item-registration .general-item-registration-flow-heading,
+#general-item-registration .general-item-registration-flow-subheading,
+#general-item-registration .general-item-registration-doc-highlight,
+#general-item-registration .general-item-registration-bullet-list li,
+#general-item-registration .general-item-registration-check-list li,
+#general-item-registration .general-item-registration-check-mark {
+  color: var(--muted) !important;
+}
+
+.general-gpass-flow-image {
+  display: block;
+  width: min(100%, 270px);
+  border-radius: 24px;
+}
+
+.general-gpass-flow-image-top {
+  justify-self: center;
+}
+
+.general-gpass-flow-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.general-gpass-flow-image-process {
+  width: min(100%, 580px);
+}
+
+.general-gpass-flow-image-logo {
+  align-self: start;
+  margin-left: 0;
+  transform: translateX(-50px);
+}
+
+.general-gpass-flow-bottom {
+  margin-top: 24px;
+}
+
+.general-gpass-flow-heading {
+  font-weight: 800;
+  font-size: inherit;
+  color: var(--muted);
+}
+
+.general-gpass-flow-subheading {
+  font-weight: 800;
+  color: var(--muted) !important;
+  margin-bottom: -6px !important;
+}
+
+.general-gpass-doc-highlight {
+  font-weight: 800;
+  color: var(--muted) !important;
+}
+
+#general-gpass .general-gpass-doc-highlight:first-of-type {
+  margin-top: 18px;
+}
+
+.general-gpass-underlined {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+  font-weight: 800;
+  font-size: inherit;
+  color: var(--muted) !important;
+}
+
+.general-gpass-flow-spacer {
+  height: 10px;
+}
+
+.general-gpass-list-block {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.general-gpass-list-block li {
+  line-height: 1.75;
+  color: inherit;
+}
+
+.general-gpass-bullet-list,
+.general-gpass-circle-list,
+.general-gpass-check-list {
+  margin: 0;
+}
+
+.general-gpass-bullet-list {
+  display: grid;
+  gap: 14px;
+  padding-left: 36px;
+}
+
+.general-gpass-bullet-list > li::marker {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.general-gpass-bullet-list > li {
+  line-height: 1.75;
+}
+
+.general-gpass-bullet-list > li > p,
+.general-gpass-bullet-list > li > ol,
+.general-gpass-bullet-list > li > ul {
+  margin-top: 8px;
+}
+
+.general-gpass-circle-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.general-gpass-circle-list li {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  column-gap: 2px;
+  line-height: 1.75;
+  margin-top: 6px;
+}
+
+.general-gpass-circle-number {
+  display: inline-block;
+  font-weight: 700;
+}
+
+.general-gpass-benefit-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0 0 0 16px;
+  list-style: none;
+}
+
+.general-gpass-benefit-list > li {
+  position: relative;
+  padding-left: 26px;
+}
+
+.general-gpass-benefit-bullet {
+  position: absolute;
+  left: 2px;
+  top: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  transform: translateY(-2px);
+  color: var(--muted);
+}
+
+.general-gpass-benefit-list p {
+  margin: 0;
+  line-height: 1.75;
+}
+
+.general-gpass-check-list {
+  list-style: none;
+  padding-left: 26px;
+  margin-top: 6px;
+  display: grid;
+  gap: 4px;
+}
+
+.general-gpass-check-list li {
+  position: relative;
+  line-height: 1.75;
+}
+
+.general-gpass-check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: -18px;
+  top: 0;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.general-procurement-detail-body {
+  margin-top: 24px;
+}
+
+#general-venture-nara .general-procurement-detail-copy p,
+#general-venture-nara .general-procurement-detail-body p,
+#general-excellent-product .general-procurement-detail-copy p,
+#general-excellent-product .general-procurement-detail-body p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+#general-venture-nara .general-procurement-detail-heading {
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#general-venture-nara .general-procurement-detail-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 5px;
+}
+
+#general-venture-nara .general-procurement-detail-list li {
+  position: relative;
+  margin: 0;
+  padding-left: 1.85rem;
+  line-height: 1.72;
+  word-break: keep-all;
+}
+
+#general-venture-nara .general-procurement-detail-list-arrow li::before {
+  content: "✓";
+  position: absolute;
+  left: 2px;
+  top: 0;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+#general-venture-nara .general-procurement-detail-list-check {
+  gap: 4px;
+  padding-left: 26px;
+}
+
+#general-venture-nara .general-procurement-detail-list-check li::before {
+  content: "✓";
+  position: absolute;
+  left: 2px;
+  top: 0;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+#general-venture-nara .general-procurement-detail-image-venture-hero {
+  width: min(100%, 386px);
+  justify-self: center;
+  margin-top: -34px;
+  margin-right: 0;
+  transform: none;
+  object-fit: contain;
+}
+
+#general-venture-nara .general-procurement-detail-image-procedure {
+  width: min(100%, 700px);
+}
+
+#general-venture-nara .general-procurement-detail-image-cert {
+  width: min(100%, 140px);
+  justify-self: start;
+  margin-left: -48px;
+  margin-top: 4px;
+}
+
+#general-venture-nara .general-procurement-detail-doc-grid {
+  align-items: start;
+}
+
+#general-venture-nara .general-procurement-detail-image-trade {
+  width: min(100%, 680px);
+}
+
+#general-venture-nara .general-procurement-detail-image-benefit {
+  width: min(100%, 580px);
+}
+
+#general-venture-nara .general-procurement-detail-image-procedure + .general-procurement-detail-heading {
+  margin-top: 10px;
+}
+
+#general-venture-nara .general-procurement-detail-doc-grid + .general-procurement-detail-heading,
+#general-venture-nara .general-procurement-detail-image-trade + .general-procurement-detail-heading {
+  margin-top: 14px;
+}
+
+#general-venture-nara .general-procurement-detail-copy p + p,
+#general-venture-nara .general-procurement-detail-body p + p,
+#general-excellent-product .general-procurement-detail-copy p + p,
+#general-excellent-product .general-procurement-detail-body p + p {
+  margin-top: 0;
+}
+
+#general-excellent-product .general-procurement-detail-heading {
+  font-weight: 800;
+  color: var(--muted) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#general-excellent-product .general-procurement-detail-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+#general-excellent-product .general-procurement-detail-list li {
+  margin: 0;
+  padding-left: 0;
+  line-height: 1.86;
+  word-break: keep-all;
+}
+
+#general-excellent-product .general-procurement-detail-list-docs {
+  gap: 10px;
+  padding-left: 22px;
+  color: var(--muted) !important;
+}
+
+#general-excellent-product .general-procurement-detail-list-docs li {
+  position: relative;
+  padding-left: 1.7rem;
+  color: var(--muted) !important;
+}
+
+#general-excellent-product .general-procurement-detail-list-docs li::before {
+  content: "✓";
+  position: absolute;
+  left: 2px;
+  top: 0;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+#general-excellent-product .general-procurement-detail-list-docs li + li {
+  margin-top: -2px;
+}
+
+#general-excellent-product .general-procurement-detail-image-excellent-logo {
+  width: min(100%, 168px);
+  justify-self: center;
+  margin-right: 26px;
+  margin-top: 8px;
+}
+
+#general-excellent-product .general-procurement-detail-image-excellent-procedure {
+  width: min(100%, 580px);
+}
+
+#general-excellent-product .general-procurement-detail-list + .general-procurement-detail-heading {
+  margin-top: 14px;
+}
+
+#general-mas .general-procurement-detail-copy p,
+#general-mas .general-procurement-detail-body p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+#general-mas .general-procurement-detail-copy p + p,
+#general-mas .general-procurement-detail-body p + p {
+  margin-top: 16px;
+}
+
+#general-mas .general-procurement-detail-heading {
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#general-mas .general-procurement-detail-subheading {
+  font-weight: 700;
+  margin-bottom: -8px;
+}
+
+#general-mas .general-procurement-detail-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 5px;
+}
+
+#general-mas .general-procurement-detail-subheading + .general-procurement-detail-list {
+  margin-top: -10px;
+}
+
+#general-venture-nara .general-procurement-detail-doc-copy {
+  padding-left: 26px;
+}
+
+#general-mas .general-procurement-detail-list li {
+  position: relative;
+  margin: 0;
+  padding-left: 1.4rem;
+  line-height: 1.72;
+  word-break: keep-all;
+}
+
+#general-mas .general-procurement-detail-list-dot {
+  padding-left: 8px;
+}
+
+#general-mas .general-procurement-detail-list-dot li {
+  padding-left: 0.72rem;
+}
+
+#general-mas .general-procurement-detail-list-dot li::before {
+  content: "•";
+  position: absolute;
+  left: 0.02rem;
+  top: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+#general-mas .general-procurement-detail-image-mas-hero {
+  width: min(100%, 500px);
+}
+
+#general-mas .general-procurement-detail-image-mas-process {
+  width: min(100%, 680px);
+  height: auto;
+}
+
+#translation-apostille .apostille-doc-content,
+#translation-consular .consular-doc-content,
+#translation-certification .certification-doc-content {
+  gap: 18px;
+}
+
+#translation-apostille .apostille-doc-content p,
+#translation-consular .consular-doc-content p,
+#translation-certification .certification-doc-content p {
+  line-height: 1.86;
+}
+
+
+.general-civil-flow-layout {
+  display: block;
+}
+
+.general-civil-flow-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.general-civil-flow-copy,
+.general-civil-flow-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+#general-civil .general-civil-flow-copy p + p,
+#general-civil .general-civil-flow-bottom p + p {
+  margin-top: 0;
+}
+
+.general-civil-flow-image {
+  display: block;
+  width: min(100%, 580px);
+  margin-left: auto;
+  border-radius: 24px;
+}
+
+.general-civil-flow-image-top {
+  justify-self: end;
+}
+
+.general-civil-flow-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.general-civil-flow-image-offset-left {
+  margin-top: 22px;
+  margin-bottom: 10px;
+  transform: translateX(-52px);
+}
+
+.general-civil-flow-bottom {
+  margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+  .general-civil-flow-top {
+    grid-template-columns: 1fr;
+  }
+
+  .general-procurement-flow-top {
+    grid-template-columns: 1fr;
+  }
+
+  .general-procurement-detail-top {
+    grid-template-columns: 1fr;
+  }
+
+  .general-procurement-detail-doc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .general-civil-flow-image,
+  .general-civil-flow-image-top {
+    margin-left: 0;
+    justify-self: start;
+  }
+
+  .general-civil-flow-image-offset-left {
+    transform: none;
+  }
+
+  .general-procurement-flow-image,
+  .general-procurement-flow-image-top {
+    margin-left: 0;
+    justify-self: start;
+  }
+
+  .general-item-registration-flow-image,
+  .general-item-registration-flow-image-hero {
+    margin-left: 0;
+    justify-self: start;
+  }
+
+  .apostille-doc-image,
+  .consular-doc-image,
+  .general-license-doc-image,
+  .general-rights-doc-image,
+  .general-corporate-doc-image,
+  .general-business-doc-image,
+  .general-civil-doc-image,
+  .certification-doc-image,
+  .notarization-doc-image,
+  .business-doc-image,
+  .ip-doc-image,
+  .documents-doc-image,
+  .other-doc-image,
+  .general-procurement-flow-image-top,
+  .general-procurement-detail-image-top,
+  .general-civil-flow-image-top {
+    order: -1;
+  }
+
+  .general-procurement-detail-image-top {
+    margin-left: 0;
+    justify-self: start;
+  }
+
+  #general-venture-nara .general-procurement-detail-image-cert {
+    justify-self: start;
+  }
+
+  #general-excellent-product .general-procurement-detail-image-excellent-logo {
+    margin-right: 0;
+    justify-self: start;
+  }
+}
+
+.customer-center-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid rgba(13, 39, 66, 0.12);
+  border-radius: 20px;
+  background: #ffffff;
+}
+
+.customer-center-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 999px;
+  border: 2px solid #203e61;
+  color: #203e61;
+  font-size: 1.7rem;
+  font-weight: 700;
+  flex: 0 0 auto;
+}
+
+.customer-center-copy {
+  display: grid;
+  gap: 4px;
+}
+
+.customer-center-question,
+.customer-center-caption,
+.customer-center-phone,
+.customer-center-email {
+  margin: 0;
+}
+
+.customer-center-question {
+  color: var(--navy);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.customer-center-caption {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.customer-center-phone {
+  color: var(--navy);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+
+.customer-center-email {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+
+
+
+
+#general-mas .general-mas-single-flow {
+  display: block;
+}
+
+#general-mas .general-mas-single-flow > .general-procurement-detail-image-mas-hero {
+  display: block;
+  margin: 12px auto 14px;
+}
+
+#general-mas .general-mas-single-flow em {
+  font-style: italic;
+}
+
+#general-mas .general-mas-highlight-normal {
+  font-weight: 400;
+}
+
+
+#general-venture-nara .general-venture-nara-top {
+  grid-template-columns: minmax(0, 1fr) 400px;
+  column-gap: 8px;
+  align-items: start;
+}
+#general-venture-nara .general-venture-nara-top {
+  grid-template-columns: minmax(0, 1fr) 400px;
+  column-gap: 8px;
+  align-items: start;
+}
+
+
+#general-venture-nara .general-venture-nara-top .general-procurement-detail-copy {
+  max-width: none;
+}
+
+#general-venture-nara .general-procurement-detail-image-venture-hero {
+  width: min(100%, 386px);
+  justify-self: center;
+  margin-top: -34px;
+  margin-right: 0;
+  transform: none;
+  object-fit: contain;
+}
+
+#general-venture-nara .general-venture-nara-top em {
+  font-style: italic;
+}
+
+#general-mas .general-procurement-detail-heading + .general-procurement-detail-subheading,
+#general-mas .general-mas-check-list + .general-procurement-detail-heading {
+  margin-top: 48px;
+}
+
+#general-mas .general-mas-bullet-heading {
+  position: relative;
+  padding-left: 1rem;
+  margin-bottom: 18px;
+}
+
+#general-mas .general-mas-bullet-heading::before {
+  content: "•";
+  position: absolute;
+  left: 2px;
+  top: 0;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+#general-mas .general-mas-check-list {
+  margin: 0 0 20px;
+  padding-left: 26px;
+  list-style: none;
+  gap: 0;
+  display: grid;
+}
+
+#general-mas .general-mas-check-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin: 0;
+  line-height: 1.72;
+}
+
+#general-mas .general-mas-check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 2px;
+  top: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+#general-gpass .general-gpass-top {
+  align-items: start;
+  grid-template-columns: minmax(0, 1fr) 280px;
+}
+
+#general-gpass .general-gpass-flow-image-logo {
+  width: min(100%, 165px) !important;
+  justify-self: center !important;
+  align-self: start !important;
+  margin-top: 2px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  transform: translateX(-19px) !important;
+}
+
+#general-gpass .general-gpass-top .general-gpass-flow-copy {
+  max-width: none;
+}
+
+
+
+#general-gpass .general-gpass-flow-heading + p {
+  margin-top: -2px;
+}
+
+#general-gpass .general-gpass-flow-bottom > p:first-child {
+  margin-top: -8px;
+}
+
+#general-mas .general-procurement-detail-list-dot + .general-procurement-detail-heading {
+  margin-top: 44px !important;
+}
+
+#general-mas .general-mas-bullet-heading + .general-mas-check-list {
+  margin-top: 8px !important;
+}
+
+#general-mas .general-mas-check-list + .general-mas-bullet-heading {
+  margin-top: 26px !important;
+}
+
+#general-gpass .general-gpass-top .general-gpass-flow-heading {
+  margin-top: 18px;
+  margin-bottom: 2px;
+}
+
+#general-venture-nara .general-procurement-detail-top {
+  overflow: visible;
+}
+
+#general-venture-nara .detail-item {
+  overflow: visible;
+}
+
+.location-actions-main.map-link-buttons .map-link-button {
+  gap: 10px !important;
+  min-height: 46px !important;
+  padding: 0 18px !important;
+  border-radius: 24px !important;
+  font-size: 0.96rem !important;
+  font-weight: 700 !important;
+}
+
+.map-link-button-kakao {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.location-actions-main.map-link-buttons .map-link-button span {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Force smaller location map buttons override */
+.location-actions-main.map-link-buttons {
+  grid-template-columns: repeat(2, max-content) !important;
+  gap: 12px !important;
+  justify-content: start !important;
+}
+
+.location-actions-main.map-link-buttons .map-link-button {
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: 48px !important;
+  padding: 6px 18px !important;
+  gap: 10px !important;
+  border-radius: 22px !important;
+}
+
+.location-actions-main.map-link-buttons .map-link-icon {
+  width: 30px !important;
+  height: 30px !important;
+  flex: 0 0 30px !important;
+}
+
+
+
+
+/* Item registration top split */
+.general-item-registration-flow-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.general-item-registration-flow-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.general-item-registration-flow-top .general-item-registration-bullet-list {
+  margin-top: 0;
+}
+
+.general-item-registration-flow-top + .general-item-registration-flow-bottom {
+  margin-top: -18px;
+}
+
+#general-mas .general-procurement-detail-heading + p + .general-procurement-detail-image-mas-process {
+  margin-top: 28px;
+}
+#general-mas .general-procurement-detail-image-mas-process + p {
+  margin-top: 30px !important;
+}
+
+
+
+.general-business-doc-content {
+  min-width: 0;
+}
+
+.general-business-doc-layout {
+  display: block;
+}
+
+.general-business-doc-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.general-business-doc-top .general-business-doc-content {
+  display: grid;
+  gap: 18px;
+}
+
+.general-business-doc-feature {
+  margin: 8px auto 0;
+  max-width: 1120px;
+}
+
+.general-business-doc-feature p {
+  margin: 0;
+  line-height: 1.86;
+  white-space: normal;
+}
+
+.general-business-doc-feature > p:first-child {
+  margin-top: -2px;
+}
+
+.general-business-doc-feature p + p {
+  margin-top: 18px;
+}
+
+.general-business-doc-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(420px, max-content));
+  justify-content: center;
+  max-width: 980px;
+  margin: 14px auto 0;
+  column-gap: 52px;
+  row-gap: 0;
+}
+
+.general-business-doc-column {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+.general-business-doc-column p {
+  margin: 0;
+  white-space: nowrap;
+  position: relative;
+  padding-left: 24px;
+  line-height: 1.6;
+}
+
+.general-business-doc-column p::before {
+  content: '\2756';
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+@media (max-width: 900px) {
+  .general-business-doc-top {
+    grid-template-columns: 1fr;
+  }
+
+  .general-business-doc-columns {
+    grid-template-columns: 1fr;
+    justify-content: start;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    gap: 8px;
+  }
+
+  .general-business-doc-feature p {
+    white-space: normal;
+  }
+
+  .general-business-doc-column p {
+    white-space: normal;
+  }
+}
+#general-gpass .general-gpass-legal-list > li > strong {
+  font-weight: 400;
+}
+
+#general-gpass .general-gpass-flow-image-logo {
+  justify-self: center;
+  margin-top: -4px;
+  margin-left: 0;
+  transform: translate(-8px, -10px);
+}
+#general-excellent-product .general-procurement-detail-top {
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 18px;
+}
+
+#general-item-registration .general-item-registration-flow-image-centered {
+  width: min(100%, 460px);
+  border-radius: 24px;
+}
+
+#general-item-registration .general-item-registration-flow-image {
+  border-radius: 24px;
+}
+
+.medical-renewal-flow-layout {
+  display: block;
+}
+
+.medical-approval-item-layout {
+  display: block;
+}
+
+.medical-license-flow-layout {
+  display: block;
+}
+
+#medical-license .detail-item.medical-license-flow-layout {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.medical-license-flow-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.medical-license-flow-copy,
+.medical-license-flow-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.medical-license-flow-top + .medical-license-flow-bottom {
+  margin-top: -84px;
+}
+
+#medical-license .medical-license-flow-copy p,
+#medical-license .medical-license-flow-bottom p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+#medical-license .medical-license-flow-heading {
+  font-size: 1.08rem;
+}
+
+.medical-license-flow-image {
+  width: min(100%, 520px);
+  border-radius: 24px;
+  justify-self: end;
+}
+
+.medical-license-flow-image-centered {
+  width: min(100%, 620px);
+  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateX(-0.2cm);
+}
+
+.medical-license-process-image {
+  border-radius: 0;
+  margin-bottom: 14px;
+}
+
+.medical-license-dot-list,
+.medical-license-check-list,
+.medical-license-arrow-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0 0 0 0.55rem;
+  list-style: none;
+}
+
+.medical-license-dot-list li,
+.medical-license-check-list li,
+.medical-license-arrow-list li {
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  column-gap: 0.28rem;
+  align-items: start;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.medical-license-bullet,
+.medical-license-check,
+.medical-license-arrow {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.medical-license-subsection-list {
+  gap: 2px;
+  padding-left: 2.35rem;
+  margin-top: -8px;
+}
+
+.medical-license-subsection-bullet-list {
+  gap: 2px;
+  padding-left: 0.55rem;
+  margin-top: -6px;
+  margin-bottom: -4px;
+}
+
+.medical-license-doc-list {
+  padding-left: 2.1rem;
+  gap: 4px;
+  margin-top: -8px;
+}
+
+.medical-license-arrow-list {
+  padding-left: 4.9rem;
+  gap: 4px;
+  margin-top: -10px;
+}
+
+.medical-license-dash-list {
+  display: grid;
+  gap: 4px;
+  margin: -10px 0 0;
+  padding: 0 0 0 6.45rem;
+  list-style: none;
+  color: var(--muted);
+}
+
+#medical-license .medical-license-dot-list li:nth-child(2) span:last-child {
+  word-spacing: 0.08em;
+}
+
+.medical-license-dash-list li {
+  position: relative;
+  line-height: 1.78;
+}
+
+.medical-license-dash-list li::before {
+  content: "-";
+  position: absolute;
+  left: -1.05rem;
+  top: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.medical-license-subsection-list li span:last-child,
+.medical-license-subsection-bullet-list li span:last-child {
+  font-weight: 400;
+}
+
+#medical-license .medical-license-flow-bottom > .medical-license-flow-heading {
+  margin-top: 22px !important;
+}
+
+#medical-license .medical-license-flow-bottom > .medical-license-flow-heading:first-child {
+  margin-top: 0 !important;
+}
+
+#medical-license .medical-license-flow-bottom > p + .medical-license-dot-list {
+  margin-top: -14px;
+}
+
+.medical-license-closing {
+  font-size: 1.08rem;
+  margin: 0;
+}
+
+.medical-license-closing + .medical-license-closing {
+  margin-top: 0;
+}
+
+#medical-license .medical-license-closing {
+  line-height: 1.35;
+}
+
+#medical-license .medical-license-closing + .medical-license-closing {
+  margin-top: -10px;
+}
+
+.medical-license-reference {
+  display: grid;
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.medical-license-reference-title {
+  margin: 0;
+  font-size: 1.12rem;
+  line-height: 1.8;
+  padding-left: 0;
+  margin-left: -1rem !important;
+}
+
+.medical-license-reference-image {
+  width: min(100%, 920px);
+  transform: none;
+}
+
+.medical-license-reference-image-definition {
+  width: min(100%, 500px);
+}
+
+.medical-license-reference-image-wide {
+  width: min(100%, 640px);
+}
+
+.medical-license-reference-check-list {
+  padding-left: 2.1rem;
+  gap: 6px;
+  margin-top: -6px;
+}
+
+#medical-approval-item .detail-item.medical-approval-item-layout {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.medical-approval-item-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.medical-approval-item-copy,
+.medical-approval-item-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.medical-approval-item-top + .medical-approval-item-bottom {
+  margin-top: 18px;
+}
+
+#medical-approval-item .medical-approval-item-copy p,
+#medical-approval-item .medical-approval-item-bottom p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+#medical-approval-item .medical-approval-item-heading {
+  font-size: 1.08rem;
+}
+
+#medical-approval-item .medical-approval-item-heading-flow {
+  margin-left: -0.2rem;
+}
+
+.medical-approval-item-image {
+  width: min(100%, 520px);
+  border-radius: 24px;
+  justify-self: end;
+}
+
+.medical-approval-item-image-centered {
+  width: min(100%, 660px);
+  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.medical-approval-item-process-image {
+  border-radius: 0;
+}
+
+.medical-approval-item-closing {
+  font-size: 1.08rem;
+}
+
+@media (max-width: 900px) {
+  .medical-approval-item-top {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .medical-approval-item-image,
+  .medical-approval-item-image-centered {
+    width: 100%;
+    justify-self: center;
+  }
+}
+
+#translation-other .other-doc-content {
+  gap: 8px;
+}
+
+#translation-other .translation-full-width-copy {
+  gap: 8px;
+}
+
+#translation-other .other-doc-content p strong,
+#translation-other .translation-full-width-copy p strong {
+  display: inline-block;
+}
+
+#translation-other .other-doc-content p:has(strong) + p,
+#translation-other .translation-full-width-copy p:has(strong) + p {
+  margin-top: -8px;
+}
+
+#translation-other .other-doc-content > p:nth-of-type(4) {
+  margin-top: 6px;
+}
+
+#translation-other .translation-full-width-copy > p:first-child {
+  margin-top: -14px;
+}
+
+#translation-other .other-doc-content > p:nth-of-type(3) {
+  margin-top: 10px;
+}
+
+.translation-other-detail-list {
+  margin-top: 10px;
+}
+
+#translation-other .translation-other-detail-list > p {
+  margin: 0 0 18px -8px;
+}
+
+.translation-other-detail-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.translation-other-detail-item {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  column-gap: 10px;
+  align-items: start;
+}
+
+.translation-other-detail-symbol {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10px;
+  line-height: 0;
+}
+
+.translation-other-detail-symbol img {
+  display: block;
+  width: 12px;
+  height: auto;
+}
+
+.translation-other-detail-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.translation-other-detail-heading {
+  margin: 0;
+}
+
+.translation-other-detail-copy p {
+  margin: 0;
+}
+
+#translation-other .translation-full-width-copy {
+  grid-column: 1 / -1;
+  display: block;
+  margin-top: 6px;
+}
+
+#translation-other .translation-other-detail-list-wide {
+  margin-top: 0;
+}
+
+#medical-renewal .detail-item.medical-renewal-flow-layout {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#medical-change .detail-item.medical-change-layout {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.medical-change-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.medical-change-copy,
+.medical-change-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.medical-change-top + .medical-change-bottom {
+  margin-top: 18px;
+}
+
+#medical-change .medical-change-copy p,
+#medical-change .medical-change-bottom p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+#medical-change .medical-change-heading {
+  font-size: 1.08rem;
+}
+
+#medical-change .medical-change-heading-table {
+  margin-top: 0;
+}
+
+.medical-change-image {
+  width: min(100%, 520px);
+  border-radius: 24px;
+  justify-self: end;
+}
+
+.medical-change-image-centered {
+  width: min(100%, 696px);
+  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.medical-change-table-image {
+  border-radius: 0;
+}
+
+.medical-change-table-frame {
+  width: fit-content;
+  max-width: 100%;
+  justify-self: center;
+  margin: 0 auto;
+  padding-left: 13px;
+  padding-right: 10px;
+  background: #d2d2d2;
+  overflow: hidden;
+}
+
+.medical-change-table-frame .medical-change-table-image {
+  display: block;
+}
+
+.medical-change-dot-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 0 0.55rem;
+  list-style: none;
+}
+
+#medical-change .medical-change-legal-list {
+  margin-bottom: 6px;
+}
+
+#medical-change .medical-change-legal-list + .medical-change-heading-table {
+  padding-top: 6px;
+}
+
+.medical-change-dot-list li {
+  display: grid;
+  grid-template-columns: 0.9rem minmax(0, 1fr);
+  column-gap: 0.2rem;
+  align-items: start;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.medical-change-bullet {
+  font-weight: 600;
+}
+
+.medical-change-closing {
+  font-size: 1.08rem;
+}
+
+#medical-change .medical-change-table-frame + .medical-change-closing {
+  margin-top: 18px;
+}
+
+#medical-change .medical-change-closing + .medical-change-closing {
+  margin-top: -8px;
+}
+
+#medical-docs .detail-item.medical-docs-layout {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.medical-docs-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.medical-docs-copy,
+.medical-docs-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.medical-docs-top + .medical-docs-bottom {
+  margin-top: 18px;
+}
+
+#medical-docs .medical-docs-copy p,
+#medical-docs .medical-docs-bottom p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+#medical-docs .medical-docs-heading {
+  font-size: 1.08rem;
+}
+
+.medical-docs-image {
+  width: min(100%, 520px);
+  border-radius: 24px;
+  justify-self: end;
+}
+
+.medical-docs-closing {
+  font-size: 1.08rem;
+}
+
+#medical-docs .medical-docs-closing + .medical-docs-closing {
+  margin-top: -8px;
+}
+
+.medical-renewal-flow-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.medical-renewal-flow-copy,
+.medical-renewal-flow-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.medical-renewal-flow-top + .medical-renewal-flow-bottom {
+    margin-top: -64px;
+}
+
+#medical-renewal .medical-renewal-flow-copy p,
+#medical-renewal .medical-renewal-flow-bottom p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+#medical-renewal .medical-renewal-flow-heading {
+  font-size: 1.08rem;
+}
+
+#medical-renewal .medical-renewal-inline-heading {
+  font-weight: 400;
+}
+
+#medical-renewal .medical-renewal-intro-emphasis {
+  font-style: italic;
+}
+
+.medical-renewal-flow-image {
+  width: min(100%, 520px);
+  border-radius: 24px;
+  justify-self: end;
+}
+
+.medical-renewal-flow-image-centered {
+  width: min(100%, 680px);
+  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.medical-renewal-process-list {
+  gap: 6px;
+}
+
+.medical-renewal-process-image {
+  width: min(100%, 560px);
+}
+
+.medical-renewal-process-image-wrap {
+  position: relative;
+  width: min(100%, 560px);
+  justify-self: center;
+  margin: 0 auto;
+}
+
+.medical-renewal-process-image-wrap .medical-renewal-process-image {
+  width: 100%;
+}
+
+.medical-renewal-process-stars {
+  position: absolute;
+  top: 21.5%;
+  left: 41.5%;
+  color: #d52b2b;
+  font-size: 0.94rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  background: #fff;
+  padding: 0 2px;
+  line-height: 1;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.medical-renewal-bullet-list {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-left: 0.4rem;
+  color: var(--muted);
+  list-style: none;
+}
+
+.medical-renewal-bullet-list li {
+  position: relative;
+  line-height: 1.56;
+  color: var(--muted);
+  padding-left: 1.45rem;
+}
+
+.medical-renewal-bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.medical-renewal-bullet-sublist {
+  display: grid;
+  gap: 2px;
+  margin: 3px 0 0;
+  padding-left: 0.22rem;
+  list-style: none;
+}
+
+.medical-renewal-bullet-sublist li {
+  position: relative;
+  line-height: 1.52;
+  color: var(--muted);
+}
+
+.medical-renewal-bullet-sublist li::before {
+  content: "✓";
+  position: absolute;
+  left: -0.16rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.medical-renewal-dot-list,
+.medical-renewal-check-list,
+.medical-renewal-number-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 0 0.55rem;
+  list-style: none;
+}
+
+.medical-renewal-dot-list li,
+.medical-renewal-check-list li,
+.medical-renewal-number-list li {
+  display: grid;
+  grid-template-columns: 0.9rem minmax(0, 1fr);
+  column-gap: 0.2rem;
+  align-items: start;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.medical-renewal-check-list li {
+  grid-template-columns: 1.35rem minmax(0, 1fr);
+}
+
+.medical-renewal-number-list li {
+  grid-template-columns: 1.55rem minmax(0, 1fr);
+}
+
+.medical-renewal-bullet,
+.medical-renewal-check,
+.medical-renewal-number {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+#medical-renewal .medical-renewal-flow-bottom > .medical-renewal-flow-heading {
+    margin-top: 4px !important;
+    margin-bottom: 0 !important;
+}
+
+
+
+
+#medical-renewal .medical-renewal-flow-bottom > .medical-renewal-flow-heading:first-child {
+    margin-top: 0 !important;
+}
+
+
+
+.medical-renewal-legal-list {
+  gap: 4px;
+  margin-top: -4px;
+}
+
+.medical-renewal-criteria-list {
+  gap: 4px;
+  margin-top: -4px;
+}
+
+.medical-renewal-precheck-list {
+  gap: 0;
+  padding-left: 1.6rem;
+  margin-top: -6px;
+}
+
+.medical-renewal-precheck-list li {
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  column-gap: 0.32rem;
+}
+
+.medical-renewal-precheck-list li:first-child {
+  padding-left: 0.28rem;
+}
+
+.medical-renewal-deadline-check-list li {
+  grid-template-columns: 0.96rem minmax(0, 1fr);
+  column-gap: 0.22rem;
+}
+
+.ci-layout {
+  display: grid;
+  gap: 28px;
+}
+
+.ci-hero {
+  display: grid;
+  gap: 16px;
+}
+
+.ci-hero-copy,
+.ci-section-copy {
+  display: grid;
+  gap: 10px;
+}
+
+#identity .ci-hero-copy p,
+#identity .ci-section-copy p {
+  margin: 0;
+  line-height: 1.86;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+#identity .ci-hero-copy strong,
+#identity .ci-section-copy strong,
+#identity .ci-section-copy span,
+#identity .ci-section-copy em,
+#identity .ci-section-title strong,
+#identity .ci-symbol-item-title strong {
+  color: var(--muted);
+}
+
+#identity .ci-hero-title,
+#identity .ci-hero-title strong,
+#identity .ci-hero-title span {
+  color: var(--muted);
+}
+
+#identity .ci-hero-copy strong {
+  color: var(--muted);
+}
+
+#identity .ci-section {
+  display: grid;
+  gap: 12px;
+  color: var(--muted);
+}
+
+.ci-hero-image {
+  display: block;
+  width: min(100%, 500px);
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+#identity .ci-section-title {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+#identity .ci-symbol-item-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+#identity .ci-section-copy > p:not(.ci-symbol-item-title) {
+  padding-left: 30px;
+}
+
+.ci-symbol-bullet {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  object-fit: contain;
+  filter: none;
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .ci-hero-image {
+    width: min(100%, 380px);
+  }
+}
+
+.medical-renewal-precheck-list .medical-renewal-nested-copy {
+  gap: 2px;
+}
+
+.medical-renewal-subdash {
+  padding-left: 1.25rem;
+}
+
+.medical-renewal-apply-list {
+  gap: 4px;
+}
+
+.medical-renewal-deadline-check-list {
+  gap: 2px;
+  padding-left: 1.35rem;
+  margin-top: -6px;
+}
+
+.medical-renewal-red-italic {
+  color: #c62828;
+  font-style: normal;
+}
+.medical-renewal-nested-copy {
+  display: grid;
+  gap: 2px;
+}
+
+#medical-renewal .medical-renewal-alert {
+  color: #c62828;
+}
+
+
+#medical-renewal .medical-renewal-alert-box {
+  border: 1.5px solid #5b5b5b;
+  padding: 18px 22px;
+  margin: 10px auto 8px;
+  width: min(100%, 760px);
+  text-align: center;
+}
+
+#medical-renewal .medical-renewal-alert-title {
+  margin: 0 0 12px;
+  color: #c62828;
+  font-weight: 800;
+}
+
+#medical-renewal .medical-renewal-alert-stars {
+  letter-spacing: 0.08em;
+}
+
+#medical-renewal .medical-renewal-alert-title-text {
+  text-decoration: none;
+  font-style: normal;
+}
+
+#medical-renewal .medical-renewal-alert {
+  color: #c62828;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+#medical-renewal .medical-renewal-closing {
+  font-weight: 800;
+  margin-top: 14px !important;
+  margin-bottom: -2px !important;
+  line-height: 1.28;
+}
+
+#medical-renewal .medical-renewal-closing + .medical-renewal-closing {
+  margin-top: -8px !important;
+}
+
+.medical-renewal-alert-emphasis {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.medical-renewal-alert-term {
+  font-style: normal;
+  text-decoration: none;
+}
+
+.medical-renewal-alert-line {
+  display: inline-block;
+}
+
+#general-rights .general-rights-doc-content > p:last-child,
+#translation-certification .translation-full-width-copy > p:last-child,
+#translation-ip .translation-full-width-copy > p:last-child {
+  margin-top: 10px;
+}
+
+#translation-certification .translation-full-width-copy,
+#translation-ip .translation-full-width-copy,
+.apostille-full-width-copy {
+  gap: 10px;
+}
+
+#translation-certification .translation-full-width-copy > p:first-child {
+  white-space: nowrap;
+}
+
+#translation-business .translation-full-width-copy {
+  gap: 10px;
+}
+
+#translation-business .translation-full-width-copy > p:last-child {
+  margin-top: 8px;
+}
+
+.translation-business-detail-list {
+  margin-top: 22px;
+  display: grid;
+  gap: 18px;
+}
+
+.translation-business-detail-list p {
+  margin: 0;
+}
+
+.translation-business-detail-items {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 18px;
+  display: grid;
+  gap: 22px;
+}
+
+.translation-business-detail-item {
+  position: relative;
+  padding-left: 22px;
+}
+
+.translation-business-detail-symbol {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  display: block;
+  line-height: 0;
+}
+
+.translation-business-detail-symbol img {
+  display: block;
+  width: 12px;
+  height: auto;
+}
+
+.translation-business-detail-copy {
+  display: grid;
+  gap: 7px;
+}
+
+.translation-business-detail-heading {
+  margin-left: 0;
+}
+
+.documents-closing-indent {
+  display: inline-block;
+  padding-left: 0.45em;
+}
+
+#general-license .general-full-width-copy > p:last-child {
+  margin-top: -10px;
+}
+
+#translation-ip .translation-full-width-copy {
+  gap: 18px;
+}
+
+#translation-ip .translation-full-width-copy > p:last-child {
+  margin-top: 0;
+}
+
+
+
+#medical-renewal .medical-renewal-top-continued-list {
+    margin-top: 0 !important;
+    margin-bottom: 6px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#medical-renewal .medical-renewal-target-list {
+    margin-top: 10px !important;
+}
+
+
+
+#medical-renewal .medical-renewal-top-continued-copy {
+    margin: -2px 0 2px 25px !important;
+    line-height: 1.42 !important;
+    text-align: left !important;
+}
+
+
+#medical-renewal .medical-renewal-inline-continuation {
+    display: inline-block;
+    margin-left: 0 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#medical-license .medical-license-grade-section {
+    margin: -8px 0 4px 0 !important;
+}
+
+
+#medical-license .medical-license-grade-copy {
+    margin: -16px 0 2px 62px !important;
+    max-width: 820px;
+    line-height: 1.5 !important;
+}
+
+
+
+
+#medical-license .medical-license-grade-dash-list {
+    margin: -18px 0 10px 60px !important;
+    padding-left: 0 !important;
+}
+
+
+
+
+
+#medical-license .medical-license-grade-dash-list li {
+    position: relative;
+    padding-left: 14px;
+    margin: 2px 0 !important;
+    line-height: 1.42 !important;
+}
+
+
+#medical-license .medical-license-grade-dash-list li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+}
+
+
+
+
+
+
+
+
+
+#medical-renewal .medical-renewal-flow-bottom > p + ul,
+#medical-renewal .medical-renewal-flow-bottom > p + ol {
+    margin-top: 4px !important;
+}
+
+
+#medical-renewal .medical-renewal-flow-bottom > p + .medical-renewal-dot-list,
+#medical-renewal .medical-renewal-flow-bottom > p + .medical-renewal-number-list,
+#medical-renewal .medical-renewal-flow-bottom > p + .medical-renewal-check-list,
+#medical-renewal .medical-renewal-flow-bottom > p + .medical-renewal-bullet-list,
+#medical-renewal .medical-renewal-flow-bottom > p + .medical-renewal-apply-list,
+#medical-renewal .medical-renewal-flow-bottom > p + .medical-renewal-criteria-list,
+#medical-renewal .medical-renewal-flow-bottom > p + .medical-renewal-legal-list {
+    margin-top: -6px !important;
+}
+
+#medical-renewal .medical-renewal-flow-bottom > p {
+    margin-bottom: 6px !important;
+}
+
+#medical-gmp .detail-item.medical-gmp-layout {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.medical-gmp-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 28px;
+    align-items: start;
+}
+
+.medical-gmp-copy,
+.medical-gmp-bottom,
+.medical-gmp-reference-copy {
+    display: grid;
+    gap: 18px;
+}
+
+#medical-gmp .medical-gmp-copy p,
+#medical-gmp .medical-gmp-bottom p,
+#medical-gmp .medical-gmp-reference-copy p,
+#medical-gmp .medical-gmp-reference > p {
+    margin: 0;
+    line-height: 1.86;
+}
+
+#medical-gmp .medical-gmp-heading,
+#medical-gmp .medical-gmp-inline-heading {
+    font-size: 1.08rem;
+}
+
+.medical-gmp-image {
+    width: min(100%, 520px);
+    justify-self: end;
+}
+
+.medical-gmp-image-top {
+    border-radius: 20px;
+}
+
+.medical-gmp-image-centered {
+    justify-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.medical-gmp-dot-list {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0 0 0 0.55rem;
+    list-style: none;
+}
+
+.medical-gmp-dot-list li {
+    display: grid;
+    grid-template-columns: 1.1rem minmax(0, 1fr);
+    column-gap: 0.28rem;
+    align-items: start;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.medical-gmp-bullet {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.medical-gmp-target-list,
+.medical-gmp-service-list {
+    margin-top: -18px;
+}
+
+#medical-gmp .medical-gmp-heading + p {
+    margin-top: -12px !important;
+}
+
+.medical-gmp-target-heading {
+    margin-top: 0.72cm !important;
+}
+
+#medical-gmp .medical-gmp-target-list + .medical-gmp-heading,
+#medical-gmp .medical-gmp-service-list + .medical-gmp-heading {
+    margin-top: 0.48cm !important;
+}
+
+#medical-gmp .medical-gmp-reference-row + .medical-gmp-heading,
+#medical-gmp .medical-gmp-compare-image + .medical-gmp-heading,
+#medical-gmp .medical-gmp-dot-list + .medical-gmp-heading {
+    margin-top: 0.46cm !important;
+}
+
+#medical-gmp .medical-gmp-process-heading {
+    margin-top: 0.62cm !important;
+}
+
+#medical-gmp .medical-gmp-heading + .medical-gmp-process-image,
+#medical-gmp p + .medical-gmp-process-image {
+    margin-top: 0.32cm;
+}
+
+#medical-gmp .medical-gmp-closing {
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.38;
+}
+
+#medical-gmp .medical-gmp-closing + .medical-gmp-closing {
+    margin-top: -8px;
+}
+
+.medical-gmp-reference {
+    display: grid;
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.medical-gmp-reference-title {
+    margin: 0;
+    font-size: 1.12rem;
+    line-height: 1.8;
+    padding-left: 0;
+    margin-left: -1rem !important;
+}
+
+.medical-gmp-reference-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 120px;
+    gap: 18px;
+    align-items: start;
+}
+
+.medical-gmp-image-badge {
+    width: min(100%, 94px);
+    justify-self: center;
+}
+
+.medical-gmp-compare-image {
+    width: min(100%, 620px);
+}
+
+.medical-gmp-process-image {
+    width: min(100%, 460px);
+}
+
+@media (max-width: 900px) {
+    .medical-gmp-top,
+    .medical-gmp-reference-row {
+        grid-template-columns: 1fr;
+    }
+
+    .medical-gmp-image,
+    .medical-gmp-image-badge {
+        justify-self: center;
+    }
+}
+
+#medical-quality-docs .detail-item.medical-quality-docs-layout {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.medical-quality-docs-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+    gap: 32px;
+    align-items: start;
+}
+
+.medical-quality-docs-copy,
+.medical-quality-docs-bottom {
+    display: grid;
+    gap: 18px;
+}
+
+.medical-quality-docs-top + .medical-quality-docs-bottom {
+    margin-top: 8px;
+}
+
+#medical-quality-docs .medical-quality-docs-copy p,
+#medical-quality-docs .medical-quality-docs-bottom p {
+    margin: 0;
+    line-height: 1.86;
+}
+
+#medical-quality-docs .medical-quality-docs-heading {
+    font-size: 1.08rem;
+}
+
+.medical-quality-docs-image {
+    width: min(100%, 520px);
+    justify-self: start;
+}
+
+.medical-quality-docs-image-top {
+    border-radius: 20px;
+    width: min(100%, 430px);
+}
+
+.medical-quality-docs-image-centered {
+    justify-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.medical-quality-docs-process-image {
+    width: min(100%, 540px);
+}
+
+.medical-quality-docs-upgrade-image {
+    width: min(100%, 740px);
+}
+
+.medical-quality-docs-dot-list {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0 0 0 0.55rem;
+    list-style: none;
+}
+
+.medical-quality-docs-dot-list li {
+    display: grid;
+    grid-template-columns: 1rem minmax(0, 1fr);
+    column-gap: 0.22rem;
+    align-items: start;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.medical-quality-docs-bullet {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.medical-quality-docs-check-list {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0 0 0 1.55rem;
+    list-style: none;
+    color: var(--muted);
+}
+
+.medical-quality-docs-check-list li {
+    display: grid;
+    grid-template-columns: 1.15rem minmax(0, 1fr);
+    column-gap: 0.35rem;
+    align-items: start;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.medical-quality-docs-check {
+    color: #111;
+    font-weight: 600;
+}
+
+.medical-quality-docs-section-list {
+    margin-top: 2px;
+}
+
+.medical-quality-docs-task-list,
+.medical-quality-docs-ivd-copy-list,
+.medical-quality-docs-subcheck-list {
+    margin-top: -2px;
+}
+
+#medical-quality-docs .medical-quality-docs-bottom > .medical-quality-docs-heading {
+    margin-top: 6px !important;
+    margin-bottom: 0 !important;
+}
+
+#medical-quality-docs .medical-quality-docs-bottom > .medical-quality-docs-heading:first-child {
+    margin-top: 24px !important;
+}
+
+#medical-quality-docs .medical-quality-docs-heading + p {
+    margin-top: -10px !important;
+}
+
+#medical-quality-docs .medical-quality-docs-intro-list,
+#medical-quality-docs .medical-quality-docs-target-list,
+#medical-quality-docs .medical-quality-docs-ivd-outline-list,
+#medical-quality-docs .medical-quality-docs-section-list {
+    margin-top: -8px;
+}
+
+#medical-quality-docs .medical-quality-docs-process-image + .medical-quality-docs-heading,
+#medical-quality-docs .medical-quality-docs-task-list + .medical-quality-docs-heading,
+#medical-quality-docs .medical-quality-docs-target-list + .medical-quality-docs-heading,
+#medical-quality-docs .medical-quality-docs-upgrade-image + .medical-quality-docs-heading,
+#medical-quality-docs .medical-quality-docs-subcheck-list + .medical-quality-docs-closing {
+    margin-top: 28px !important;
+}
+
+#medical-quality-docs .medical-quality-docs-ivd-copy-list + .medical-quality-docs-section-list {
+    margin-top: 22px !important;
+}
+
+#medical-quality-docs .medical-quality-docs-closing {
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.24;
+}
+
+#medical-quality-docs .medical-quality-docs-closing + .medical-quality-docs-closing {
+    margin-top: -12px;
+}
+
+#medical-fda .detail-item.medical-fda-layout {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.medical-fda-copy,
+.medical-fda-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.medical-fda-top + .medical-fda-bottom,
+.medical-fda-copy + .medical-fda-bottom {
+  margin-top: 18px;
+}
+
+#medical-fda .medical-fda-copy p,
+#medical-fda .medical-fda-bottom p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+#medical-fda .medical-fda-heading {
+  font-size: 1.08rem;
+}
+
+.medical-fda-image {
+  width: min(100%, 520px);
+}
+
+.medical-fda-intro-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.7fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.medical-fda-image-top {
+  width: min(100%, 280px);
+  justify-self: center;
+}
+
+.medical-fda-image-centered {
+  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.medical-fda-class-image {
+  width: min(100%, 620px);
+}
+
+.medical-fda-process-image {
+  width: min(100%, 760px);
+}
+
+.medical-fda-dot-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 0 0.55rem;
+  list-style: none;
+}
+
+.medical-fda-dot-list li {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  column-gap: 0.22rem;
+  align-items: start;
+  color: var(--muted);
+  line-height: 1.82;
+}
+
+.medical-fda-bullet {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+#medical-fda .medical-fda-bottom > .medical-fda-heading {
+  margin-top: 12px !important;
+  margin-bottom: 0 !important;
+}
+
+#medical-fda .medical-fda-bottom > .medical-fda-heading:first-child {
+  margin-top: 22px !important;
+}
+
+#medical-fda .medical-fda-class-image + .medical-fda-heading,
+#medical-fda .medical-fda-process-image + .medical-fda-heading {
+  margin-top: 24px !important;
+}
+
+#medical-fda .medical-fda-legal-list + .medical-fda-heading {
+  margin-top: 34px !important;
+}
+
+#medical-fda .medical-fda-submission-list + .medical-fda-heading {
+  margin-top: 32px !important;
+}
+
+.medical-fda-legal-list,
+.medical-fda-submission-list {
+  margin-top: -8px;
+}
+
+.medical-fda-closing {
+  font-size: 1.08rem;
+}
+
+#medical-fda .medical-fda-bottom > p:not(.medical-fda-closing) + .medical-fda-closing {
+  margin-top: 18px !important;
+}
+
+#medical-fda .medical-fda-closing + .medical-fda-closing {
+  margin-top: -14px;
+}
+
+#medical-ce .detail-item.medical-ce-layout {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.medical-ce-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.46fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.medical-ce-copy,
+.medical-ce-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.medical-ce-top + .medical-ce-bottom {
+  margin-top: 18px;
+}
+
+#medical-ce .medical-ce-copy p,
+#medical-ce .medical-ce-bottom p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+#medical-ce .medical-ce-heading {
+  font-size: 1.08rem;
+}
+
+.medical-ce-image {
+  width: min(100%, 520px);
+}
+
+.medical-ce-image-top {
+  width: min(100%, 160px);
+  justify-self: center;
+  margin-top: 24px;
+}
+
+.medical-ce-image-centered {
+  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.medical-ce-mdr-image,
+.medical-ce-ivdr-image {
+  width: min(100%, 660px);
+}
+
+.medical-ce-process-image {
+  width: min(100%, 680px);
+}
+
+.medical-ce-evaluation-image {
+  width: min(100%, 640px);
+}
+
+.medical-ce-dot-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 0 0.55rem;
+  list-style: none;
+}
+
+.medical-ce-dot-list li {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  column-gap: 0.22rem;
+  align-items: start;
+  color: var(--muted);
+  line-height: 1.82;
+}
+
+.medical-ce-bullet {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.medical-ce-indent {
+  padding-left: 0;
+}
+
+#medical-ce .medical-ce-bottom > .medical-ce-heading {
+  margin-top: 12px !important;
+  margin-bottom: 0 !important;
+}
+
+#medical-ce .medical-ce-bottom > .medical-ce-heading:first-child {
+  margin-top: 22px !important;
+}
+
+#medical-ce .medical-ce-legal-list + .medical-ce-heading,
+#medical-ce .medical-ce-mdr-image + .medical-ce-heading,
+#medical-ce .medical-ce-ivdr-image + .medical-ce-heading,
+#medical-ce .medical-ce-process-image + .medical-ce-heading {
+  margin-top: 28px !important;
+}
+
+.medical-ce-legal-list {
+  margin-top: -8px;
+}
+
+.medical-sea-layout {
+  display: block;
+}
+
+#medical-sea .detail-item.medical-sea-layout {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.medical-sea-body {
+  display: grid;
+  gap: 18px;
+}
+
+#medical-sea .medical-sea-body p {
+  margin: 0;
+  line-height: 1.86;
+}
+
+#medical-sea .medical-sea-heading {
+  font-size: 1.08rem;
+}
+
+#medical-sea .medical-sea-heading-spaced {
+  margin-top: 8px !important;
+}
+
+#medical-sea .medical-sea-heading-section {
+  margin-top: 18px !important;
+}
+
+.medical-sea-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.medical-sea-table-wrap {
+  width: min(100%, 720px);
+  margin-top: 2px;
+  margin-left: 2.25rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.medical-sea-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.medical-sea-table td {
+  width: 50%;
+  padding: 7px 10px;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.32;
+  font-weight: 500;
+  vertical-align: middle;
+  border-bottom: 0;
+}
+
+.medical-sea-table td + td {
+  border-left: 0;
+}
+
+.medical-sea-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.medical-sea-table-check {
+  display: inline-block;
+  min-width: 0.92rem;
+  margin-right: 0.18rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.medical-sea-image-wide,
+.medical-sea-process-image,
+.medical-sea-process-image-th {
+  width: min(100%, 980px);
+}
+
+.medical-sea-image-wide {
+  width: min(100%, 590px);
+}
+
+.medical-sea-process-image {
+  width: min(100%, 560px);
+}
+
+.medical-sea-process-image-th {
+  width: min(100%, 700px);
+}
+
+.medical-sea-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.medical-sea-dot-list,
+.medical-sea-check-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 0 0.55rem;
+  list-style: none;
+}
+
+.medical-sea-dot-list li,
+.medical-sea-check-list li {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  column-gap: 0.22rem;
+  align-items: start;
+  color: var(--muted);
+  line-height: 1.82;
+}
+
+.medical-sea-bullet,
+.medical-sea-check {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.medical-sea-club-note {
+  padding-left: 0.1rem;
+}
+
+.medical-sea-intro-list {
+  margin-top: 2px;
+}
+
+.medical-sea-intro-check-list {
+  margin-top: -4px;
+  padding-left: 1.8rem;
+}
+
+.medical-sea-intro-check-list li {
+  grid-template-columns: 1.15rem minmax(0, 1fr);
+  column-gap: 0.35rem;
+}
+
+.medical-sea-country-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  width: fit-content;
+  min-width: 110px;
+  padding: 0.46rem 1.08rem 0.5rem;
+  border-radius: 0.45rem;
+  color: #ffffff;
+  font-size: 1.06rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.16);
+}
+
+.medical-sea-country-chip-vn {
+  margin-top: 18px;
+  background: #8f6d00;
+}
+
+.medical-sea-country-chip-th {
+  margin-top: 24px;
+  background: rgb(59, 106, 191);
+}
+
+.medical-sea-heading-gap {
+  margin-top: 12px !important;
+}
+
+@media (max-width: 900px) {
+    .medical-quality-docs-top {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .medical-quality-docs-image {
+        width: 100%;
+        justify-self: center;
+    }
+
+    .medical-quality-docs-check-list {
+        padding-left: 0.8rem;
+    }
+
+    .medical-sea-body {
+        gap: 16px;
+    }
+
+    .medical-sea-image-wide,
+    .medical-sea-process-image,
+    .medical-sea-process-image-th {
+        width: 100%;
+    }
+
+    .medical-sea-table-wrap {
+        width: 100%;
+        border-radius: 0;
+        margin-left: 0.9rem;
+    }
+
+    .medical-sea-table,
+    .medical-sea-table tbody,
+    .medical-sea-table tr,
+    .medical-sea-table td {
+        display: block;
+    }
+
+    .medical-sea-table td {
+        width: 100%;
+        padding: 6px 8px;
+    }
+
+    .medical-sea-table td + td {
+        border-left: 0;
+    }
+
+    .medical-sea-dot-list,
+    .medical-sea-check-list {
+        padding-left: 0.45rem;
+    }
+}
+
+.general-immigration-layout {
+  display: grid;
+  gap: 26px;
+}
+
+#general-immigration .detail-item.general-immigration-layout {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.general-immigration-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.general-immigration-copy,
+.general-immigration-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.general-immigration-top .general-immigration-copy {
+  padding-top: 6px;
+}
+
+.general-immigration-copy-wide {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
+  line-height: 1.86;
+  color: var(--muted) !important;
+}
+
+#general-immigration .general-immigration-copy p,
+#general-immigration .general-immigration-bottom p {
+  margin: 0;
+  line-height: 1.86;
+  color: var(--muted) !important;
+}
+
+#general-immigration .general-immigration-copy p + p,
+#general-immigration .general-immigration-bottom p + p {
+  margin-top: 0;
+}
+
+.general-immigration-heading {
+  font-size: 1.08rem;
+  color: var(--muted);
+}
+
+.general-immigration-heading.general-immigration-section-spacing {
+  margin-top: 34px !important;
+}
+
+.general-immigration-image {
+  display: block;
+  width: min(100%, 520px);
+  max-width: 100%;
+  border-radius: 24px;
+  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.16);
+}
+
+.general-immigration-image-top {
+  justify-self: end;
+}
+
+.general-immigration-image-centered {
+  width: min(100%, 760px);
+  margin-left: auto;
+  margin-right: auto;
+  justify-self: center;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.general-immigration-dot-list,
+.general-immigration-check-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.general-immigration-dot-list li,
+.general-immigration-check-list li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  column-gap: 8px;
+  align-items: start;
+  color: var(--muted);
+  line-height: 1.86;
+}
+
+.general-immigration-bullet,
+.general-immigration-check {
+  font-weight: 700;
+  color: #132238;
+  line-height: 1.86;
+}
+
+.general-immigration-legal-list {
+  gap: 8px;
+}
+
+.general-immigration-legal-grid {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(240px, max-content));
+  column-gap: 56px;
+  row-gap: 0;
+  align-items: start;
+}
+
+.general-immigration-legal-grid > .general-immigration-legal-list {
+  padding-left: 18px;
+}
+
+.general-immigration-diamond-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.general-immigration-diamond-list li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  column-gap: 10px;
+  align-items: start;
+  color: var(--muted);
+  line-height: 1.86;
+}
+
+.general-immigration-diamond {
+  color: #132238;
+  font-weight: 700;
+  font-size: 0.84rem;
+  line-height: 1.86;
+}
+
+.general-immigration-note {
+  padding-left: 30px;
+}
+
+.general-immigration-subsection {
+  margin-top: 6px;
+}
+
+.general-immigration-subsection + .general-immigration-subsection {
+  margin-top: 10px;
+}
+
+.general-immigration-topic {
+  margin: 0 0 6px;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  column-gap: 8px;
+  align-items: start;
+  color: #132238;
+  line-height: 1.8;
+}
+
+.general-immigration-topic-bullet {
+  font-weight: 700;
+  color: #132238;
+}
+
+.general-immigration-topic-check-list {
+  padding-left: 32px;
+}
+
+.general-immigration-check-heading {
+  margin: 0 0 4px;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  column-gap: 8px;
+  align-items: start;
+  color: #132238;
+  line-height: 1.8;
+  padding-left: 18px;
+}
+
+.general-immigration-check-heading span:last-child {
+  font-weight: 700;
+}
+
+.general-immigration-check-heading .general-immigration-check {
+  color: #132238;
+}
+
+.general-immigration-dash-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.general-immigration-dash-list-intro {
+  padding-left: 44px;
+}
+
+.general-immigration-check-heading + .general-immigration-dash-list,
+.general-immigration-check-heading + .general-immigration-dash-list-intro + .general-immigration-dash-list {
+  padding-left: 44px;
+}
+
+.general-immigration-dash-list li {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  column-gap: 10px;
+  color: var(--muted);
+  line-height: 1.86;
+}
+
+.general-immigration-dash {
+  color: #6f1d1b;
+  font-weight: 700;
+}
+
+.general-immigration-highlight {
+  color: #6f1d1b;
+  font-weight: 400;
+}
+
+.general-immigration-image-chart {
+  width: min(100%, 620px);
+}
+
+.general-immigration-image-process {
+  width: min(100%, 780px);
+}
+
+.general-immigration-closing {
+  color: #132238;
+  margin-top: 0;
+  padding-top: 38px;
+}
+
+.general-labor-layout {
+  display: block;
+}
+
+#general-labor .detail-item.general-labor-layout {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.general-labor-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(300px, 0.98fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.general-labor-copy,
+.general-labor-bottom {
+  display: grid;
+  gap: 18px;
+}
+
+.general-labor-top .general-labor-copy {
+  padding-top: 6px;
+}
+
+#general-labor .general-labor-copy p,
+#general-labor .general-labor-bottom p {
+  margin: 0;
+  line-height: 1.86;
+  color: #2f3a4b;
+}
+
+.general-labor-heading {
+  color: #132238;
+  font-size: 1.08rem;
+}
+
+.general-labor-heading.general-labor-first-section-heading {
+  margin-top: 20px !important;
+}
+
+.general-labor-heading.general-labor-section-spacing {
+  margin-top: 10px !important;
+}
+
+.general-labor-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.general-labor-image-top {
+  width: min(100%, 520px);
+  justify-self: end;
+  border-radius: 24px;
+}
+
+.general-labor-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.general-labor-process-image {
+  width: min(100%, 760px);
+}
+
+.general-labor-disability-image {
+  width: min(100%, 620px);
+}
+
+.general-labor-dot-list,
+.general-labor-check-list,
+.general-labor-deep-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.general-labor-dot-list li,
+.general-labor-check-list li,
+.general-labor-deep-list li {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  column-gap: 0.3rem;
+  align-items: start;
+  color: #2f3a4b;
+  line-height: 1.82;
+}
+
+.general-labor-bottom > .general-labor-dot-list:first-of-type {
+  padding-left: 0.9rem;
+}
+
+.general-labor-dot-list-aligned {
+  padding-left: 0.9rem;
+}
+
+.general-labor-bullet,
+.general-labor-check,
+.general-labor-deep-bullet {
+  color: #6f839b;
+  font-weight: 600;
+}
+
+.general-labor-subsection {
+  display: grid;
+  gap: 12px;
+}
+
+.general-labor-subsection-label {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  column-gap: 0.3rem;
+  align-items: start;
+  margin: 0;
+  padding-left: 0.9rem;
+  color: #6f839b;
+  line-height: 1.82;
+  font-weight: 400;
+}
+
+.general-labor-subsection + .general-labor-subsection {
+  margin-top: 10px;
+}
+
+.general-labor-note {
+  padding-left: 0.1rem;
+}
+
+.general-labor-service-title {
+  margin: 0;
+  color: #6f839b;
+  line-height: 1.72;
+}
+
+.general-labor-service-list {
+  gap: 12px;
+}
+
+.general-labor-service-list > li {
+  grid-template-columns: 1rem minmax(0, 1fr);
+}
+
+.general-labor-service-copy {
+  display: grid;
+  gap: 10px;
+}
+
+.general-labor-service-inline-copy {
+  margin: 0;
+  padding-left: 0.1rem;
+  color: #6f839b;
+  line-height: 1.82;
+}
+
+#general-labor .general-labor-dot-list strong,
+#general-labor .general-labor-check-list strong,
+#general-labor .general-labor-deep-list strong,
+#general-labor .general-labor-sublist strong,
+#general-labor .general-labor-subsection-label strong {
+  color: inherit;
+}
+
+#general-labor .general-labor-bottom > .general-labor-dot-list:first-of-type li,
+#general-labor .general-labor-dot-list-aligned li,
+#general-labor .general-labor-subsection-label {
+  color: #6f839b !important;
+}
+
+#general-labor .general-labor-bottom > .general-labor-dot-list:first-of-type li strong,
+#general-labor .general-labor-dot-list-aligned li strong,
+#general-labor .general-labor-subsection-label strong {
+  color: #6f839b !important;
+}
+
+#general-labor .general-labor-heading strong,
+#general-labor .general-labor-service-title strong,
+#general-labor .general-labor-highlight strong,
+#general-labor .general-labor-closing strong {
+  color: #6f839b !important;
+}
+
+#general-labor .general-labor-case-check {
+  color: #6f839b !important;
+}
+
+#general-labor .general-labor-copy,
+#general-labor .general-labor-bottom,
+#general-labor .general-labor-copy strong,
+#general-labor .general-labor-bottom strong,
+#general-labor .general-labor-copy li,
+#general-labor .general-labor-bottom li {
+  color: #6f839b !important;
+}
+
+#general-labor .general-labor-bottom *,
+#general-labor .general-labor-copy * {
+  color: #6f839b !important;
+}
+
+.general-labor-service-copy > p + p {
+  margin-top: -4px;
+}
+
+.general-labor-sublist {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 0;
+  padding: 0 0 0 1.3rem;
+  list-style: none;
+}
+
+.general-labor-sublist li {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  column-gap: 0.32rem;
+  align-items: start;
+  color: #6f839b;
+  line-height: 1.82;
+}
+
+.general-labor-sub-bullet {
+  color: #6f839b;
+  font-weight: 600;
+}
+
+.general-labor-deep-list {
+  margin-top: 4px;
+  padding-left: 1.4rem;
+}
+
+.general-labor-case-table {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 26px;
+  margin-top: 2px;
+  padding-left: 0.1rem;
+  max-width: 820px;
+}
+
+.general-labor-case-column {
+  display: grid;
+  gap: 6px;
+}
+
+.general-labor-case-item {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  column-gap: 0.26rem;
+  align-items: start;
+  color: #6f839b;
+  line-height: 1.62;
+}
+
+.general-labor-case-check {
+  color: #6f839b;
+  font-weight: 500;
+}
+
+.general-labor-case-column:last-child .general-labor-case-item:nth-child(3) span:last-child {
+  white-space: nowrap;
+}
+
+.general-labor-deep-list li {
+  grid-template-columns: 0.95rem minmax(0, 1fr);
+}
+
+.general-labor-closing {
+  color: #6f839b;
+  margin-top: 8px;
+}
+
+.general-labor-highlight {
+  color: #6f839b;
+  margin-top: 28px;
+  line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+  .general-immigration-top {
+    grid-template-columns: 1fr;
+  }
+
+  .general-immigration-image,
+  .general-immigration-image-top,
+  .general-immigration-image-centered {
+    width: 100%;
+    justify-self: start;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .general-immigration-dot-list li,
+  .general-immigration-check-list li,
+  .general-immigration-diamond-list li {
+    grid-template-columns: 18px minmax(0, 1fr);
+    column-gap: 6px;
+  }
+
+  .general-immigration-legal-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .general-immigration-note,
+  .general-immigration-topic-check-list {
+    padding-left: 24px;
+  }
+
+  .general-immigration-check-heading {
+    padding-left: 12px;
+  }
+
+  .general-immigration-check-heading + .general-immigration-dash-list,
+  .general-immigration-check-heading + .general-immigration-dash-list-intro + .general-immigration-dash-list,
+  .general-immigration-dash-list-intro {
+    padding-left: 32px;
+  }
+
+  .general-immigration-image-chart,
+  .general-immigration-image-process {
+    width: 100%;
+  }
+
+  .general-labor-top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .general-labor-image,
+  .general-labor-image-top,
+  .general-labor-image-centered,
+  .general-labor-process-image,
+  .general-labor-disability-image {
+    width: 100%;
+  }
+
+  .general-labor-dot-list li,
+  .general-labor-check-list li,
+  .general-labor-sublist li,
+  .general-labor-deep-list li {
+    grid-template-columns: 0.92rem minmax(0, 1fr);
+    column-gap: 0.22rem;
+  }
+
+  .general-labor-sublist {
+    padding-left: 1rem;
+  }
+
+  .general-labor-deep-list {
+    padding-left: 1.15rem;
+  }
+
+  .general-labor-subsection-label,
+  .general-labor-case-item {
+    grid-template-columns: 0.92rem minmax(0, 1fr);
+    column-gap: 0.22rem;
+  }
+
+  .general-labor-case-table {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+.general-procurement-overview-copy p + p {
+  margin-top: 1em;
+}
+
+.general-procurement-intro-copy p + p {
+  margin-top: 1em;
+}
+
+.general-compensation-intro-copy p + p {
+  margin-top: 1em;
+}
+
+.medical-overview-copy p + p {
+  margin-top: 1em;
+}
+
+.medical-approval-intro-copy p + p {
+  margin-top: 1em;
+}
+
+.medical-quality-intro-copy p + p {
+  margin-top: 1em;
+}
+
+.medical-global-intro-copy p + p {
+  margin-top: 1em;
+}
