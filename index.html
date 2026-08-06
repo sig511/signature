@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>시그니처 행정사사무소</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Noto+Sans+KR:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script>
+      (function () {
+        const isSmallScreen = window.matchMedia("(max-width: 900px)").matches;
+        const redirected = sessionStorage.getItem("signatureMobileStayDesktop") === "1";
+        if (isSmallScreen && !redirected) {
+          window.location.replace("./pc-mobile-index.html");
+        }
+      })();
+    </script>
+  <meta name="google-site-verification" content="23mUTtNcmGVG29Bffy_tlE6zZPDouNKA_GmtrzbFkuU" />
+  </head>
+  <body class="home-page" id="top">
+    <header class="site-header">
+      <div class="container header-inner header-inner-banner">
+        <a
+          class="brand-banner-link"
+          href="./index.html"
+          aria-label="시그니처 행정사사무소"
+          data-business-banner-src="./signature-banner-transparent1.png"
+          data-default-banner-src="./signature-banner-transparent.png"
+        >
+          <span class="brand-banner-stack">
+            <img
+              class="brand-banner-image"
+              src="./signature-banner-transparent.png"
+              alt="시그니처 행정사사무소"
+            />
+            <img
+              class="brand-banner-image brand-banner-yellow-glow"
+              src="./signature-banner-yellow-overlay.png"
+              alt=""
+              aria-hidden="true"
+            />
+          </span>
+        </a>
+        <nav class="main-nav" aria-label="주 메뉴">
+          <div class="main-nav-item">
+            <a href="./company.html?section=greeting">사무소 소개</a>
+            <div class="main-nav-dropdown">
+              <a href="./company.html?section=greeting">대표 인사말씀</a>
+              <a href="./company.html?section=identity">CI 소개</a>
+              <a href="./company.html?section=location-map">오시는 길</a>
+            </div>
+          </div>
+          <div class="main-nav-item">
+            <a href="./business.html?section=general">일반행정 컨설팅</a>
+            <div class="main-nav-dropdown">
+              <a href="./business.html?section=general-license">인·허가 행정</a>
+              <a href="./business.html?section=general-rights">권익구제 행정</a>
+              <a href="./business.html?section=general-corporate">법인·단체 설립 행정</a>
+              <a href="./business.html?section=general-business">기업 행정</a>
+              <a href="./business.html?section=general-immigration">출입국 민원 행정</a>
+              <a href="./business.html?section=general-procurement">공공조달 행정</a>
+              <a href="./business.html?section=general-compensation">손실보상 행정</a>
+              <a href="./business.html?section=general-civil">생활민원 행정</a>
+            </div>
+          </div>
+          <div class="main-nav-item">
+            <a href="./business.html?section=translation">공인번역 컨설팅</a>
+            <div class="main-nav-dropdown">
+              <a href="./business.html?section=translation-apostille">아포스티유</a>
+              <a href="./business.html?section=translation-consular">영사확인</a>
+              <a href="./business.html?section=translation-certification">번역확인증명</a>
+              <a href="./business.html?section=translation-notarization">번역공증 대행</a>
+              <a href="./business.html?section=translation-business">기업 번역</a>
+              <a href="./business.html?section=translation-ip">IP(특허) 번역</a>
+              <a href="./business.html?section=translation-documents">제 증명서 번역</a>
+              <a href="./business.html?section=translation-other">기타 전문 번역</a>
+            </div>
+          </div>
+          <div class="main-nav-item">
+            <a href="./business.html?section=medical">의료기기 컨설팅</a>
+            <div class="main-nav-dropdown main-nav-dropdown-wide">
+              <a href="./business.html?section=medical-approval">의료기기 인·허가</a>
+              <a href="./business.html?section=medical-quality">품질경영시스템</a>
+              <a href="./business.html?section=medical-global">해외 인·허가 컨설팅</a>
+            </div>
+          </div>
+          <div class="main-nav-item">
+            <a href="./contact.html?section=support">고객지원 센터</a>
+            <div class="main-nav-dropdown main-nav-dropdown-right">
+              <a href="./contact.html?section=support-notice">공지사항</a>
+              <a href="./contact.html?section=support-inquiry">상담·문의</a>
+              <a href="./contact.html?section=support-quote">견적 요청</a>
+              <a href="./contact.html?section=support-reservation">방문 상담 예약</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="landing-main expanded-main">
+      <section class="landing-hero hero-showcase hero-showcase-plain">
+        <div class="landing-backdrop primary"></div>
+        <div class="landing-backdrop secondary"></div>
+        <div class="landing-backdrop tertiary"></div>
+        <div class="container hero-stage" aria-label="대표 서비스 슬라이드">
+          <div class="hero-slide is-active">
+            <div class="hero-grid hero-grid-single">
+              <div class="hero-copy hero-copy-plain hero-copy-signature">
+                <p class="eyebrow">Signature, the Office of LAA &amp; LPT</p>
+                <h1 class="hero-title-split"><span>상담부터 최종 결과물까지,</span><span>한 번에 이어지는 원스톱 맞춤형 컨설팅 서비스!</span></h1>
+                <p class="hero-text">
+                  시그니처 행정사사무소는 「일반행정 컨설팅」, 「공인번역 컨설팅」, 「의료기기 컨설팅」 분야에서
+                  의뢰인의 요구사항과 필요에 최적화된 원스톱 맞춤형 컨설팅 서비스를 제공합니다.
+                </p>
+                <div class="hero-actions">
+                  <a class="button button-primary" href="./contact.html?section=support-inquiry">상담 문의하기</a>
+                  <a class="button button-ghost" href="./company.html?section=greeting">사무소 소개 보기</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-slide">
+            <div class="hero-grid hero-grid-single">
+              <div class="hero-copy hero-copy-plain hero-copy-general">
+                <p class="eyebrow">General Administrative Consulting Services</p>
+                <h1 class="hero-title-split"><span>국가공인 시험출신 일반행정사가 전문성과</span><span>신뢰성으로, 복잡한 인·허가부터 일상 속 생활민원</span><span>까지 세심하게 도와드립니다!</span></h1>
+                <p class="hero-text">
+                  각종 「인·허가」부터 「권익구제 행정(행정심판 등)」, 「법인·단체 설립 행정」, 「기업 행정」, 「출입국 민원 행정」, 「공공조달 행정」,
+                  「손실보상 행정」, 「생활민원 행정」에 이르기까지, 신뢰성과 전문성으로 의뢰인의 개별 상황을 면밀히
+                  검토·분석하여 최적의 맞춤형 컨설팅 서비스를 제공합니다.
+                </p>
+                <div class="hero-actions">
+                  <a class="button button-primary" href="./contact.html?section=support-quote">견적 요청하기</a>
+                  <a class="button button-ghost" href="./contact.html?section=support-inquiry">온라인 문의</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-slide">
+            <div class="hero-grid hero-grid-single">
+              <div class="hero-copy hero-copy-plain hero-copy-translation">
+                <p class="eyebrow">Licensed Public Translation Consulting Services</p>
+                <h1 class="hero-title-split"><span>공인번역의 공신력과 신뢰도 높은 품질의 결과물로,</span><span>국내외 글로벌 비즈니스 업무를 지원합니다!</span></h1>
+                <p class="hero-text">
+                  시그니처 행정사사무소의 국가공인 「외국어번역행정사」 자격과 「해외근무 경험」으로 국제적 마인드를
+                  갖춘 공인번역 행정사가 공신력 있고 신뢰도 높은 품질의 결과물로 개인고객과 기업고객의
+                  성공적인 글로벌 비즈니스 업무를 지원합니다.
+                </p>
+                <div class="hero-actions">
+                  <a class="button button-primary" href="./contact.html?section=support-reservation">방문 상담 예약</a>
+                  <a class="button button-ghost" href="#support">서비스 보기</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-slide">
+            <div class="hero-grid hero-grid-single">
+              <div class="hero-copy hero-copy-plain hero-copy-medical">
+                <p class="eyebrow">Medical Devices Consulting Services</p>
+                <h1 class="hero-title-split"><span>복잡하고 까다로운 국내외 의료기기 인·허가 규제 장벽,</span><span>국가공인 RA전문가 행정사, 컨설턴트가</span><span>든든한 성공 파트너가 되겠습니다!</span></h1>
+                <p class="hero-text">
+                  시그니처 행정사사무소의 「국가공인 의료기기 RA(규제과학) 전문가 자격」과 「의료기기 업계 실무경험」을 갖춘 행정사, 컨설턴트가
+                  국내와 글로벌 의료기기 시장진출의 길잡이가 되겠습니다.
+                </p>
+                <div class="hero-actions">
+                  <a class="button button-primary" href="./contact.html?section=support-reservation">방문 상담 예약</a>
+                  <a class="button button-ghost" href="#support">서비스 보기</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-pagination" aria-label="슬라이드 선택">
+            <button type="button" class="hero-dot is-active" aria-label="1번 슬라이드"></button>
+            <button type="button" class="hero-dot" aria-label="2번 슬라이드"></button>
+            <button type="button" class="hero-dot" aria-label="3번 슬라이드"></button>
+            <button type="button" class="hero-dot" aria-label="4번 슬라이드"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-info">
+        <div class="container">
+          <div class="info-row top-row service-top-row">
+            <section class="panel news-panel">
+              <div class="panel-heading">
+                <h2 class="news-notices-title">News &amp; Notices</h2>
+              </div>
+              <div class="notice-list notice-inline-list" id="main-notice-list">
+                <button class="notice-item notice-toggle" type="button" data-notice-id="notice-3">
+                  <span class="notice-title">5월 연휴 상담 운영 일정 안내</span>
+                  <span class="notice-date">04-30</span>
+                </button>
+                <button class="notice-item notice-toggle" type="button" data-notice-id="notice-2">
+                  <span class="notice-title">의료기기 컨설팅 서류 접수 방식 변경 안내</span>
+                  <span class="notice-date">04-22</span>
+                </button>
+                <button class="notice-item notice-toggle" type="button" data-notice-id="notice-1">
+                  <span class="notice-title">홈페이지 고객지원 게시판 개설 안내</span>
+                  <span class="notice-date">04-01</span>
+                </button>
+              </div>
+              <article class="notice-inline-view hidden" id="main-notice-view">
+                <button class="notice-inline-close" id="main-notice-close" type="button" aria-label="공지 닫기">×</button>
+                <p class="notice-inline-meta" id="main-notice-meta">시그니처행정사 | 2026-04-30</p>
+                <h3 class="notice-inline-title" id="main-notice-title">5월 연휴 상담 운영 일정 안내</h3>
+                <div class="notice-inline-body" id="main-notice-body">
+                  5월 연휴 기간 중 상담 운영 일정을 안내드립니다.<br /><br />
+                  - 5월 5일: 휴무<br />
+                  - 5월 25일: 휴무<br />
+                  - 긴급 문의는 이메일로 남겨주시면 순차 회신드립니다.
+                </div>
+              </article>
+              <script id="board-seed" type="application/json">[
+                {"id":"notice-3","title":"5월 연휴 상담 운영 일정 안내","author":"시그니처행정사","content":"5월 연휴 기간 중 상담 운영 일정을 안내드립니다.\n\n- 5월 5일: 휴무\n- 5월 25일: 휴무\n- 긴급 문의는 이메일로 남겨주시면 순차 회신드립니다.","createdAt":"2026-04-30","secret":false},
+                {"id":"notice-2","title":"의료기기 컨설팅 서류 접수 방식 변경 안내","author":"시그니처행정사","content":"의료기기 컨설팅 의뢰 시 기본 자료를 먼저 전달해 주시면 검토 속도가 더 빨라집니다.\n\n필수 자료:\n- 제품 개요\n- 현재 진행 단계\n- 보유 인증 범위","createdAt":"2026-04-22","secret":false},
+                {"id":"notice-1","title":"홈페이지 고객지원 게시판 개설 안내","author":"시그니처행정사","content":"홈페이지 고객지원 메뉴에 공지사항, 상담·문의, 견적 요청, 방문 상담 예약 게시판이 마련되었습니다.","createdAt":"2026-04-01","secret":false}
+              ]</script>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h2 class="news-notices-title">Practice Areas</h2>
+              </div>
+              <div class="product-grid">
+                <a href="./business.html?section=general" class="product-card card-a"><span>일반행정 컨설팅</span></a>
+                <a href="./business.html?section=translation" class="product-card card-b"><span>공인번역 컨설팅</span></a>
+                <a href="./business.html?section=medical" class="product-card card-c"><span>의료기기 컨설팅</span></a>
+                <a href="./contact.html?section=support" class="product-card card-d"><span>고객지원 센터</span></a>
+              </div>
+            </section>
+          </div>
+
+          <div class="info-row bottom-row support-only-row" id="support">
+            <section class="panel customer-panel customer-panel-wide">
+              <div class="panel-heading">
+                <h2 class="news-notices-title">Client Care Center</h2>
+              </div>
+              <div class="support-feature-grid">
+                <a href="./contact.html?section=support-notice" class="support-feature-card support-feature-card-notice">
+                  <span class="support-feature-head"><strong>공지사항</strong><span class="support-feature-more">바로가기</span></span>
+                  <p>사무소 운영시간 및 일정, 주요 공지 사항 및 변경 사항 등을 확인하실 수 있습니다.</p>
+                </a>
+                <a href="./contact.html?section=support-inquiry" class="support-feature-card">
+                  <span class="support-feature-head"><strong>상담 · 문의</strong><span class="support-feature-more">접수하기</span></span>
+                  <p>일반행정 컨설팅, 공인번역 컨설팅, 의료기기 컨설팅 분야별 온라인 상담·문의를 접수합니다.</p>
+                </a>
+                <a href="./contact.html?section=support-quote" class="support-feature-card">
+                  <span class="support-feature-head"><strong>견적 요청</strong><span class="support-feature-more">접수하기</span></span>
+                  <p>해당 업무의 분야와 내용, 첨부자료 등을 남겨 주시면 검토하여 비용견적을 안내해 드립니다.</p>
+                </a>
+                <a href="./contact.html?section=support-reservation" class="support-feature-card">
+                  <span class="support-feature-head"><strong>방문 상담 예약</strong><span class="support-feature-more">접수하기</span></span>
+                  <p>방문상담이 필요하신 경우, <u>반드시</u> <u>사전</u>에 <u>예약</u>을 해주시기 바랍니다.</p>
+                </a>
+              </div>
+            </section>
+
+            <section class="panel customer-panel">
+  <div class="panel-heading">
+    <h2 class="news-notices-title">Contact Us</h2>
+  </div>
+  <a href="./contact.html?section=support-inquiry" class="customer-center-card">
+    <div class="customer-center-icon" aria-hidden="true">☎</div>
+    <div class="customer-center-copy">
+      <strong>상담이 필요하신가요?</strong>
+      <p>전화와 이메일로 편하게 상담을 도와드립니다.</p>
+      <span>010-7775-5116</span>
+      <small>SIG511@naver.com</small>
+    </div>
+  </a>
+</section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="floating-side-rail simple-visible" aria-label="상담 및 빠른 이동">
+      <div class="floating-rail-card floating-rail-call">
+        <strong>행정사 직접 상담</strong>
+        <span>010-7775-5116</span>
+      </div>
+      <a
+        href="http://pf.kakao.com/_AxdxbxbX"
+        target="_blank"
+        rel="noreferrer"
+        class="floating-rail-card floating-rail-kakao icon-card"
+      >
+        <img class="rail-kakao-image" src="./assets/kakao-images.png" alt="카카오톡" />
+        <strong class="floating-rail-kakao-text"><span>@시그니처행정사</span><span>사무소</span></strong>
+      </a>
+      <a href="./contact.html?section=support-inquiry" class="floating-rail-card floating-rail-online">
+        <strong>온라인 문의하기</strong>
+      </a>
+      <a href="./company.html?section=location-map" class="floating-rail-card floating-rail-location">
+        <strong>오시는 길</strong>
+      </a>
+      <a href="#top" class="floating-rail-top">TOP</a>
+    </aside>
+
+    <footer class="site-footer dark-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand-block">
+          <a class="footer-banner" href="#top" aria-label="시그니처 행정사사무소">
+            <img src="./assets/footer-banner-footer-white-v2.png" alt="시그니처 행정사사무소" />
+          </a>
+        </div>
+        <div class="footer-contact">
+          <p>시그니처 행정사사무소 | 대표: 행정사 전진용 | 사업자등록번호: 566-20-02205</p>
+          <p>주소: 서울시 구로구 디지털로 288, 대륭포스트타워 1차 208호<a href="#" class="footer-legal-link footer-disclaimer-link" data-legal-modal="disclaimer">면책공고</a></p>
+          <p>Tel: 010-7775-5116 | <span class="footer-email">E-mail: SIG511@naver.com</span><a href="#" class="footer-legal-link footer-privacy-link" data-legal-modal="privacy">개인정보처리방침</a></p>
+          <p>Copyright &copy; 시그니처 행정사사무소. All Rights Reserved. <a href="./admin-board.html" class="footer-admin-link" style="color:#cfd8e3;text-decoration:underline;">관리자</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./assets/footer-legal.js"></script>
+    <script src="./assets/banner-schedule.js"></script>
+    <script src="./assets/nav-branch-menu.js"></script>
+    <script>
+      const heroSlides = Array.from(document.querySelectorAll('.hero-slide'));
+      const heroDots = Array.from(document.querySelectorAll('.hero-dot'));
+      let heroIndex = 0;
+      let heroTimer = null;
+
+      const showHeroSlide = (index) => {
+        if (!heroSlides.length) return;
+        heroIndex = (index + heroSlides.length) % heroSlides.length;
+        heroSlides.forEach((slide, slideIndex) => {
+          slide.classList.toggle('is-active', slideIndex === heroIndex);
+        });
+        heroDots.forEach((dot, dotIndex) => {
+          dot.classList.toggle('is-active', dotIndex === heroIndex);
+        });
+      };
+
+      const startHeroRotation = () => {
+        if (heroSlides.length < 2) return;
+        window.clearInterval(heroTimer);
+        heroTimer = window.setInterval(() => {
+          showHeroSlide(heroIndex + 1);
+        }, 4200);
+      };
+
+      heroDots.forEach((dot, dotIndex) => {
+        dot.addEventListener('click', () => {
+          showHeroSlide(dotIndex);
+          startHeroRotation();
+        });
+      });
+
+      const noticeSeed = {
+        "notice-3": {
+          meta: "시그니처행정사 | 2026-04-30",
+          title: "5월 연휴 상담 운영 일정 안내",
+          body: "5월 연휴 기간 중 상담 운영 일정을 안내드립니다.<br /><br />- 5월 5일: 휴무<br />- 5월 25일: 휴무<br />- 긴급 문의는 이메일로 남겨주시면 순차 회신드립니다."
+        },
+        "notice-2": {
+          meta: "시그니처행정사 | 2026-04-22",
+          title: "의료기기 컨설팅 서류 접수 방식 변경 안내",
+          body: "의료기기 컨설팅 관련 기본 제출 서류 양식이 일부 변경되었습니다.<br /><br />견적 요청 전 최신 서류 목록을 먼저 안내받으신 뒤 접수해 주세요."
+        },
+        "notice-1": {
+          meta: "시그니처행정사 | 2026-04-01",
+          title: "홈페이지 고객지원 게시판 개설 안내",
+          body: "시그니처 행정사사무소 홈페이지 내 고객지원 게시판이 새롭게 운영됩니다.<br /><br />공지사항 확인, 상담 문의, 견적 요청, 방문 상담 예약을 보다 편리하게 이용하실 수 있습니다."
+        }
+      };
+
+      const noticeList = document.getElementById('main-notice-list');
+      const noticeStorageKey = 'signature-board-notice';
+      const fallbackNoticeEntries = Object.entries(noticeSeed).map(([id, notice]) => ({
+        id,
+        title: notice.title,
+        author: '시그니처행정사',
+        content: notice.body.replaceAll('<br /><br />', '\n\n').replaceAll('<br />', '\n'),
+        createdAt: (notice.meta.split('|')[1] || '').trim(),
+      }));
+
+      const escapeHtml = (value) =>
+        String(value || '')
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#39;');
+
+      const formatNoticeDate = (value) => {
+        const text = String(value || '').trim();
+        if (!text) return '';
+        return text.length >= 10 ? text.slice(5, 10) : text;
+      };
+
+      const formatNoticeBody = (value) => escapeHtml(String(value || '')).replaceAll('\n', '<br />');
+
+      const loadMainNotices = () => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(noticeStorageKey) || '[]');
+          if (Array.isArray(saved) && saved.length) {
+            return saved
+              .slice()
+              .sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
+          }
+        } catch {}
+        return fallbackNoticeEntries
+          .slice()
+          .sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
+      };
+
+      const mainNoticeEntries = loadMainNotices();
+      const mainNoticeMap = Object.fromEntries(
+        mainNoticeEntries.map((notice) => [
+          notice.id,
+          {
+            meta: `${notice.author || '시그니처행정사'} | ${notice.createdAt || ''}`,
+            title: notice.title || '',
+            body: formatNoticeBody(notice.content || ''),
+          },
+        ])
+      );
+
+      if (noticeList) {
+        noticeList.innerHTML = mainNoticeEntries
+          .slice(0, 3)
+          .map(
+            (notice) => `
+              <button class="notice-item notice-toggle" type="button" data-notice-id="${escapeHtml(notice.id)}">
+                <span class="notice-title">${escapeHtml(notice.title || '')}</span>
+                <span class="notice-date">${escapeHtml(formatNoticeDate(notice.createdAt))}</span>
+              </button>
+            `
+          )
+          .join('');
+      }
+
+      const noticeButtons = Array.from(document.querySelectorAll('.notice-toggle'));
+      const noticeView = document.getElementById('main-notice-view');
+      const noticeMeta = document.getElementById('main-notice-meta');
+      const noticeTitle = document.getElementById('main-notice-title');
+      const noticeBody = document.getElementById('main-notice-body');
+      const noticeClose = document.getElementById('main-notice-close');
+      const noticePanel = document.querySelector('.news-panel');
+      let activeNoticeId = null;
+
+      const closeMainNotice = () => {
+        activeNoticeId = null;
+        if (noticeView) {
+          noticeView.classList.add('hidden');
+          noticeView.classList.remove('is-open');
+        }
+        noticeButtons.forEach((button) => {
+          button.classList.remove('is-active');
+        });
+      };
+
+      const openMainNotice = (noticeId, triggerButton) => {
+        const notice = mainNoticeMap[noticeId];
+        if (!notice || !noticeView || !noticeMeta || !noticeTitle || !noticeBody || !triggerButton) return;
+        noticeMeta.textContent = notice.meta;
+        noticeTitle.textContent = notice.title;
+        noticeBody.innerHTML = notice.body;
+        const buttonRect = triggerButton.getBoundingClientRect();
+        const panelRect = noticePanel.getBoundingClientRect();
+        noticeView.style.top = `${buttonRect.bottom - panelRect.top + 12}px`;
+        noticeView.classList.remove('hidden');
+        noticeView.classList.add('is-open');
+        noticeButtons.forEach((button) => {
+          button.classList.toggle('is-active', button.dataset.noticeId === noticeId);
+        });
+        activeNoticeId = noticeId;
+      };
+
+      noticeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const noticeId = button.dataset.noticeId;
+          if (activeNoticeId === noticeId) {
+            closeMainNotice();
+            return;
+          }
+          openMainNotice(noticeId, button);
+        });
+      });
+
+      noticeClose?.addEventListener('click', () => {
+        closeMainNotice();
+      });
+
+      if (mainNoticeEntries[0] && noticeMeta && noticeTitle && noticeBody) {
+        const firstNotice = mainNoticeMap[mainNoticeEntries[0].id];
+        if (firstNotice) {
+          noticeMeta.textContent = firstNotice.meta;
+          noticeTitle.textContent = firstNotice.title;
+          noticeBody.innerHTML = firstNotice.body;
+        }
+      }
+
+      showHeroSlide(0);
+      startHeroRotation();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./assets/supabase-config.js?v=20260516a"></script>
+    <script src="./assets/main-notices.js"></script>
+    <script src="./assets/protect-images.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

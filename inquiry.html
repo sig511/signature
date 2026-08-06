@@ -1,0 +1,822 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상담·문의</title>
+    <script>
+      if (new URLSearchParams(window.location.search).get("embedded") === "1") {
+        document.documentElement.classList.add("is-embedded");
+      }
+    </script>
+    <link rel="stylesheet" href="boards.css" />
+    <style>
+      .inquiry-phone-inline {
+        display: grid;
+        grid-template-columns: 90px 14px 90px 14px 90px;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .inquiry-phone-inline span {
+        text-align: center;
+        color: #a3adba;
+        font-weight: 700;
+      }
+
+      .inquiry-card {
+        margin: 0;
+      }
+
+      .inquiry-card .inquiry-head {
+        margin: 0;
+        padding: 20px 28px 16px;
+        background: rgba(245, 249, 252, 0.92);
+        border-bottom: 1px solid var(--board-line);
+        border-radius: 0;
+      }
+
+      .inquiry-card .board-subsection-title {
+        margin: 0;
+        padding: 18px 28px;
+        background: rgba(245, 249, 252, 0.92);
+        border-top: 1px solid rgba(13, 39, 66, 0.08);
+      }
+
+      .inquiry-card .inquiry-head h1 {
+        margin: 0 0 4px;
+        font-size: 1.18rem;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+
+      .inquiry-card .inquiry-consent-wrap {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .inquiry-card .inquiry-consent-wrap h2,
+      .inquiry-card .inquiry-consent-check {
+        margin-left: 0;
+      }
+
+      .inquiry-indent {
+        display: inline-block;
+        margin-left: 0;
+      }
+
+      .inquiry-guide-copy {
+        margin-top: 12px;
+        margin-left: 0;
+        color: #a3adba;
+        line-height: 1.8;
+      }
+
+      .inquiry-guide-copy p {
+        padding-left: 0.94em;
+        text-indent: -0.64em;
+        word-break: keep-all;
+      }
+
+      .inquiry-guide-copy p + p {
+        margin-top: 2px;
+      }
+
+      .inquiry-consent-box {
+        color: #243a52;
+        line-height: 1.75;
+      }
+
+      .inquiry-consent-box p {
+        margin: 0;
+      }
+
+      .inquiry-consent-intro {
+        margin-bottom: 30px;
+      }
+
+      .inquiry-consent-intro + .inquiry-consent-section {
+        margin-top: 16px;
+      }
+
+      .inquiry-consent-section + .inquiry-consent-section {
+        margin-top: 14px;
+      }
+
+      .inquiry-consent-heading {
+        font-weight: 700;
+      }
+
+      .inquiry-consent-subcopy {
+        margin-top: 2px;
+        margin-left: 0 !important;
+        padding-left: 4px !important;
+      }
+
+      .inquiry-consent-checklist {
+        margin: 6px 0 0 12px;
+      }
+
+      .inquiry-consent-checklist p + p {
+        margin-top: 2px;
+      }
+
+      .inquiry-consent-notice {
+        margin-top: 10px;
+      }
+
+      .inquiry-grid {
+        margin: 0;
+        padding: 0;
+        background: rgba(245, 249, 252, 0.92);
+      }
+
+      .inquiry-card input::placeholder,
+      .inquiry-card textarea::placeholder,
+      .inquiry-card select,
+      .inquiry-note {
+        color: #a3adba !important;
+        opacity: 1;
+        font-weight: 500;
+      }
+
+      .inquiry-visa-stack,
+      .inquiry-path-stack {
+        display: grid;
+        gap: 10px;
+      }
+
+      .inquiry-visa-side-label {
+        line-height: 1.5;
+      }
+
+      .inquiry-path-side-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 0.76rem;
+        line-height: 1.3;
+        color: #204b72;
+        word-break: keep-all;
+        overflow-wrap: normal;
+      }
+
+      .inquiry-path-side-label span {
+        display: block;
+        white-space: nowrap;
+        margin-left: 0;
+        color: inherit;
+      }
+
+      .inquiry-visa-line {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .inquiry-visa-line label,
+      .inquiry-path-options label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #1d2732;
+        white-space: nowrap;
+      }
+
+      .inquiry-visa-title {
+        min-width: 140px;
+        color: #204b72;
+        font-weight: 700;
+      }
+
+      .inquiry-visa-line input[type="text"] {
+        width: auto;
+        min-width: 170px;
+        flex: 0 1 220px;
+      }
+
+      .inquiry-visa-line-table {
+        display: grid;
+        grid-template-columns: 190px 18px 44px 18px 44px 1fr;
+        align-items: center;
+        column-gap: 24px;
+      }
+
+      .inquiry-visa-choice {
+        display: contents;
+      }
+
+      .inquiry-visa-choice input[type="radio"] {
+        margin: 0;
+        justify-self: center;
+      }
+
+      .inquiry-visa-choice-text {
+        color: #1d2732;
+        white-space: nowrap;
+      }
+
+      .inquiry-path-options {
+        display: flex;
+        align-items: center;
+        gap: 18px 22px;
+        flex-wrap: wrap;
+      }
+
+      .inquiry-path-other {
+        display: inline-flex;
+        align-items: center;
+        margin-left: 8px;
+      }
+
+      .inquiry-path-other input {
+        width: min(100%, 280px);
+      }
+
+      .inquiry-row-path .inquiry-field {
+        display: flex;
+        align-items: center;
+      }
+
+      .inquiry-file-inline {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+      }
+
+      .inquiry-file-inline input[type="file"] {
+        width: auto;
+        flex: 0 1 auto;
+        min-width: 0;
+      }
+
+
+      @media (max-width: 900px) {
+        .inquiry-phone-inline {
+          grid-template-columns: 1fr;
+        }
+
+        .inquiry-phone-inline span {
+          display: none;
+        }
+
+        .inquiry-visa-title {
+          min-width: 0;
+          width: 100%;
+        }
+
+        .inquiry-visa-line input[type="text"] {
+          width: 100%;
+          min-width: 0;
+          flex: 1 1 100%;
+        }
+
+        .inquiry-visa-line-table {
+          grid-template-columns: 1fr;
+          row-gap: 10px;
+        }
+      }
+
+      .inquiry-success-modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(12, 22, 35, 0.5);
+        z-index: 9999;
+      }
+
+      .inquiry-success-modal.is-open {
+        display: flex;
+      }
+
+      .inquiry-success-dialog {
+        width: min(420px, 100%);
+        padding: 28px 24px;
+        border-radius: 20px;
+        background: #ffffff;
+        box-shadow: 0 24px 48px rgba(9, 26, 45, 0.18);
+        text-align: center;
+      }
+
+      .inquiry-success-dialog p {
+        margin: 0;
+        color: #17324c;
+        font-size: 1.02rem;
+        font-weight: 700;
+        line-height: 1.7;
+      }
+
+      .inquiry-success-dialog p + p {
+        margin-top: 4px;
+      }
+
+      .inquiry-success-button {
+        margin-top: 18px;
+        min-width: 120px;
+        height: 44px;
+        border: 0;
+        border-radius: 999px;
+        background: #17324c;
+        color: #ffffff;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .inquiry-file-note {
+        margin-top: 10px;
+        color: #6d7f92;
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .inquiry-submit-wrap {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      html.is-embedded body[data-board-type="inquiry"] .inquiry-card .inquiry-head {
+        padding: 20px 28px 16px;
+      }
+
+      body[data-board-type="inquiry"] .inquiry-row {
+        padding: 18px 28px;
+        border-top: 1px solid rgba(13, 39, 66, 0.08);
+      }
+
+      body[data-board-type="inquiry"] .inquiry-row:first-child {
+        padding-top: 22px;
+      }
+
+      body[data-board-type="inquiry"] .inquiry-consent-wrap {
+        margin: 0 !important;
+        padding: 18px 28px 8px;
+        border-top: 1px solid rgba(13, 39, 66, 0.08);
+        background: rgba(245, 249, 252, 0.92);
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      body[data-board-type="inquiry"] .inquiry-submit-wrap {
+        margin-top: 18px;
+        padding-top: 18px;
+        padding-bottom: 0;
+        border-top: 1px solid rgba(13, 39, 66, 0.08);
+      }
+    </style>
+  </head>
+  <body data-board-key="inquiry" data-board-name="상담·문의" data-board-type="inquiry">
+    <main class="board-shell">
+      <div class="board-grid">
+        <section class="inquiry-card">
+          <div class="inquiry-head inquiry-guide-head">
+            <div>
+              <h1><span class="inquiry-indent">작성 안내</span></h1>
+              <div class="inquiry-guide-copy">
+                <p>• 업무분야와 문의 내용을 남겨 주시면, 순차적으로 확인 후 답변을 드립니다.</p>
+                <p>• 방문 상담 필요시, 좌측의 방문 상담 예약 링크를 통해 <strong><u>반드시</u></strong> <strong><u>사전</u></strong>(최소 2일 전)에 방문상담 <strong><u>예약</u></strong> 링크를 통해 방문상담 희망 일정을 알려주시면 일정 조율 후 확정일에 방문하실 수 있습니다.</p>
+                <p>• 제출해 주신 모든 정보와 첨부자료는 관련 법령 및 비밀준수 의무와 행정사 직업윤리에 따라 철저히 비밀을 보장하며, 상담·문의에 대한 안내 이외의 다른 목적으로는 일절 사용되지 않고 안전하게 폐기됩니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="board-subsection-title inquiry-form-title"><span class="inquiry-indent">상담·문의 작성</span></h2>
+
+          <form
+            id="signature-inquiry-form"
+            class="inquiry-grid"
+            action="https://formspree.io/f/xwvydbda"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="inquiry-row">
+              <div class="inquiry-label">성명 <span>*</span></div>
+              <div class="inquiry-field"><input id="inquiry-name" name="name" type="text" placeholder="성명을 입력해 주세요" /></div>
+            </div>
+            <div class="inquiry-row">
+              <div class="inquiry-label">연락처 <span>*</span></div>
+              <div class="inquiry-field">
+                <div class="inquiry-phone-inline">
+                  <input id="inquiry-phone-1" name="phone1" type="text" inputmode="numeric" placeholder="010" />
+                  <span>-</span>
+                  <input id="inquiry-phone-2" name="phone2" type="text" inputmode="numeric" placeholder="1234" />
+                  <span>-</span>
+                  <input id="inquiry-phone-3" name="phone3" type="text" inputmode="numeric" placeholder="5678" />
+                </div>
+              </div>
+            </div>
+            <div class="inquiry-row">
+              <div class="inquiry-label">이메일 <span>*</span></div>
+              <div class="inquiry-field"><input id="inquiry-email" name="email" type="email" placeholder="example@domain.com" /></div>
+            </div>
+            <div class="inquiry-row">
+              <div class="inquiry-label">상담분야 <span>*</span></div>
+              <div class="inquiry-field">
+                <select id="inquiry-category" name="category">
+                  <option value="" selected>선택</option>
+                  <option value="일반행정 컨설팅">일반행정 컨설팅</option>
+                  <option value="공인번역 컨설팅">공인번역 컨설팅</option>
+                  <option value="의료기기 컨설팅">의료기기 컨설팅</option>
+                  <option value="기타 행정업무">기타 행정업무</option>
+                </select>
+                <p class="inquiry-note">다른 업무 문의 내용은 기타 행정업무를 선택하신 후 문의 내용에 자세히 적어주세요.</p>
+              </div>
+            </div>
+            <div class="inquiry-row">
+              <div class="inquiry-label inquiry-visa-side-label">※ 비자 문의 시<br />작성</div>
+              <div class="inquiry-field">
+                <div class="inquiry-visa-stack">
+                  <div class="inquiry-visa-line">
+                    <span class="inquiry-visa-title">기본 정보</span>
+                    <input id="inquiry-visa-nationality" name="visaNationality" type="text" placeholder="국적" />
+                    <input id="inquiry-visa-departure" name="visaDeparture" type="text" placeholder="최종 출국일 YYYY-MM-DD" />
+                  </div>
+                  <div class="inquiry-visa-line inquiry-visa-line-table">
+                    <span class="inquiry-visa-title">현재 체류 여부</span>
+                    <label class="inquiry-visa-choice"><input type="radio" name="inquiry-stay" value="국내" /></label>
+                    <span class="inquiry-visa-choice-text">국내</span>
+                    <label class="inquiry-visa-choice"><input type="radio" name="inquiry-stay" value="해외" /></label>
+                    <span class="inquiry-visa-choice-text">해외</span>
+                    <input id="inquiry-visa-status" name="visaStatus" type="text" placeholder="현재 체류자격 예: D-2" />
+                  </div>
+                  <div class="inquiry-visa-line inquiry-visa-line-table">
+                    <span class="inquiry-visa-title">과거 불법체류/사범기록</span>
+                    <label class="inquiry-visa-choice"><input type="radio" name="inquiry-record" value="유" /></label>
+                    <span class="inquiry-visa-choice-text">유</span>
+                    <label class="inquiry-visa-choice"><input type="radio" name="inquiry-record" value="무" /></label>
+                    <span class="inquiry-visa-choice-text">무</span>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="inquiry-row">
+              <div class="inquiry-label">문의 제목 <span>*</span></div>
+              <div class="inquiry-field"><input id="inquiry-title" name="title" type="text" placeholder="문의 제목을 입력해 주세요" /></div>
+            </div>
+            <div class="inquiry-row">
+              <div class="inquiry-label">문의 내용 <span>*</span></div>
+              <div class="inquiry-field"><textarea id="inquiry-content" name="content" rows="10" placeholder="문의하실 내용을 자세히 작성해 주세요"></textarea></div>
+            </div>
+            <div class="inquiry-row">
+              <div class="inquiry-label">첨부파일</div>
+              <div class="inquiry-field">
+                <div class="inquiry-file-inline">
+                  <input id="inquiry-attachment" name="attachment" type="file" />
+                  <span class="inquiry-file-note">(최대 25MB까지 가능)</span>
+                </div>
+              </div>
+            </div>
+            <div class="inquiry-row inquiry-row-path">
+              <div class="inquiry-label inquiry-path-side-label"><span>시그니처 행정사사무소를</span><span>어떻게 알게 되셨나요?</span></div>
+              <div class="inquiry-field">
+                <div class="inquiry-path-stack">
+                  <div class="inquiry-path-options">
+                  <label><input type="radio" name="inquiry-path" value="네이버 검색" /> 네이버 검색</label>
+                  <label><input type="radio" name="inquiry-path" value="구글 검색" /> 구글 검색</label>
+                  <label><input type="radio" name="inquiry-path" value="네이버 지도·플레이스" /> 네이버 지도·플레이스</label>
+                  <label><input type="radio" name="inquiry-path" value="가족·지인 소개" /> 가족·지인 소개</label>
+                  <label><input type="radio" name="inquiry-path" value="전문가·업체 소개" /> 전문가·업체 소개</label>
+                  <label><input type="radio" name="inquiry-path" value="기타" /> 기타</label>
+                  <div class="inquiry-path-other" id="inquiry-path-other-wrap">
+                    <input id="inquiry-path-other" name="pathOther" type="text" placeholder="예: 명함, 지역 커뮤니티 등" />
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="inquiry-consent-wrap">
+            <h2><span class="inquiry-indent">[개인정보 수집 및 이용 동의]</span></h2>
+            <div class="inquiry-consent-box">
+              <p class="inquiry-consent-intro">시그니처 행정사사무소(이하 "사무소")는 「개인정보보호법」에 따라 온라인 상담·문의, 견적 요청 및 방문상담 예약 서비스 제공을 위하여 다음과 같이 개인정보를 수집·이용합니다.</p>
+              <div class="inquiry-consent-section">
+                <p class="inquiry-consent-heading">1. 개인정보의 수집 및 이용 목적</p>
+                <p class="inquiry-consent-subcopy">수집한 개인정보는 다음의 목적으로 이용됩니다.</p>
+                <div class="inquiry-consent-checklist">
+                  <p>✓ 온라인 상담·문의 접수 및 확인·답변</p>
+                  <p>✓ 견적 산정 및 견적서 제공</p>
+                  <p>✓ 방문상담 예약 및 일정 조율</p>
+                  <p>✓ 서비스 이용 관련 안내 및 고객 응대</p>
+                  <p>✓ 법령에 따른 의무 이행 및 분쟁 처리</p>
+                </div>
+              </div>
+              <div class="inquiry-consent-section">
+                <p class="inquiry-consent-heading">2. 수집하는 개인정보의 항목</p>
+                <div class="inquiry-consent-checklist">
+                  <p>✓ 성명, 연락처(휴대전화), 이메일 주소</p>
+                  <p>✓ 상담문의 분야, 견적요청 분야, 방문상담 분야</p>
+                  <p>✓ 상담문의 내용, 견적 요청 내용, 방문상담 내용</p>
+                  <p>✓ 의뢰 업무의 종류, 희망 처리 일정, 희망 방문일시</p>
+                  <p>✓ 첨부파일(관련 서류 등)</p>
+                  <p>✓ 기타 이용자가 자발적으로 제출하는 정보 등</p>
+                </div>
+                <p class="inquiry-consent-notice">※ 제출하시는 내용에는 실수 또는 착오로 주민등록번호, 여권번호, 운전면허번호, 계좌번호 등 민감하거나 고유식별정보를 기재하지 않도록 주의해 주시기 바랍니다. 필요한 경우에는 별도의 안내에 따라 제출하여 주시기 바랍니다.</p>
+              </div>
+              <div class="inquiry-consent-section">
+                <p class="inquiry-consent-heading">3. 개인정보 보유 및 이용기간</p>
+                <p class="inquiry-consent-subcopy">수집한 개인정보는 수집·이용 목적이 달성된 후 지체 없이 파기합니다.</p>
+                <p class="inquiry-consent-subcopy">다만, 다음의 경우에는 해당 기간 동안 보관할 수 있습니다.</p>
+                <div class="inquiry-consent-checklist">
+                  <p>✓ 관계 법령에 따라 보관 의무가 있는 경우: 해당 법령에서 정한 기간</p>
+                  <p>✓ 분쟁 발생 또는 민원 처리에 필요한 경우: 처리 완료 시까지</p>
+                </div>
+              </div>
+              <div class="inquiry-consent-section">
+                <p class="inquiry-consent-heading">4. 개인정보의 제 3 자 제공</p>
+                <p class="inquiry-consent-subcopy">사무소는 이용자의 개인정보를 원칙적으로 제 3 자에게 제공하지 않습니다.</p>
+                <p class="inquiry-consent-subcopy">다만, 다음의 경우에는 예외로 합니다.</p>
+                <div class="inquiry-consent-checklist">
+                  <p>✓ 법령에 특별한 규정이 있는 경우</p>
+                  <p>✓ 수사기관 등 관계기관의 적법한 절차에 따른 요청이 있는 경우</p>
+                </div>
+              </div>
+              <div class="inquiry-consent-section">
+                <p class="inquiry-consent-heading">5. 수집 및 이용 동의 거부 권리</p>
+                <p class="inquiry-consent-subcopy">이용자는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다.</p>
+                <p class="inquiry-consent-subcopy">다만, 필수 개인정보 수집에 동의하지 않을 경우, 온라인 상담·문의, 견적 요청 또는 방문상담 예약 서비스 이용이 제한될 수 있습니다.</p>
+              </div>
+            </div>
+            <label class="inquiry-consent-check"><input id="inquiry-consent" type="checkbox" /> <span class="inquiry-indent">[필수] 개인정보 수집 및 이용에 동의합니다.</span></label>
+            <div class="inquiry-submit-wrap">
+              <button form="signature-inquiry-form" type="submit" class="inquiry-submit">접수하기</button>
+              <button type="button" class="board-cancel inquiry-cancel" id="inquiry-cancel">취소</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div class="inquiry-success-modal" id="inquiry-success-modal" aria-hidden="true">
+      <div class="inquiry-success-dialog" role="dialog" aria-modal="true" aria-labelledby="inquiry-success-line-1">
+        <p id="inquiry-success-line-1">문의가 성공적으로 접수되었습니다.</p>
+        <p>담당자가 확인 후 연락드리겠습니다.</p>
+        <button type="button" class="inquiry-success-button" id="inquiry-success-close">확인</button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./assets/supabase-config.js?v=20260516a"></script>
+    <script>
+      const inquirySupabase = window.supabase.createClient(
+        window.SIGNATURE_SUPABASE.url,
+        window.SIGNATURE_SUPABASE.publishableKey
+      );
+      const INQUIRY_ATTACHMENT_BUCKET = "board-attachments";
+
+      const ensureInquirySession = async () => {
+        const { data: sessionData } = await inquirySupabase.auth.getSession();
+        if (sessionData?.session) return sessionData.session;
+
+        const { data, error } = await inquirySupabase.auth.signInAnonymously();
+        if (error) {
+          throw new Error("첨부파일 인증 중 오류가 발생했습니다.");
+        }
+        return data.session;
+      };
+
+      const uploadInquiryAttachment = async (file) => {
+        if (!file) return null;
+
+        await ensureInquirySession();
+
+        const safeName = String(file.name || "attachment").replace(/[^a-zA-Z0-9._-]/g, "_");
+        const filePath = `inquiry/${Date.now()}-${safeName}`;
+        const { error: uploadError } = await inquirySupabase.storage
+          .from(INQUIRY_ATTACHMENT_BUCKET)
+          .upload(filePath, file, {
+            upsert: false,
+            contentType: file.type || "application/octet-stream",
+          });
+
+        if (uploadError) {
+          throw new Error(uploadError.message || "첨부파일 업로드 중 오류가 발생했습니다.");
+        }
+
+        let signedUrl = "";
+        const { data: signedData } = await inquirySupabase.storage
+          .from(INQUIRY_ATTACHMENT_BUCKET)
+          .createSignedUrl(filePath, 60 * 60 * 24 * 7);
+
+        if (signedData?.signedUrl) {
+          signedUrl = signedData.signedUrl;
+        }
+
+        return {
+          name: file.name || safeName,
+          path: filePath,
+          signedUrl,
+          type: file.type || "",
+          size: Number(file.size || 0),
+        };
+      };
+
+      const notifyParentHeight = () => {
+        const root = document.documentElement;
+        const pageBody = document.body;
+        const height = Math.max(
+          pageBody?.scrollHeight || 0,
+          pageBody?.offsetHeight || 0,
+          root?.scrollHeight || 0,
+          root?.offsetHeight || 0
+        );
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: "signature-board-height", height }, "*");
+        }
+      };
+
+      const inquiryForm = document.getElementById("signature-inquiry-form");
+      const inquiryModal = document.getElementById("inquiry-success-modal");
+      const inquiryModalClose = document.getElementById("inquiry-success-close");
+      const inquiryCancel = document.getElementById("inquiry-cancel");
+
+      const openInquiryModal = () => {
+        inquiryModal?.classList.add("is-open");
+        inquiryModal?.setAttribute("aria-hidden", "false");
+      };
+
+      const closeInquiryModal = () => {
+        inquiryModal?.classList.remove("is-open");
+        inquiryModal?.setAttribute("aria-hidden", "true");
+      };
+
+      inquiryModalClose?.addEventListener("click", closeInquiryModal);
+      inquiryModal?.addEventListener("click", (event) => {
+        if (event.target === inquiryModal) {
+          closeInquiryModal();
+        }
+      });
+
+      const inquiryPathOtherWrap = document.getElementById("inquiry-path-other-wrap");
+      const inquiryPathOtherInput = document.getElementById("inquiry-path-other");
+      const syncInquiryPathOther = () => {
+        const selectedPath = inquiryForm?.querySelector("input[name='inquiry-path']:checked")?.value || "";
+        const isOther = selectedPath === "기타";
+        if (inquiryPathOtherWrap) {
+          inquiryPathOtherWrap.hidden = !isOther;
+        }
+        if (!isOther && inquiryPathOtherInput) {
+          inquiryPathOtherInput.value = "";
+        }
+        notifyParentHeight();
+      };
+
+      inquiryForm?.querySelectorAll("input[name='inquiry-path']").forEach((radio) => {
+        radio.addEventListener("change", syncInquiryPathOther);
+      });
+      syncInquiryPathOther();
+
+      inquiryCancel?.addEventListener("click", () => {
+        inquiryForm?.reset();
+        syncInquiryPathOther();
+      });
+
+      inquiryForm?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const getFieldValue = (selector) => {
+          const element = inquiryForm.querySelector(selector);
+          return typeof element?.value === "string" ? element.value.trim() : "";
+        };
+
+        const name = getFieldValue("#inquiry-name");
+        const phone1 = getFieldValue("#inquiry-phone-1");
+        const phone2 = getFieldValue("#inquiry-phone-2");
+        const phone3 = getFieldValue("#inquiry-phone-3");
+        const email = getFieldValue("#inquiry-email");
+        const category = getFieldValue("#inquiry-category");
+        const visaNationality = getFieldValue("#inquiry-visa-nationality");
+        const visaDeparture = getFieldValue("#inquiry-visa-departure");
+        const visaStay = inquiryForm.querySelector("input[name='inquiry-stay']:checked")?.value || "";
+        const visaStatus = getFieldValue("#inquiry-visa-status");
+        const visaRecord = inquiryForm.querySelector("input[name='inquiry-record']:checked")?.value || "";
+        const title = getFieldValue("#inquiry-title");
+        const content = getFieldValue("#inquiry-content");
+        const attachmentFile = inquiryForm.querySelector("#inquiry-attachment")?.files?.[0] || null;
+        const path = inquiryForm.querySelector("input[name='inquiry-path']:checked")?.value || "";
+        const pathOther = getFieldValue("#inquiry-path-other");
+        const consent = document.getElementById("inquiry-consent");
+        const missingFields = [
+          !name ? "성명" : "",
+          !phone1 || !phone2 || !phone3 ? "연락처" : "",
+          !email ? "이메일" : "",
+          !category ? "상담분야" : "",
+          !title ? "문의 제목" : "",
+          !content ? "문의 내용" : ""
+        ].filter(Boolean);
+        if (missingFields.length > 0) {
+          window.alert(`다음 필수 항목을 확인해 주세요.\n- ${missingFields.join("\n- ")}`);
+          return;
+        }
+        if (!consent?.checked) {
+          window.alert("개인정보 이용 동의 후 문의를 접수해 주세요.");
+          return;
+        }
+
+        const submitButton = document.querySelector(".inquiry-submit");
+        const originalButtonText = submitButton?.textContent || "";
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "접수 중...";
+        }
+
+        let attachmentInfo = null;
+
+        const message = [
+          content,
+          "",
+          visaNationality || visaDeparture || visaStay || visaStatus || visaRecord
+            ? "[비자 문의 추가 정보]"
+            : "",
+          visaNationality ? `국적: ${visaNationality}` : "",
+          visaDeparture ? `총출국일: ${visaDeparture}` : "",
+          visaStay ? `현재 체류 여부: ${visaStay}` : "",
+          visaStatus ? `현재 체류자격: ${visaStatus}` : "",
+          visaRecord ? `과거 불법체류/사범기록: ${visaRecord}` : "",
+          path ? `알게 된 경로: ${path}` : "",
+          path === "기타" && pathOther ? `알게 된 경로 기타: ${pathOther}` : ""
+        ].filter(Boolean);
+
+        try {
+          const formAction = inquiryForm.getAttribute("action") || "";
+          if (!formAction) {
+            throw new Error("Formspree 폼 주소가 아직 설정되지 않았습니다.");
+          }
+
+          if (attachmentFile && attachmentFile.size > 25 * 1024 * 1024) {
+            throw new Error("첨부파일은 25MB 이하로 업로드해 주세요.");
+          }
+
+          if (attachmentFile) {
+            attachmentInfo = await uploadInquiryAttachment(attachmentFile);
+          }
+
+          const formData = new FormData(inquiryForm);
+          formData.set("phone", `${phone1}-${phone2}-${phone3}`);
+          formData.set("visa_stay", visaStay);
+          formData.set("visa_record", visaRecord);
+          formData.set("referral_path", path);
+          formData.set("path_other", pathOther);
+          formData.set(
+            "content",
+            [
+              ...message,
+              attachmentInfo ? "" : "",
+              attachmentInfo ? "[첨부파일 정보]" : "",
+              attachmentInfo ? `파일명: ${attachmentInfo.name}` : "",
+              attachmentInfo ? `Supabase 경로: ${attachmentInfo.path}` : "",
+              attachmentInfo?.signedUrl ? `다운로드 링크: ${attachmentInfo.signedUrl}` : "",
+              attachmentInfo?.type ? `파일 형식: ${attachmentInfo.type}` : "",
+              attachmentInfo?.size ? `파일 크기: ${attachmentInfo.size} bytes` : ""
+            ].filter(Boolean).join("\n")
+          );
+          formData.delete("attachment");
+
+          const response = await fetch(formAction, {
+            method: "POST",
+            headers: {
+              Accept: "application/json"
+            },
+            body: formData
+          });
+
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            const formspreeErrors = Array.isArray(result?.errors)
+              ? result.errors.map((item) => item?.message).filter(Boolean)
+              : [];
+            throw new Error(formspreeErrors[0] || result?.error || result?.message || "문의 접수 중 오류가 발생했습니다.");
+          }
+
+          inquiryForm.reset();
+          syncInquiryPathOther();
+          openInquiryModal();
+          notifyParentHeight();
+        } catch (error) {
+          window.alert(error.message || "문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+          }
+        }
+      });
+
+      window.addEventListener("load", () => {
+        notifyParentHeight();
+        requestAnimationFrame(notifyParentHeight);
+        setTimeout(notifyParentHeight, 120);
+      });
+      window.addEventListener("resize", notifyParentHeight);
+    </script>
+    <script src="./assets/protect-images.js"></script>
+  </body>
+</html>

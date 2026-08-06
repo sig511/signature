@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관리자 게시판</title>
+    <link rel="stylesheet" href="boards.css" />
+    <style>
+      body {
+        padding: 24px;
+      }
+
+      .admin-shell {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .admin-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 18px;
+      }
+
+      .admin-header h1 {
+        margin: 0;
+        color: var(--board-accent);
+        font-size: 2rem;
+      }
+
+      .admin-header p {
+        margin: 8px 0 0;
+        color: var(--board-muted);
+      }
+
+      .admin-login-card,
+      .admin-dashboard,
+      .admin-detail,
+      .admin-reply-card {
+        background: var(--board-surface);
+        border: 1px solid var(--board-line);
+        border-radius: 26px;
+        box-shadow: var(--board-shadow);
+      }
+
+      .admin-login-card,
+      .admin-reply-card {
+        padding: 24px;
+      }
+
+      .admin-dashboard,
+      .admin-detail {
+        overflow: hidden;
+      }
+
+      .admin-tabs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .admin-tab {
+        min-height: 40px;
+        padding: 0 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(13, 39, 66, 0.12);
+        background: #fff;
+        color: var(--board-accent);
+        font: inherit;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .admin-tab.active {
+        border: 0;
+        color: #fff;
+        background: linear-gradient(145deg, var(--board-accent) 0%, #163750 100%);
+      }
+
+      .admin-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 22px 26px 14px;
+      }
+
+      .admin-toolbar-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .admin-home-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(13, 39, 66, 0.12);
+        background: #fff;
+        color: var(--board-accent);
+        font: inherit;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .admin-main {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .admin-empty {
+        padding: 20px 26px 28px;
+        color: var(--board-muted);
+      }
+
+      .admin-list-button {
+        display: block;
+        width: 100%;
+        border: 0;
+        background: transparent;
+        text-align: left;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .admin-list-button strong {
+        color: var(--board-accent);
+      }
+
+      .admin-list-meta {
+        margin-top: 6px;
+        color: var(--board-muted);
+        font-size: 0.92rem;
+      }
+
+      .admin-badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: var(--board-accent-soft);
+        color: var(--board-accent);
+        font-size: 0.8rem;
+        font-weight: 800;
+      }
+
+      .admin-detail-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 22px 24px 16px;
+        border-bottom: 1px solid rgba(13, 39, 66, 0.08);
+      }
+
+      .admin-detail-head h3 {
+        margin: 0;
+        color: var(--board-accent);
+      }
+
+      .admin-detail-meta {
+        margin-top: 8px;
+        color: var(--board-muted);
+        line-height: 1.7;
+      }
+
+      .admin-detail-body,
+      .admin-reply-body {
+        padding: 18px 24px 24px;
+        color: var(--board-text);
+        line-height: 1.85;
+        white-space: pre-wrap;
+      }
+
+      .admin-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .admin-reply-card {
+        margin-top: 18px;
+      }
+
+      .admin-reply-card h3 {
+        margin: 0 0 14px;
+        color: var(--board-accent);
+      }
+
+      .admin-reply-card textarea {
+        width: 100%;
+        min-height: 180px;
+        padding: 14px 16px;
+        border: 1px solid rgba(13, 39, 66, 0.12);
+        border-radius: 18px;
+        font: inherit;
+        resize: vertical;
+      }
+
+      .admin-file-link {
+        display: inline-block;
+        margin-top: 10px;
+        color: var(--board-accent);
+        font-weight: 700;
+        text-decoration: underline;
+        word-break: break-all;
+      }
+
+      .admin-note {
+        margin-top: 14px;
+        color: #8a3f34;
+        line-height: 1.7;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      @media (max-width: 980px) {
+        .admin-main {
+          grid-template-columns: 1fr;
+        }
+
+        .admin-header,
+        .admin-toolbar,
+        .admin-detail-head {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .admin-toolbar-actions {
+          justify-content: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="admin-shell">
+      <section class="admin-header">
+        <div>
+          <h1>관리자 게시판</h1>
+          <p>견적 요청과 방문 상담 예약 비밀글을 관리자 전용 화면에서 확인하는 페이지입니다.</p>
+        </div>
+        <a class="admin-home-link" href="./index.html">메인으로 돌아가기</a>
+      </section>
+
+      <section class="admin-login-card" id="admin-login-card">
+        <form class="board-form" id="admin-login-form">
+          <h3>관리자 로그인</h3>
+          <div class="board-form-grid">
+            <label>이메일<input name="adminEmail" type="email" placeholder="관리자 이메일" required /></label>
+            <label>비밀번호<input name="adminPassword" type="password" placeholder="비밀번호 입력" required /></label>
+          </div>
+          <div class="board-actions">
+            <button class="board-action" type="submit">로그인</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="admin-dashboard hidden" id="admin-dashboard">
+        <div class="admin-toolbar">
+          <div class="admin-tabs">
+            <button class="admin-tab active" type="button" data-board-key="quote">견적 요청</button>
+            <button class="admin-tab" type="button" data-board-key="reservation">방문 상담 예약</button>
+          </div>
+          <div class="admin-toolbar-actions">
+            <a class="admin-home-link" href="./index.html">홈페이지 메인으로</a>
+            <div class="board-count" id="admin-board-count">총 0건</div>
+            <button class="board-cancel" type="button" id="admin-logout-button">로그아웃</button>
+          </div>
+        </div>
+
+        <div class="admin-main">
+          <section class="admin-dashboard">
+            <table>
+              <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>작성자</th>
+                  <th>작성일</th>
+                </tr>
+              </thead>
+              <tbody id="admin-post-list"></tbody>
+            </table>
+            <div class="admin-empty" id="admin-empty">등록된 글이 없습니다.</div>
+          </section>
+
+          <section>
+            <article class="admin-detail">
+              <div class="admin-detail-head">
+                <div>
+                  <h3 id="admin-detail-title">게시글을 선택해 주세요.</h3>
+                  <div class="admin-detail-meta" id="admin-detail-meta">목록에서 글을 클릭하면 비밀글 포함 전체 내용을 확인할 수 있습니다.</div>
+                </div>
+                <div class="admin-actions">
+                  <span class="admin-badge hidden" id="admin-secret-badge">비밀글</span>
+                  <button class="board-cancel hidden" type="button" id="admin-delete-button">삭제</button>
+                </div>
+              </div>
+              <div class="admin-detail-body" id="admin-detail-body">아직 선택된 글이 없습니다.</div>
+            </article>
+
+            <section class="admin-reply-card hidden" id="admin-reply-card">
+              <h3>관리자 답변</h3>
+              <textarea id="admin-reply-input" placeholder="고객에게 전달할 답변을 입력해 주세요."></textarea>
+              <div style="margin-top: 14px;">
+                <label style="display:grid;gap:8px;color:var(--board-accent);font-weight:700;">
+                  답변 첨부파일
+                  <input id="admin-reply-file" type="file" />
+                </label>
+                <a class="admin-file-link hidden" id="admin-reply-file-link" href="#" target="_blank" rel="noreferrer"></a>
+              </div>
+              <div class="board-actions" style="margin-top: 14px;">
+                <button class="board-action" id="admin-reply-save" type="button">답변 저장</button>
+              </div>
+              <p class="admin-note">관리자 답변은 고객이 자신의 글을 열었을 때 본문 아래에 함께 표시됩니다.</p>
+            </section>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./assets/supabase-config.js?v=20260516a"></script>
+    <script src="./assets/admin-board.js?v=20260517c"></script>
+  </body>
+</html>

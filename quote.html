@@ -1,0 +1,468 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>견적 요청</title>
+    <script>
+      if (new URLSearchParams(window.location.search).get("embedded") === "1") {
+        document.documentElement.classList.add("is-embedded");
+      }
+    </script>
+    <link rel="stylesheet" href="boards.css" />
+    <style>
+      .board-guide-head h1,
+      .board-list-head .board-subsection-title {
+        margin-left: 16px;
+      }
+
+      .board-guide-head .board-note-card {
+        margin-left: 16px;
+        padding: 20px 22px;
+        border: 1px solid var(--board-line);
+        border-radius: 22px;
+        background: rgba(245, 249, 252, 0.92);
+      }
+
+      .board-guide-head .board-note-card p {
+        margin-left: 24px;
+        padding-left: 0.94em;
+        text-indent: -0.64em;
+        word-break: keep-all;
+      }
+
+      .write-form-note {
+        margin: 8px 2px 2px;
+        color: #a3adba;
+        font-size: 0.95rem;
+        line-height: 1.65;
+      }
+
+      .write-form .contact-phone-inline {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .write-form .contact-phone-inline span {
+        color: #a3adba;
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      .write-form .contact-phone-inline input {
+        max-width: 112px;
+        text-align: center;
+      }
+
+      .write-form select[name="category"] {
+        width: 100%;
+        height: 64px;
+        margin-top: 10px;
+        padding: 0 54px 0 20px;
+        border: 1px solid rgba(30, 61, 96, 0.14);
+        border-radius: 22px;
+        background: #ffffff;
+        color: #a3adba;
+        font-size: 1rem;
+        font-weight: 500;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image:
+          linear-gradient(45deg, transparent 50%, #243f61 50%),
+          linear-gradient(135deg, #243f61 50%, transparent 50%);
+        background-position:
+          calc(100% - 24px) calc(50% - 3px),
+          calc(100% - 18px) calc(50% - 3px);
+        background-size: 6px 6px, 6px 6px;
+        background-repeat: no-repeat;
+        box-sizing: border-box;
+      }
+
+      .write-form input::placeholder,
+      .write-form textarea::placeholder {
+        color: #a3adba;
+        opacity: 1;
+        font-weight: 500;
+      }
+
+      .write-actions {
+        justify-content: center;
+      }
+
+      .file-inline-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+      }
+
+      .file-inline-wrap input[type="file"] {
+        width: auto;
+        flex: 0 1 auto;
+        min-width: 0;
+        color: #a3adba;
+        font-size: 0.92rem;
+        font-weight: 500;
+      }
+
+      .file-inline-note {
+        color: #6d7f92;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        white-space: nowrap;
+      }
+
+      html.is-embedded body[data-board-type="quote"] {
+        background: #ffffff;
+      }
+
+      html.is-embedded body[data-board-type="quote"] .board-card {
+        background: rgba(245, 249, 252, 0.92);
+        border: 1px solid var(--board-line);
+        border-radius: 26px;
+        box-shadow: none;
+        overflow: hidden;
+      }
+
+      body[data-board-type="quote"] .board-guide-head .board-note-card {
+        margin: 0;
+        padding: 0 0 8px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      body[data-board-type="quote"] .board-guide-head {
+        margin: 0;
+        padding: 10px 16px 8px;
+        border-bottom: 1px solid var(--board-line);
+        background: rgba(245, 249, 252, 0.92);
+      }
+
+      body[data-board-type="quote"] .board-guide-head h1 {
+        margin: 0 0 4px 0;
+        padding: 0;
+      }
+
+      body[data-board-type="quote"] .board-guide-head .board-note-card p {
+        margin-left: 0;
+        padding-left: 0.88em;
+        text-indent: -0.64em;
+      }
+
+      body[data-board-type="quote"] .board-write-panel {
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--board-line) !important;
+        border-left: 0 !important;
+        border-right: 0 !important;
+        border-bottom: 0 !important;
+        background: rgba(245, 249, 252, 0.92);
+        border-radius: 0;
+        outline: 0 !important;
+        box-shadow: none;
+      }
+
+      body[data-board-type="quote"] .write-form {
+        gap: 0;
+      }
+
+      body[data-board-type="quote"] .write-form > h3 {
+        margin: 0;
+        padding: 18px 0 18px 16px;
+        color: var(--board-accent);
+      }
+
+      body[data-board-type="quote"] .write-form > .board-form-grid,
+      body[data-board-type="quote"] .write-form > label,
+      body[data-board-type="quote"] .write-form > p,
+      body[data-board-type="quote"] .write-form > .board-actions {
+        padding: 18px 32px;
+        border-top: 1px solid rgba(13, 39, 66, 0.08);
+      }
+
+      body[data-board-type="quote"] .write-form > .board-form-grid {
+        padding-top: 22px;
+      }
+
+      body[data-board-type="quote"] .write-form > .board-actions {
+        border-bottom: 0;
+      }
+
+      body[data-board-type="quote"] .write-form .board-secret-hidden {
+        display: none;
+      }
+
+      body[data-board-type="quote"] .board-consent-wrap {
+        padding: 18px 32px;
+        border-top: 1px solid rgba(13, 39, 66, 0.08);
+      }
+
+      body[data-board-type="quote"] .board-consent-title {
+        margin: 0 0 14px -12px;
+        color: var(--board-accent);
+        font-size: 1.02rem;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      body[data-board-type="quote"] .board-consent-box {
+        padding: 18px 22px;
+        border: 1px solid rgba(13, 39, 66, 0.08);
+        border-radius: 22px;
+        background: #f5f9fc;
+        max-height: 178px;
+        overflow-y: auto;
+      }
+
+      body[data-board-type="quote"] .board-consent-box,
+      body[data-board-type="quote"] .board-consent-box p {
+        color: #243a52;
+        line-height: 1.75;
+      }
+
+      body[data-board-type="quote"] .board-consent-box p {
+        margin: 0;
+      }
+
+      body[data-board-type="quote"] .board-consent-intro {
+        margin-bottom: 30px;
+      }
+
+      body[data-board-type="quote"] .board-consent-intro + .board-consent-section {
+        margin-top: 16px;
+      }
+
+      body[data-board-type="quote"] .board-consent-section + .board-consent-section {
+        margin-top: 14px;
+      }
+
+      body[data-board-type="quote"] .board-consent-heading {
+        font-weight: 700;
+      }
+
+      body[data-board-type="quote"] .board-consent-subcopy {
+        margin-top: 2px;
+        margin-left: 0 !important;
+        padding-left: 4px !important;
+      }
+
+      body[data-board-type="quote"] .board-consent-checklist {
+        margin: 6px 0 0 12px;
+      }
+
+      body[data-board-type="quote"] .board-consent-checklist p + p {
+        margin-top: 2px;
+      }
+
+      body[data-board-type="quote"] .board-consent-notice {
+        margin-top: 10px;
+      }
+
+      body[data-board-type="quote"] .board-consent-check {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 14px;
+        color: var(--board-accent);
+        font-size: 1.02rem;
+        font-weight: 700;
+      }
+
+      body[data-board-type="quote"] .board-consent-check input {
+        width: auto;
+        margin: 0;
+        flex: 0 0 auto;
+      }
+    </style>
+  </head>
+  <body data-board-key="quote" data-board-name="견적 요청" data-board-type="quote" data-public-list-hidden="true">
+    <main class="board-shell">
+      <div class="board-grid">
+        <section class="board-card">
+          <div class="board-card-head board-guide-head">
+            <div>
+              <h1>작성 안내</h1>
+              <div class="board-note-card guide-note-inline">
+                <p>• 접수된 견적 요청 정보와 첨부자료에 기초하여 컨설팅 분야별 업무의 내용, 업무의 범위와 난이도, 업무량, 예상 소요기간 등을 종합적으로 검토하여 견적을 안내해 드립니다.</p>
+                <p>• 제출해 주신 모든 정보와 첨부자료는 관련 법령 및 비밀준수 의무와 행정사 직업윤리에 따라 철저히 비밀을 보장하며, 견적 안내 이외의 다른 목적으로는 일절 사용되지 않고 안전하게 폐기됩니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="board-write-panel">
+            <form class="board-form write-form" autocomplete="off">
+              <h3>견적 요청 작성</h3>
+              <div class="board-form-grid">
+                <label>성명<input name="author" type="text" placeholder="성명을 입력해 주세요" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required /></label>
+                <input name="password" type="hidden" value="" />
+                <label>이메일<input name="email" type="email" placeholder="example@domain.com" autocomplete="off" required /></label>
+              </div>
+              <label>연락처
+                <div class="contact-phone-inline">
+                  <input name="phone1" type="text" inputmode="numeric" placeholder="010" maxlength="3" required />
+                  <span>-</span>
+                  <input name="phone2" type="text" inputmode="numeric" placeholder="1234" maxlength="4" required />
+                  <span>-</span>
+                  <input name="phone3" type="text" inputmode="numeric" placeholder="5678" maxlength="4" required />
+                </div>
+              </label>
+              <label>상담분야
+                <select name="category" required>
+                  <option value="" selected>선택</option>
+                  <option value="일반행정 컨설팅">일반행정 컨설팅</option>
+                  <option value="공인번역 컨설팅">공인번역 컨설팅</option>
+                  <option value="의료기기 컨설팅">의료기기 컨설팅</option>
+                </select>
+                <p class="write-form-note">상담을 원하시는 분야를 선택하신 후 견적 요청 내용을 자세히 적어주세요.</p>
+              </label>
+              <label>제목<input name="title" type="text" placeholder="제목을 입력해 주세요" autocomplete="off" required /></label>
+              <label>내용<textarea name="content" rows="7" placeholder="견적요청 업무의 구체적인 내용 및 범위, 요청사항 등을 가능한 한 상세히 입력해 주세요." required></textarea></label>
+              <label>첨부파일
+                <div class="file-inline-wrap">
+                  <input name="attachment" type="file" />
+                  <span class="file-inline-note">(최대 25MB까지 가능)</span>
+                </div>
+              </label>
+              <input class="board-secret-hidden" name="secret" type="checkbox" checked />
+              <div class="board-consent-wrap">
+                <h4 class="board-consent-title">[개인정보 수집 및 이용 동의]</h4>
+                <div class="board-consent-box">
+                  <p class="board-consent-intro">시그니처 행정사사무소(이하 "사무소")는 「개인정보보호법」에 따라 온라인 상담·문의, 견적 요청 및 방문상담 예약 서비스 제공을 위하여 다음과 같이 개인정보를 수집·이용합니다.</p>
+                  <div class="board-consent-section">
+                    <p class="board-consent-heading">1. 개인정보의 수집 및 이용 목적</p>
+                    <p class="board-consent-subcopy">수집한 개인정보는 다음의 목적으로 이용됩니다.</p>
+                    <div class="board-consent-checklist">
+                      <p>✓ 온라인 상담·문의 접수 및 확인·답변</p>
+                      <p>✓ 견적 산정 및 견적서 제공</p>
+                      <p>✓ 방문상담 예약 및 일정 조율</p>
+                      <p>✓ 서비스 이용 관련 안내 및 고객 응대</p>
+                      <p>✓ 법령에 따른 의무 이행 및 분쟁 처리</p>
+                    </div>
+                  </div>
+                  <div class="board-consent-section">
+                    <p class="board-consent-heading">2. 수집하는 개인정보의 항목</p>
+                    <div class="board-consent-checklist">
+                      <p>✓ 성명, 연락처(휴대전화), 이메일 주소</p>
+                      <p>✓ 상담문의 분야, 견적요청 분야, 방문상담 분야</p>
+                      <p>✓ 상담문의 내용, 견적 요청 내용, 방문상담 내용</p>
+                      <p>✓ 의뢰 업무의 종류, 희망 처리 일정, 희망 방문일시</p>
+                      <p>✓ 첨부파일(관련 서류 등)</p>
+                      <p>✓ 기타 이용자가 자발적으로 제출하는 정보 등</p>
+                    </div>
+                    <p class="board-consent-notice">※ 제출하시는 내용에는 실수 또는 착오로 주민등록번호, 여권번호, 운전면허번호, 계좌번호 등 민감하거나 고유식별정보를 기재하지 않도록 주의해 주시기 바랍니다. 필요한 경우에는 별도의 안내에 따라 제출하여 주시기 바랍니다.</p>
+                  </div>
+                  <div class="board-consent-section">
+                    <p class="board-consent-heading">3. 개인정보 보유 및 이용기간</p>
+                    <p class="board-consent-subcopy">수집한 개인정보는 수집·이용 목적이 달성된 후 지체 없이 파기합니다.</p>
+                    <p class="board-consent-subcopy">다만, 다음의 경우에는 해당 기간 동안 보관할 수 있습니다.</p>
+                    <div class="board-consent-checklist">
+                      <p>✓ 관계 법령에 따라 보관 의무가 있는 경우: 해당 법령에서 정한 기간</p>
+                      <p>✓ 분쟁 발생 또는 민원 처리에 필요한 경우: 처리 완료 시까지</p>
+                    </div>
+                  </div>
+                  <div class="board-consent-section">
+                    <p class="board-consent-heading">4. 개인정보의 제 3 자 제공</p>
+                    <p class="board-consent-subcopy">사무소는 이용자의 개인정보를 원칙적으로 제 3 자에게 제공하지 않습니다.</p>
+                    <p class="board-consent-subcopy">다만, 다음의 경우에는 예외로 합니다.</p>
+                    <div class="board-consent-checklist">
+                      <p>✓ 법령에 특별한 규정이 있는 경우</p>
+                      <p>✓ 수사기관 등 관계기관의 적법한 절차에 따른 요청이 있는 경우</p>
+                    </div>
+                  </div>
+                  <div class="board-consent-section">
+                    <p class="board-consent-heading">5. 수집 및 이용 동의 거부 권리</p>
+                    <p class="board-consent-subcopy">이용자는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다.</p>
+                    <p class="board-consent-subcopy">다만, 필수 개인정보 수집에 동의하지 않을 경우, 온라인 상담·문의, 견적 요청 또는 방문상담 예약 서비스 이용이 제한될 수 있습니다.</p>
+                  </div>
+                </div>
+                  <label class="board-consent-check"><input name="privacyConsent" type="checkbox" required /> [필수] 개인정보 수집 및 이용에 동의합니다.</label>
+              </div>
+              <div class="board-actions write-actions">
+                <button class="board-action" type="submit">접수하기</button>
+                <button class="board-cancel write-cancel" type="button">취소</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="board-admin-panel hidden">
+            <form class="board-form admin-form">
+              <h3>관리자 로그인</h3>
+              <label>아이디<input name="adminId" type="text" placeholder="admin" required /></label>
+              <label>비밀번호<input name="adminPassword" type="password" placeholder="비밀번호 입력" required /></label>
+              <div class="board-actions admin-form-actions">
+                <button class="board-action" type="submit">로그인</button>
+                <button class="board-cancel admin-cancel" type="button">닫기</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="board-list-head hidden">
+            <h2 class="board-subsection-title">견적 요청 목록</h2>
+            <div class="board-toolbar board-toolbar-lower">
+              <div class="board-count">총 3건</div>
+            </div>
+          </div>
+
+          <table class="hidden" aria-hidden="true">
+            <thead>
+              <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>첨부</th>
+              </tr>
+            </thead>
+            <tbody class="board-list">
+              <tr>
+                <td>3</td>
+                <td><button class="row-link" type="button" data-post-id="quote-seed-3"><span class="secret-lock"></span><span class="row-link-text">영문 서류 번역 및 공증 견적 문의</span></button></td>
+                <td>에이비씨무역</td>
+                <td>2026-05-14</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><button class="row-link" type="button" data-post-id="quote-seed-2"><span class="secret-lock"></span><span class="row-link-text">출입국 서류 대행 비용 문의</span></button></td>
+                <td>김OO</td>
+                <td>2026-05-09</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td><button class="row-link" type="button" data-post-id="quote-seed-1"><span class="secret-lock"></span><span class="row-link-text">의료기기 인·허가 컨설팅 견적 요청</span></button></td>
+                <td>메디텍</td>
+                <td>2026-05-02</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="board-empty hidden">등록된 게시글이 없습니다.</div>
+
+          <article class="post-view hidden">
+            <div class="post-view-head">
+              <div>
+                <p class="post-view-meta"></p>
+                <h3 class="post-view-title"></h3>
+              </div>
+              <div class="post-view-actions">
+                <button class="post-delete hidden" type="button">삭제</button>
+              </div>
+            </div>
+            <div class="post-view-body"></div>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <script id="board-seed" type="application/json">[]</script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./assets/supabase-config.js?v=20260516a"></script>
+    <script src="./assets/boards-server.js?v=20260718a"></script>
+    <script src="./assets/protect-images.js"></script>
+  </body>
+</html>
