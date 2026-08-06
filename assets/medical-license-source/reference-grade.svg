@@ -1,0 +1,51 @@
+<svg width="1770" height="650" viewBox="0 0 1770 650" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1770" height="650" rx="26" fill="#F9F5EE"/>
+  <rect x="8" y="8" width="1754" height="634" rx="22" fill="white" stroke="#E8DCCE" stroke-width="2"/>
+  <rect x="8" y="8" width="288" height="116" fill="#0E2F59"/>
+  <rect x="296" y="8" width="594" height="116" fill="#123D73"/>
+  <rect x="890" y="8" width="872" height="116" fill="#8E5626"/>
+  <path d="M55 44H109C117.837 44 125 51.1634 125 60V77H71C62.1634 77 55 69.8366 55 61V44Z" fill="white" fill-opacity="0.14"/>
+  <path d="M75 62C75 55.3726 80.3726 50 87 50H113V76H89C81.268 76 75 69.732 75 62Z" stroke="white" stroke-width="4"/>
+  <circle cx="131" cy="78" r="15" stroke="white" stroke-width="4"/>
+  <path d="M142 89L153 100" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <text x="182" y="79" fill="white" font-size="34" font-weight="700" text-anchor="middle" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif">구분</text>
+  <path d="M404 52C426 52 444 70 444 92" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  <path d="M482 52C460 52 442 70 442 92" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  <path d="M404 56C404 44 414 34 426 34C438 34 448 44 448 56" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  <text x="592" y="79" fill="white" font-size="34" font-weight="700" text-anchor="middle" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif">의료기기</text>
+  <path d="M1112 40L1130 60L1160 30" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1134 52C1134 52 1168 70 1162 102C1134 107 1110 89 1108 59C1110 43 1123 35 1134 52Z" fill="white"/>
+  <path d="M1136 55L1110 78" stroke="#8E5626" stroke-width="3" stroke-linecap="round"/>
+  <text x="1360" y="79" fill="white" font-size="34" font-weight="700" text-anchor="middle" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif">체외진단의료기기</text>
+
+  <g stroke="#E7D8C8" stroke-width="2">
+    <line x1="296" y1="124" x2="296" y2="642"/>
+    <line x1="890" y1="124" x2="890" y2="642"/>
+    <line x1="8" y1="253" x2="1762" y2="253"/>
+    <line x1="8" y1="382" x2="1762" y2="382"/>
+    <line x1="8" y1="511" x2="1762" y2="511"/>
+  </g>
+
+  <g fill="#143862" font-size="34" font-weight="800" text-anchor="middle" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif">
+    <text x="152" y="203">1 등급</text>
+    <text x="152" y="332">2 등급</text>
+    <text x="152" y="461">3 등급</text>
+    <text x="152" y="590">4 등급</text>
+  </g>
+
+  <g fill="#2A221C" font-size="24" font-weight="700" text-anchor="middle" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif">
+    <text x="593" y="203">잠재적 위해성이 거의 없음</text>
+    <text x="593" y="332">잠재적 위해성이 낮음</text>
+    <text x="593" y="461">중등도의 잠재적 위해성을 가짐</text>
+    <text x="593" y="590">고도의 잠재적 위해성을 가짐</text>
+  </g>
+
+  <g fill="#2A221C" font-size="24" font-weight="700" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif">
+    <text x="1045" y="188">개인과 공중보건에 미치는 잠재적 위해성이 낮음</text>
+    <text x="1016" y="317">개인에게 중등도의 잠재적 위해성을 가지며</text>
+    <text x="1028" y="351">공중보건에 미치는 잠재적 위해성이 낮음</text>
+    <text x="1016" y="446">개인에게 고도의 잠재적 위해성을 가지며</text>
+    <text x="1032" y="480">공중보건에 중등도의 잠재적 위해성을 가짐</text>
+    <text x="1044" y="575">개인과 공중보건에 고도의 위해성을 가짐</text>
+  </g>
+</svg>
