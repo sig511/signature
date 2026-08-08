@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
           openNavItem(parentNavItem);
         }
 
-          const isOpen = toggle.getAttribute("aria-expanded") === "true";
+        const isOpen = toggle.getAttribute("aria-expanded") === "true";
 
         if (isOpen) {
           closeBranch(branch);
@@ -193,10 +193,9 @@ document.addEventListener("DOMContentLoaded", () => {
         branch.classList.add("is-open");
         toggle.setAttribute("aria-expanded", "true");
         toggle.setAttribute("aria-label", `${label} 하위 메뉴 닫기`);
-          toggle.textContent = "-";
-          childList.hidden = false;
-          closeAllBranches(dropdown, branch);
-        };
+        toggle.textContent = "-";
+        childList.hidden = false;
+      };
 
       branch.addEventListener("pointerdown", (event) => {
         event.stopPropagation();
@@ -226,10 +225,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const handleOpen = () => {
       openNavItem(item);
-
-      if (!item.querySelector(".main-nav-dropdown-branch")) {
-        closeAllBranches();
-      }
     };
 
     if (isTouchStyleNav) {
@@ -254,6 +249,23 @@ document.addEventListener("DOMContentLoaded", () => {
       item.addEventListener("focusin", handleOpen);
     }
   });
+
+  if (!isTouchStyleNav) {
+    document.addEventListener("pointermove", (event) => {
+      const hasOpenNavItem = navItems.some((item) => item.classList.contains("is-open"));
+
+      if (!hasOpenNavItem) {
+        return;
+      }
+
+      if (event.target instanceof Element && event.target.closest(".main-nav-item")) {
+        return;
+      }
+
+      closeAllNavItems();
+      closeAllBranches();
+    });
+  }
 
   document.addEventListener("click", (event) => {
     if (event.target instanceof Element && event.target.closest(".main-nav-item")) {
