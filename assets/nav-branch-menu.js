@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".main-nav");
   const navItems = Array.from(document.querySelectorAll(".main-nav-item"));
   const isTouchStyleNav = !window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  let closeTimerId = null;
 
   if (!nav || navItems.length === 0) {
     return;
@@ -130,6 +131,46 @@ document.addEventListener("DOMContentLoaded", () => {
     navItems.forEach(closeNavItem);
   };
 
+  const clearCloseTimer = () => {
+    if (closeTimerId !== null) {
+      window.clearTimeout(closeTimerId);
+      closeTimerId = null;
+    }
+  };
+
+  const scheduleCloseAll = () => {
+    clearCloseTimer();
+    closeTimerId = window.setTimeout(() => {
+      closeAllNavItems();
+      closeAllBranches();
+      closeTimerId = null;
+    }, 180);
+  };
+
+  const isPointerInsideOpenMenu = (clientX, clientY) => {
+    const openItem = navItems.find((item) => item.classList.contains("is-open"));
+
+    if (!openItem) {
+      return false;
+    }
+
+    const topLink = openItem.querySelector(":scope > a");
+    const dropdown = getDropdown(openItem);
+    const elements = [topLink, dropdown].filter(Boolean);
+    const padding = 12;
+
+    return elements.some((element) => {
+      const rect = element.getBoundingClientRect();
+
+      return (
+        clientX >= rect.left - padding &&
+        clientX <= rect.right + padding &&
+        clientY >= rect.top - padding &&
+        clientY <= rect.bottom + padding
+      );
+    });
+  };
+
   document.querySelectorAll(".main-nav-dropdown").forEach((dropdown) => {
     if (isTouchStyleNav) {
       dropdown.hidden = true;
@@ -195,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
         toggle.setAttribute("aria-label", `${label} 하위 메뉴 닫기`);
         toggle.textContent = "-";
         childList.hidden = false;
+        closeAllBranches(dropdown, branch);
       };
 
       branch.addEventListener("pointerdown", (event) => {
@@ -246,6 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     } else {
       item.addEventListener("pointerenter", handleOpen);
+      item.addEventListener("pointerenter", clearCloseTimer);
       item.addEventListener("focusin", handleOpen);
     }
   });
@@ -255,15 +298,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const hasOpenNavItem = navItems.some((item) => item.classList.contains("is-open"));
 
       if (!hasOpenNavItem) {
+        clearCloseTimer();
         return;
       }
 
-      if (event.target instanceof Element && event.target.closest(".main-nav-item")) {
+      if (isPointerInsideOpenMenu(event.clientX, event.clientY)) {
+        clearCloseTimer();
         return;
       }
 
-      closeAllNavItems();
-      closeAllBranches();
+      scheduleCloseAll();
     });
   }
 
