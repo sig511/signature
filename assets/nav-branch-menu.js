@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
       closeAllNavItems();
       closeAllBranches();
       closeTimerId = null;
-    }, 180);
+    }, 70);
   };
 
   const isPointerInsideOpenMenu = (clientX, clientY) => {
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const topLink = openItem.querySelector(":scope > a");
     const dropdown = getDropdown(openItem);
     const elements = [topLink, dropdown].filter(Boolean);
-    const padding = 12;
+    const padding = 10;
 
     return elements.some((element) => {
       const rect = element.getBoundingClientRect();

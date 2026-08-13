@@ -1835,19 +1835,32 @@ body.business-theme-medical .subpage-content.is-overview,
 }
 
 .general-business-doc-feature > p:first-child {
-  margin-top: -2px;
+  margin-top: -10px;
 }
 
 .general-business-doc-feature p + p {
   margin-top: 18px;
 }
 
+.general-business-doc-columns-wrap {
+  max-width: 980px;
+  max-width: 1120px;
+  margin: 24px auto 0;
+}
+
+.general-business-doc-columns-title {
+  margin: 0 0 30px;
+  color: #111111;
+  font-size: 1rem;
+  line-height: 1.86;
+}
+
 .general-business-doc-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(420px, max-content));
-  justify-content: center;
-  max-width: 980px;
-  margin: 14px auto 0;
+  justify-content: start;
+  max-width: 1120px;
+  margin: 16px 0 42px 16px;
   column-gap: 52px;
   row-gap: 0;
 }
@@ -1861,16 +1874,25 @@ body.business-theme-medical .subpage-content.is-overview,
 .general-business-doc-column p {
   margin: 0;
   white-space: nowrap;
-  position: relative;
-  padding-left: 24px;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 10px;
   line-height: 1.6;
 }
 
-.general-business-doc-column p::before {
-  content: '\2756';
-  position: absolute;
-  left: 0;
-  top: 0;
+.general-business-doc-symbol {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 18px;
+  padding-top: 5px;
+}
+
+.general-business-doc-symbol img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
 }
 
 @media (max-width: 900px) {
@@ -1889,6 +1911,10 @@ body.business-theme-medical .subpage-content.is-overview,
 
   .general-business-doc-feature p {
     white-space: normal;
+  }
+
+  .general-business-doc-columns-title {
+    margin-bottom: 12px;
   }
 
   .general-business-doc-column p {

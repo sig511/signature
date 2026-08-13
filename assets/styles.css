@@ -222,7 +222,7 @@ body.business-hours-banner .brand-banner-yellow-glow {
   visibility: hidden;
   transform: translateY(10px);
   pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  transition: opacity 100ms ease, transform 100ms ease, visibility 100ms ease;
   z-index: 30;
 }
 
