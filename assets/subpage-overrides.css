@@ -2318,7 +2318,11 @@ body.business-theme-medical .subpage-content.is-overview,
 }
 
 #translation-other .translation-other-detail-list-wide {
-  margin-top: 0;
+  margin-top: -12px;
+}
+
+#translation-other .translation-other-detail-list-wide .translation-other-detail-item:first-child {
+  margin-top: -3px;
 }
 
 #medical-renewal .detail-item.medical-renewal-flow-layout {
