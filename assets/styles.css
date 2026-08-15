@@ -1907,7 +1907,7 @@ body.business-hours-banner .brand-banner-yellow-glow {
   flex: 0 0 150px;
   align-self: center;
   height: 48px;
-  background: url("../general-immigration.png") center / contain no-repeat;
+  background: url("../general-immigration-transparent.png") center / contain no-repeat;
 }
 
 .landing-hero {
