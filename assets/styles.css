@@ -1902,6 +1902,14 @@ body.business-hours-banner .brand-banner-yellow-glow {
   font-size: 1rem;
 }
 
+.main-nav::before {
+  content: "";
+  flex: 0 0 150px;
+  align-self: center;
+  height: 48px;
+  background: url("../general-immigration.png") center / contain no-repeat;
+}
+
 .landing-hero {
   background:
     linear-gradient(120deg, rgba(7, 24, 41, 0.82), rgba(18, 68, 112, 0.58)),
