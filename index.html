@@ -208,7 +208,7 @@
                   <span class="notice-date">04-01</span>
                 </button>
               </div>
-              <article class="notice-inline-view hidden" id="main-notice-view">
+              <article class="notice-inline-view hidden" id="main-notice-view" role="dialog" aria-modal="true" aria-labelledby="main-notice-title">
                 <button class="notice-inline-close" id="main-notice-close" type="button" aria-label="공지 닫기">×</button>
                 <p class="notice-inline-meta" id="main-notice-meta">시그니처행정사 | 2026-04-30</p>
                 <h3 class="notice-inline-title" id="main-notice-title">5월 연휴 상담 운영 일정 안내</h3>
@@ -452,6 +452,7 @@
 
       const closeMainNotice = () => {
         activeNoticeId = null;
+        document.body.classList.remove('notice-modal-open');
         if (noticeView) {
           noticeView.classList.add('hidden');
           noticeView.classList.remove('is-open');
@@ -467,11 +468,15 @@
         noticeMeta.textContent = notice.meta;
         noticeTitle.textContent = notice.title;
         noticeBody.innerHTML = notice.body;
-        const buttonRect = triggerButton.getBoundingClientRect();
-        const panelRect = noticePanel.getBoundingClientRect();
-        noticeView.style.top = `${buttonRect.bottom - panelRect.top + 12}px`;
+        // Keep the notice dialog at the document root so it is centered in the
+        // viewport, independently of the news section's layout.
+        if (noticeView.parentElement !== document.body) {
+          document.body.appendChild(noticeView);
+        }
+        noticeView.style.removeProperty('top');
         noticeView.classList.remove('hidden');
         noticeView.classList.add('is-open');
+        document.body.classList.add('notice-modal-open');
         noticeButtons.forEach((button) => {
           button.classList.toggle('is-active', button.dataset.noticeId === noticeId);
         });
@@ -491,6 +496,10 @@
 
       noticeClose?.addEventListener('click', () => {
         closeMainNotice();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && activeNoticeId) closeMainNotice();
       });
 
       if (mainNoticeEntries[0] && noticeMeta && noticeTitle && noticeBody) {
