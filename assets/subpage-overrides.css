@@ -3355,7 +3355,7 @@ body.business-theme-medical .subpage-content.is-overview,
 }
 
 .medical-quality-docs-check {
-    color: #111;
+    color: var(--muted);
     font-weight: 600;
 }
 
@@ -3975,7 +3975,7 @@ body.business-theme-medical .subpage-content.is-overview,
 .general-immigration-bullet,
 .general-immigration-check {
   font-weight: 700;
-  color: #132238;
+  color: var(--muted);
   line-height: 1.86;
 }
 
@@ -4012,6 +4012,10 @@ body.business-theme-medical .subpage-content.is-overview,
   line-height: 1.86;
 }
 
+.general-immigration-service-symbol {
+  padding-top: 7px;
+}
+
 .general-immigration-diamond {
   color: #132238;
   font-weight: 700;
@@ -4043,7 +4047,7 @@ body.business-theme-medical .subpage-content.is-overview,
 
 .general-immigration-topic-bullet {
   font-weight: 700;
-  color: #132238;
+  color: var(--muted);
 }
 
 .general-immigration-topic-check-list {
@@ -4066,7 +4070,7 @@ body.business-theme-medical .subpage-content.is-overview,
 }
 
 .general-immigration-check-heading .general-immigration-check {
-  color: #132238;
+  color: var(--muted);
 }
 
 .general-immigration-dash-list {
