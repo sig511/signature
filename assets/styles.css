@@ -3839,7 +3839,56 @@ body.home-page .news-panel {
 
 body.home-page .support-only-row {
   padding-top: 14px !important;
+  padding-bottom: 44px !important;
   margin-top: 0 !important;
+}
+
+body.home-page .home-contact-column {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+body.home-page .home-contact-column > .customer-panel {
+  min-height: 0 !important;
+}
+
+body.home-page .home-affiliation-badges {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 40px;
+  width: 100%;
+  margin-top: auto;
+  padding: 22px 0 2px;
+}
+
+body.home-page .home-affiliation-badges img {
+  display: block;
+  width: 460px;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+}
+
+.persistent-affiliation-badges {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: min(1180px, calc(100% - 48px));
+  min-height: 48px;
+  margin: 0 auto;
+  padding: 0 0 4px;
+}
+
+.persistent-affiliation-badges img {
+  display: block;
+  width: 460px;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transform: translateX(56px);
 }
 
 body.home-page .notice-inline-list {
