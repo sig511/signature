@@ -787,13 +787,13 @@ body.business-hours-banner .brand-banner-yellow-glow {
 .floating-rail-card span {
   display: block;
   margin-top: 3px;
-  font-size: 0.58rem;
+  font-size: 0.68rem;
   line-height: 1.18;
   font-weight: 700;
 }
 
 .floating-rail-card strong {
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   line-height: 1.22;
   font-weight: 700;
 }
@@ -806,7 +806,7 @@ body.business-hours-banner .brand-banner-yellow-glow {
 .floating-rail-kakao-text span {
   display: block;
   margin-top: 0;
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   line-height: 1.2;
   font-weight: 700;
   color: inherit;
@@ -3917,6 +3917,8 @@ body.home-page .footer-affiliation-row {
   display: block;
   width: 460px;
   max-width: none;
+  transform: scale(0.9);
+  transform-origin: center;
 }
 
 body.home-page .notice-inline-list {
