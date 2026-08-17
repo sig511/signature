@@ -3869,7 +3869,7 @@ body.home-page .home-affiliation-badges img {
   height: auto;
   max-width: none;
   object-fit: contain;
-  transform: translateX(8px);
+  transform: translate(-2px, 5px);
 }
 
 .persistent-affiliation-badges {
@@ -3889,7 +3889,7 @@ body.home-page .home-affiliation-badges img {
   max-width: none;
   object-fit: contain;
   mix-blend-mode: multiply;
-  transform: translateX(64px);
+  transform: translate(54px, 11px);
 }
 
 body.home-page .notice-inline-list {
