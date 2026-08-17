@@ -3865,6 +3865,7 @@ body.home-page .home-affiliation-badges {
 
 body.home-page .home-affiliation-badges img {
   display: block;
+  flex: 0 0 460px;
   width: 460px;
   height: auto;
   max-width: none;
@@ -3884,12 +3885,38 @@ body.home-page .home-affiliation-badges img {
 
 .persistent-affiliation-badges img {
   display: block;
+  flex: 0 0 460px;
   width: 460px;
   height: auto;
   max-width: none;
   object-fit: contain;
   mix-blend-mode: multiply;
-  transform: translate(54px, 11px);
+  transform: translate(30px, 11px);
+}
+
+.footer-affiliation-row {
+  background: #eef4f8;
+}
+
+body.home-page .footer-affiliation-row {
+  background: #fff;
+}
+
+.footer-affiliation-grid {
+  min-height: 0;
+  padding: 8px 0 4px;
+}
+
+.footer-affiliation-cell {
+  grid-column: 2;
+  justify-self: end;
+  transform: translateX(-80px);
+}
+
+.footer-affiliation-cell img {
+  display: block;
+  width: 460px;
+  max-width: none;
 }
 
 body.home-page .notice-inline-list {
@@ -4284,8 +4311,18 @@ body.home-page .notice-toggle {
     display: none !important;
   }
 
+  .footer-affiliation-spacer {
+    display: none;
+  }
+
+  .footer-affiliation-cell {
+    grid-column: 1;
+    justify-self: start;
+    transform: none;
+  }
+
   .footer-grid {
-    width: min(100%, calc(100% - 24px)) !important;
+    width: calc(100% - 48px) !important;
     grid-template-columns: 1fr !important;
     gap: 12px !important;
   }
