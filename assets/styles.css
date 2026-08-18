@@ -86,6 +86,8 @@ img {
 .brand-banner-yellow-glow {
   position: absolute;
   inset: 0;
+  height: 100%;
+  object-fit: fill;
   display: none;
   opacity: 0;
   mix-blend-mode: screen;
@@ -4626,3 +4628,5 @@ body.home-page .notice-inline-view.is-open .notice-inline-close {
     padding: 48px 22px 24px;
   }
 }
+
+
