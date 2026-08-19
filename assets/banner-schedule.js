@@ -60,9 +60,14 @@
   const defaultBannerSrc = bannerLink?.dataset.defaultBannerSrc;
 
   document.body.classList.toggle("business-hours-banner", shouldShowBusinessBanner);
+  document.body.classList.toggle(
+    "business-banner-preview",
+    bannerPreviewMode === "business"
+  );
 
   if (bannerImage && businessBannerSrc && defaultBannerSrc) {
     bannerImage.src = shouldShowBusinessBanner ? businessBannerSrc : defaultBannerSrc;
   }
 })();
+
 
