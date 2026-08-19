@@ -45,8 +45,15 @@
 
   const isWeekdayInKorea = !["Sat", "Sun"].includes(koreaWeekday);
   const isHolidayInKorea = businessBannerHolidaySet.has(koreaDateKey);
-  const shouldShowBusinessBanner =
+  const bannerPreviewMode = new URLSearchParams(window.location.search).get("banner");
+  const isScheduledBusinessHours =
     isWeekdayInKorea && !isHolidayInKorea && koreaHour >= 9 && koreaHour < 18;
+  const shouldShowBusinessBanner =
+    bannerPreviewMode === "business"
+      ? true
+      : bannerPreviewMode === "default"
+        ? false
+        : isScheduledBusinessHours;
   const bannerLink = document.querySelector(".brand-banner-link");
   const bannerImage = bannerLink?.querySelector(".brand-banner-image");
   const businessBannerSrc = bannerLink?.dataset.businessBannerSrc;
@@ -58,3 +65,4 @@
     bannerImage.src = shouldShowBusinessBanner ? businessBannerSrc : defaultBannerSrc;
   }
 })();
+
