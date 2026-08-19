@@ -100,17 +100,14 @@ body.business-hours-banner .brand-banner-yellow-glow {
   animation: bannerYellowSign 3.8s ease-in-out infinite;
 }
 
-body.business-banner-preview .brand-banner-yellow-glow {
-  opacity: 0.92;
-  animation: none;
-  filter: drop-shadow(0 0 8px rgba(255, 196, 24, 0.9));
-}
 
 @keyframes bannerYellowSign {
   0%,
+  18%,
+  82%,
   100% {
-    opacity: 0.18;
-    filter: drop-shadow(0 0 3px rgba(255, 196, 24, 0.3));
+    opacity: 0;
+    filter: drop-shadow(0 0 0 rgba(255, 196, 24, 0));
   }
   50% {
     opacity: 0.92;
@@ -4623,6 +4620,8 @@ body.home-page .notice-inline-view.is-open .notice-inline-close {
     padding: 48px 22px 24px;
   }
 }
+
+
 
 
 
