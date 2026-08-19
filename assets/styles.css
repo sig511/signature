@@ -101,20 +101,20 @@ body.business-hours-banner .brand-banner-yellow-glow {
 }
 
 body.business-banner-preview .brand-banner-yellow-glow {
-  opacity: 0.96;
+  opacity: 0.92;
   animation: none;
-  filter: brightness(1.18) saturate(1.35) drop-shadow(0 0 18px rgba(255, 196, 24, 0.95));
+  filter: drop-shadow(0 0 8px rgba(255, 196, 24, 0.9));
 }
 
 @keyframes bannerYellowSign {
   0%,
   100% {
-    opacity: 0.28;
-    filter: brightness(1) saturate(1.15) drop-shadow(0 0 5px rgba(255, 196, 24, 0.42));
+    opacity: 0.18;
+    filter: drop-shadow(0 0 3px rgba(255, 196, 24, 0.3));
   }
   50% {
     opacity: 0.92;
-    filter: brightness(1.18) saturate(1.35) drop-shadow(0 0 18px rgba(255, 196, 24, 0.95));
+    filter: drop-shadow(0 0 10px rgba(255, 196, 24, 0.95));
   }
 }
 
@@ -4623,6 +4623,8 @@ body.home-page .notice-inline-view.is-open .notice-inline-close {
     padding: 48px 22px 24px;
   }
 }
+
+
 
 
 
