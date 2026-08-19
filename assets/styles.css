@@ -97,7 +97,7 @@ img {
 
 body.business-hours-banner .brand-banner-yellow-glow {
   display: block;
-  animation: bannerYellowSign 3.8s ease-in-out infinite;
+  animation: bannerYellowSign 7s ease-in-out infinite;
 }
 
 
@@ -4620,6 +4620,7 @@ body.home-page .notice-inline-view.is-open .notice-inline-close {
     padding: 48px 22px 24px;
   }
 }
+
 
 
 
