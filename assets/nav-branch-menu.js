@@ -193,8 +193,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const head = document.createElement("div");
       head.className = "main-nav-dropdown-branch-head";
 
-      const branchLink = document.createElement("button");
-      branchLink.type = "button";
+      const branchLink = document.createElement("a");
+      branchLink.href = normalizedHref;
       branchLink.className = "main-nav-dropdown-branch-link";
       branchLink.textContent = label;
 
@@ -248,8 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       toggle.addEventListener("click", toggleBranch);
-
-      branchLink.addEventListener("click", toggleBranch);
 
       head.append(branchLink, toggle);
       branch.append(head, childList);
