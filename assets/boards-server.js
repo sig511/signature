@@ -113,7 +113,7 @@ function escapeHtml(value) {
 }
 
 function formatContent(content) {
-  return escapeHtml(content).replaceAll("\n", "<br>");
+  return window.SignatureRichText?.format(content) || escapeHtml(content).replaceAll("\n", "<br>");
 }
 
 function ensureUiStyles() {
@@ -672,7 +672,10 @@ function startEditPost(post, password) {
   writeForm.querySelector('input[name="author"]').value = post.author || "";
   writeForm.querySelector('input[name="password"]').value = password || "";
   writeForm.querySelector('input[name="title"]').value = post.title || "";
-  writeForm.querySelector('textarea[name="content"]').value = post.content || "";
+  window.SignatureRichText?.setValue(
+    writeForm.querySelector('textarea[name="content"]'),
+    post.content || ""
+  );
   writeForm.querySelector('input[name="attachment"]').value = "";
   const secretInput = writeForm.querySelector('input[name="secret"]');
   if (secretInput) secretInput.checked = Boolean(post.is_secret);
@@ -840,6 +843,10 @@ writeForm?.addEventListener("submit", async (event) => {
   }
 
   writeForm.reset();
+  window.SignatureRichText?.setValue(
+    writeForm.querySelector('textarea[name="content"]'),
+    ""
+  );
   const secretInput = writeForm.querySelector('input[name="secret"]');
   if (secretInput) {
     secretInput.checked = true;
