@@ -1,6 +1,6 @@
 (() => {
   const allowedTags = new Set([
-    "A", "B", "BR", "DIV", "EM", "FONT", "I", "LI", "OL", "P", "SPAN", "STRONG", "U", "UL"
+    "A", "B", "BR", "DIV", "EM", "FONT", "I", "IMG", "LI", "OL", "P", "SPAN", "STRONG", "U", "UL"
   ]);
   const allowedFonts = new Set([
     "Arial", "Georgia", "Tahoma", "Times New Roman", "Verdana", "맑은 고딕", "굴림", "궁서", "바탕"
@@ -18,7 +18,12 @@
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#39;");
 
-  const looksLikeHtml = (value) => /<\/?(?:p|div|br|span|font|strong|b|em|i|u|ul|ol|li|a)(?:\s|>|\/)/i.test(value);
+  const looksLikeHtml = (value) => /<\/?(?:p|div|br|span|font|strong|b|em|i|u|ul|ol|li|a|img)(?:\s|>|\/)/i.test(value);
+
+  const safeImageSource = (value) => {
+    const source = String(value || "").trim();
+    return /^(?:https?:\/\/|data:image\/(?:png|jpe?g|webp|gif);base64,)/i.test(source) ? source : "";
+  };
 
   const normalizeFont = (value) => {
     const font = String(value || "").replace(/["']/g, "").split(",")[0].trim();
@@ -53,6 +58,30 @@
 
         if (!allowedTags.has(child.tagName)) {
           child.replaceWith(document.createTextNode(child.textContent || ""));
+          return;
+        }
+
+        if (child.tagName === "IMG") {
+          const source = safeImageSource(child.getAttribute("src"));
+          if (!source) {
+            child.remove();
+            return;
+          }
+          const alt = String(child.getAttribute("alt") || "첨부 이미지").slice(0, 120);
+          const width = ["25%", "50%", "75%", "100%"].includes(child.style.width)
+            ? child.style.width
+            : "50%";
+          const marginLeft = child.style.marginLeft === "auto" ? "auto" : "0px";
+          const marginRight = child.style.marginRight === "auto" ? "auto" : "0px";
+          Array.from(child.attributes).forEach((attribute) => child.removeAttribute(attribute.name));
+          child.setAttribute("src", source);
+          child.setAttribute("alt", alt);
+          child.style.width = width;
+          child.style.maxWidth = "100%";
+          child.style.height = "auto";
+          child.style.display = "block";
+          child.style.marginLeft = marginLeft;
+          child.style.marginRight = marginRight;
           return;
         }
 
@@ -92,6 +121,12 @@
     return (template.content.textContent || "").replaceAll("\u00a0", " ").trim();
   };
 
+  const hasContent = (value) => {
+    const template = document.createElement("template");
+    template.innerHTML = sanitizeHtml(value);
+    return Boolean((template.content.textContent || "").replaceAll("\u00a0", " ").trim() || template.content.querySelector("img"));
+  };
+
   const createSelect = (label, options, command) => {
     const select = document.createElement("select");
     select.className = "rich-editor-select";
@@ -108,6 +143,42 @@
     });
     return select;
   };
+
+  const compressImage = (file) =>
+    new Promise((resolve, reject) => {
+      if (!file || !file.type.startsWith("image/")) {
+        reject(new Error("이미지 파일만 선택할 수 있습니다."));
+        return;
+      }
+      if (file.size > 12 * 1024 * 1024) {
+        reject(new Error("이미지는 12MB 이하의 파일을 선택해 주세요."));
+        return;
+      }
+
+      const image = new Image();
+      const objectUrl = URL.createObjectURL(file);
+      image.onload = () => {
+        URL.revokeObjectURL(objectUrl);
+        const maxDimension = 1400;
+        const scale = Math.min(1, maxDimension / Math.max(image.naturalWidth, image.naturalHeight));
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+        canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+        const context = canvas.getContext("2d");
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+        const dataUrl = canvas.toDataURL("image/webp", 0.82);
+        if (dataUrl.length > 2.5 * 1024 * 1024) {
+          reject(new Error("이미지 용량이 너무 큽니다. 더 작은 이미지를 사용해 주세요."));
+          return;
+        }
+        resolve(dataUrl);
+      };
+      image.onerror = () => {
+        URL.revokeObjectURL(objectUrl);
+        reject(new Error("이미지를 불러오지 못했습니다."));
+      };
+      image.src = objectUrl;
+    });
 
   const enhance = (textarea) => {
     if (!textarea || editors.has(textarea)) return editors.get(textarea);
@@ -144,7 +215,7 @@
 
     const sync = () => {
       const cleaned = sanitizeHtml(surface.innerHTML);
-      textarea.value = plainText(cleaned) ? cleaned : "";
+      textarea.value = hasContent(cleaned) ? cleaned : "";
       textarea.dispatchEvent(new Event("richtextchange", { bubbles: true }));
     };
     const run = (command, value = null) => {
@@ -163,6 +234,17 @@
       control.textContent = text;
       control.addEventListener("mousedown", (event) => event.preventDefault());
       control.addEventListener("click", () => run(command, value));
+      return control;
+    };
+    const actionButton = (label, text, action) => {
+      const control = document.createElement("button");
+      control.type = "button";
+      control.className = "rich-editor-button";
+      control.setAttribute("aria-label", label);
+      control.title = label;
+      control.textContent = text;
+      control.addEventListener("mousedown", (event) => event.preventDefault());
+      control.addEventListener("click", action);
       return control;
     };
 
@@ -189,6 +271,111 @@
       button("서식 지우기", "서식 제거", "removeFormat")
     );
 
+    let selectedImage = null;
+    const imageInput = document.createElement("input");
+    imageInput.type = "file";
+    imageInput.accept = "image/png,image/jpeg,image/webp,image/gif";
+    imageInput.className = "rich-editor-image-input";
+    imageInput.setAttribute("aria-label", "이미지 파일 선택");
+
+    const imageTools = document.createElement("span");
+    imageTools.className = "rich-editor-image-tools";
+    imageTools.hidden = true;
+
+    const selectImage = (image) => {
+      selectedImage?.classList.remove("is-selected");
+      selectedImage = image instanceof HTMLImageElement ? image : null;
+      selectedImage?.classList.add("is-selected");
+      imageTools.hidden = !selectedImage;
+    };
+    const resizeImage = (width) => {
+      if (!selectedImage) return;
+      selectedImage.style.width = width;
+      sync();
+    };
+    const alignImage = (alignment) => {
+      if (!selectedImage) return;
+      selectedImage.style.display = "block";
+      if (alignment === "left") {
+        selectedImage.style.marginLeft = "0px";
+        selectedImage.style.marginRight = "auto";
+      } else if (alignment === "right") {
+        selectedImage.style.marginLeft = "auto";
+        selectedImage.style.marginRight = "0px";
+      } else {
+        selectedImage.style.marginLeft = "auto";
+        selectedImage.style.marginRight = "auto";
+      }
+      sync();
+    };
+    const insertImage = (source, alt) => {
+      surface.focus();
+      restoreSelection();
+      const image = document.createElement("img");
+      image.src = source;
+      image.alt = alt || "첨부 이미지";
+      image.style.width = "50%";
+      image.style.maxWidth = "100%";
+      image.style.height = "auto";
+      image.style.display = "block";
+      image.style.marginLeft = "auto";
+      image.style.marginRight = "auto";
+      const spacer = document.createElement("br");
+      const selection = window.getSelection();
+      let range = selection && selection.rangeCount ? selection.getRangeAt(0) : null;
+      if (!range || !surface.contains(range.commonAncestorContainer)) {
+        range = document.createRange();
+        range.selectNodeContents(surface);
+        range.collapse(false);
+      }
+      range.deleteContents();
+      range.insertNode(spacer);
+      range.insertNode(image);
+      range.setStartAfter(spacer);
+      range.collapse(true);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      savedRange = range.cloneRange();
+      selectImage(image);
+      sync();
+    };
+
+    imageInput.addEventListener("change", async () => {
+      const file = imageInput.files?.[0];
+      imageInput.value = "";
+      if (!file) return;
+      try {
+        const source = await compressImage(file);
+        if (surface.innerHTML.length + source.length > 5 * 1024 * 1024) {
+          throw new Error("한 게시글에 저장할 수 있는 이미지 총용량을 초과했습니다.");
+        }
+        insertImage(source, file.name);
+      } catch (error) {
+        window.alert(error.message || "이미지를 삽입하지 못했습니다.");
+      }
+    });
+
+    imageTools.append(
+      actionButton("이미지 너비 25%", "25%", () => resizeImage("25%")),
+      actionButton("이미지 너비 50%", "50%", () => resizeImage("50%")),
+      actionButton("이미지 너비 75%", "75%", () => resizeImage("75%")),
+      actionButton("이미지 너비 100%", "100%", () => resizeImage("100%")),
+      actionButton("이미지 왼쪽 정렬", "이미지 ←", () => alignImage("left")),
+      actionButton("이미지 가운데 정렬", "이미지 ↔", () => alignImage("center")),
+      actionButton("이미지 오른쪽 정렬", "이미지 →", () => alignImage("right")),
+      actionButton("이미지 삭제", "이미지 삭제", () => {
+        if (!selectedImage) return;
+        selectedImage.remove();
+        selectImage(null);
+        sync();
+      })
+    );
+    toolbar.append(
+      actionButton("이미지 삽입", "이미지 넣기", () => imageInput.click()),
+      imageInput,
+      imageTools
+    );
+
     textarea.classList.add("rich-editor-source");
     textarea.setAttribute("aria-hidden", "true");
     textarea.tabIndex = -1;
@@ -198,7 +385,8 @@
     const setValue = (value) => {
       const cleaned = sanitizeHtml(value);
       surface.innerHTML = cleaned;
-      textarea.value = plainText(cleaned) ? cleaned : "";
+      textarea.value = hasContent(cleaned) ? cleaned : "";
+      selectImage(null);
     };
     setValue(textarea.value);
     surface.addEventListener("input", sync);
@@ -206,6 +394,9 @@
     surface.addEventListener("keyup", rememberSelection);
     surface.addEventListener("mouseup", rememberSelection);
     surface.addEventListener("paste", () => setTimeout(sync, 0));
+    surface.addEventListener("click", (event) => {
+      selectImage(event.target instanceof HTMLImageElement ? event.target : null);
+    });
     textarea.form?.addEventListener("reset", () => setTimeout(() => setValue(textarea.defaultValue || ""), 0));
 
     const api = { surface, sync, setValue, getValue: () => textarea.value };
