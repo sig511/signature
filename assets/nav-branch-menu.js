@@ -236,7 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
         toggle.setAttribute("aria-label", `${label} 하위 메뉴 닫기`);
         toggle.textContent = "-";
         childList.hidden = false;
-        closeAllBranches(dropdown, branch);
       };
 
       branch.addEventListener("pointerdown", (event) => {
@@ -305,7 +304,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      scheduleCloseAll();
+      clearCloseTimer();
+      closeAllNavItems();
+      closeAllBranches();
     });
   }
 
@@ -316,5 +317,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     closeAllNavItems();
     closeAllBranches();
+  });
+
+  const closeMenusFromEmbeddedContent = () => {
+    clearCloseTimer();
+    closeAllNavItems();
+    closeAllBranches();
+  };
+
+  const bindEmbeddedFrame = (frame) => {
+    try {
+      const frameDocument = frame.contentDocument;
+
+      if (!frameDocument || frameDocument.documentElement.dataset.navCloseBound === "true") {
+        return;
+      }
+
+      frameDocument.documentElement.dataset.navCloseBound = "true";
+      frameDocument.addEventListener("pointerdown", closeMenusFromEmbeddedContent, true);
+      frameDocument.addEventListener("focusin", closeMenusFromEmbeddedContent, true);
+    } catch (error) {
+      // Ignore frames that are not available from the current origin.
+    }
+  };
+
+  document.querySelectorAll("iframe").forEach((frame) => {
+    frame.addEventListener("pointerenter", closeMenusFromEmbeddedContent);
+    frame.addEventListener("load", () => bindEmbeddedFrame(frame));
+    bindEmbeddedFrame(frame);
   });
 });
