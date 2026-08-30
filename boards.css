@@ -439,6 +439,7 @@ td {
   outline: 0;
   color: #17324c;
   font-size: 1rem;
+  font-weight: 400 !important;
   line-height: 1.75;
   overflow-wrap: anywhere;
   -webkit-user-select: text !important;
@@ -488,6 +489,16 @@ td {
 .post-view-body a {
   color: #1d5f91;
   text-decoration: underline;
+}
+
+.rich-editor-surface b,
+.rich-editor-surface strong,
+.post-view-body b,
+.post-view-body strong,
+.rich-editor-surface [style*="font-weight"],
+.post-view-body [style*="font-weight"] {
+  font-weight: 700 !important;
+  font-synthesis: weight;
 }
 
 @media (max-width: 720px) {
