@@ -94,10 +94,14 @@
           fontSize = sizeMap[child.getAttribute("size")] || fontSize;
         }
         const textAlign = child.style.textAlign;
+        const fontWeight = String(child.style.fontWeight || "").toLowerCase();
         if (fontFamily) styles.fontFamily = fontFamily;
         if (color) styles.color = color;
         if (allowedSizes.has(fontSize)) styles.fontSize = fontSize;
         if (allowedAlignments.has(textAlign)) styles.textAlign = textAlign;
+        if (child.tagName === "B" || child.tagName === "STRONG" || ["600", "700", "800", "900", "bold", "bolder"].includes(fontWeight)) {
+          styles.fontWeight = "700";
+        }
 
         const href = child.tagName === "A" ? child.getAttribute("href") || "" : "";
         Array.from(child.attributes).forEach((attribute) => child.removeAttribute(attribute.name));

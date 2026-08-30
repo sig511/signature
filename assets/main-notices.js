@@ -32,7 +32,7 @@
   }
 
   function formatNoticeBody(value) {
-    return escapeHtml(String(value || "")).replaceAll("\n", "<br />");
+    return window.SignatureRichText?.format(value) || escapeHtml(String(value || "")).replaceAll("\n", "<br />");
   }
 
   function formatNoticeDate(value) {
