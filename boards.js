@@ -67,7 +67,7 @@ function escapeHtml(value) {
 }
 
 function formatContent(content) {
-  return escapeHtml(content).replaceAll("\n", "<br>");
+  return window.SignatureRichText?.format(content) || escapeHtml(content).replaceAll("\n", "<br>");
 }
 
 function formatDate(value) {
@@ -196,6 +196,7 @@ function hidePanels() {
 function resetWriteForm() {
   editingPostId = null;
   writeForm?.reset();
+  window.SignatureRichText?.setValue(writeForm?.content, "");
   if (writeForm) {
     writeForm.querySelector("h3").textContent = "새 공지사항 작성";
     writeForm.author.value = "시그니처행정사";
@@ -339,7 +340,7 @@ function startEditPost() {
   writeForm.querySelector("h3").textContent = "공지사항 수정";
   writeForm.author.value = "시그니처행정사";
   writeForm.title.value = post.title || "";
-  writeForm.content.value = post.content || "";
+  window.SignatureRichText?.setValue(writeForm.content, post.content || "");
   if (writeForm.pinned) {
     writeForm.pinned.checked = Boolean(post.pinned);
   }

@@ -9,7 +9,7 @@
         document.documentElement.classList.add("is-embedded");
       }
     </script>
-    <link rel="stylesheet" href="boards.css" />
+    <link rel="stylesheet" href="boards.css?v=20260830r3" />
     <style>
       .board-guide-head h1,
       .board-list-head .board-subsection-title {
@@ -346,7 +346,7 @@
                 <p class="write-form-note">상담을 원하시는 분야를 선택하신 후 방문 상담 예약 내용을 자세히 적어주세요.</p>
               </label>
               <label>제목<input name="title" type="text" placeholder="제목을 입력해 주세요" required /></label>
-              <label>내용<textarea name="content" rows="7" placeholder="방문상담 희망일자와 시간, 구체적인 상담요청 사항, 관련 자료를 아래 “첨부파일” 링크에 첨부해 주세요." required></textarea></label>
+              <label>내용<textarea name="content" rows="7" placeholder="방문상담 희망일자와 시간, 구체적인 상담요청 사항, 관련 자료를 아래 “첨부파일” 링크에 첨부해 주세요." data-rich-text="true" required></textarea></label>
               <label>첨부파일
                 <div class="file-inline-wrap">
                   <input name="attachment" type="file" />
@@ -481,7 +481,8 @@
     ]</script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./assets/supabase-config.js?v=20260516a"></script>
-    <script src="./assets/boards-server.js?v=20260524b"></script>
+    <script src="./assets/rich-text-editor.js?v=20260830r3"></script>
+    <script src="./assets/boards-server.js?v=20260830r1"></script>
     <script src="./assets/protect-images.js"></script>
   </body>
 </html>

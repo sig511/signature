@@ -9,7 +9,7 @@
         document.documentElement.classList.add("is-embedded");
       }
     </script>
-    <link rel="stylesheet" href="boards.css?v=20260731b" />
+    <link rel="stylesheet" href="boards.css?v=20260830r3" />
   </head>
   <body data-board-key="notice" data-board-name="공지사항" data-board-type="notice">
     <main class="board-shell">
@@ -45,7 +45,7 @@
                 <label class="notice-password-field hidden">비밀번호<input name="password" type="password" placeholder="글 확인용 비밀번호" /></label>
               </div>
               <label>제목<input name="title" type="text" placeholder="제목을 입력해 주세요" required /></label>
-              <label>내용<textarea name="content" rows="7" placeholder="상세 내용을 입력해 주세요" required></textarea></label>
+              <label>내용<textarea name="content" rows="7" placeholder="상세 내용을 입력해 주세요" data-rich-text="true" required></textarea></label>
               <label class="board-secret"><input name="pinned" type="checkbox" /> 상단 고정 공지로 등록</label>
               <label class="board-secret"><input name="secret" type="checkbox" /> 비밀글 등록</label>
               <div class="board-actions write-actions">
@@ -112,7 +112,8 @@
     ]</script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./assets/supabase-config.js?v=20260516a"></script>
-    <script src="boards.js?v=20260731b"></script>
+    <script src="./assets/rich-text-editor.js?v=20260830r3"></script>
+    <script src="boards.js?v=20260830r1"></script>
     <script src="./assets/protect-images.js"></script>
   </body>
 </html>
