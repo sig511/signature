@@ -435,6 +435,39 @@ async function uploadAttachment(file, postId) {
   };
 }
 
+async function uploadMailAttachment(file) {
+  if (!file) return null;
+
+  await authHeaders();
+  const safeName = String(file.name || "attachment").replace(/[^a-zA-Z0-9._-]/g, "_");
+  const filePath = `inquiry/${boardType}/${Date.now()}-${safeName}`;
+  const { error: uploadError } = await supabaseClient.storage
+    .from(ATTACHMENT_BUCKET)
+    .upload(filePath, file, {
+      upsert: false,
+      contentType: file.type || "application/octet-stream",
+    });
+
+  if (uploadError) {
+    throw new Error(uploadError.message || "첨부파일 업로드 중 오류가 발생했습니다.");
+  }
+
+  const { data: signedData, error: signedUrlError } = await supabaseClient.storage
+    .from(ATTACHMENT_BUCKET)
+    .createSignedUrl(filePath, 60 * 60 * 24 * 7);
+  if (signedUrlError || !signedData?.signedUrl) {
+    throw new Error(signedUrlError?.message || "첨부파일 다운로드 링크를 만들지 못했습니다.");
+  }
+
+  return {
+    name: file.name || safeName,
+    path: filePath,
+    signedUrl: signedData.signedUrl,
+    type: file.type || "",
+    size: Number(file.size || 0),
+  };
+}
+
 async function removeAttachment(path) {
   if (!path) return;
   await authHeaders();
@@ -840,10 +873,24 @@ writeForm?.addEventListener("submit", async (event) => {
         throw new Error("메일 접수 주소가 설정되지 않았습니다.");
       }
 
+      const attachmentInfo = await uploadMailAttachment(attachmentFile);
       const mailData = new FormData(writeForm);
       mailData.set("phone", `${phone1}-${phone2}-${phone3}`);
       mailData.set("request_type", boardName);
       mailData.set("_subject", `[홈페이지 ${boardName}] ${title}`);
+      mailData.set(
+        "content",
+        [
+          content,
+          attachmentInfo ? "" : "",
+          attachmentInfo ? "[첨부파일 정보]" : "",
+          attachmentInfo ? `파일명: ${attachmentInfo.name}` : "",
+          attachmentInfo ? `다운로드 링크(7일 유효): ${attachmentInfo.signedUrl}` : "",
+          attachmentInfo?.type ? `파일 형식: ${attachmentInfo.type}` : "",
+          attachmentInfo?.size ? `파일 크기: ${attachmentInfo.size} bytes` : "",
+        ].filter(Boolean).join("\n")
+      );
+      mailData.delete("attachment");
       mailData.delete("password");
       mailData.delete("secret");
       mailData.delete("privacyConsent");
