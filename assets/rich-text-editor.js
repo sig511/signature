@@ -6,7 +6,7 @@
     "Arial", "Georgia", "Tahoma", "Times New Roman", "Verdana", "맑은 고딕", "굴림", "궁서", "바탕"
   ]);
   const allowedColors = /^#[0-9a-f]{6}$/i;
-  const allowedSizes = new Set(["12px", "14px", "16px", "18px", "20px", "24px", "28px", "32px"]);
+  const allowedSizes = new Set(["12px", "13px", "14px", "15px", "16px", "18px", "19px", "20px", "24px", "28px", "32px", "48px"]);
   const allowedAlignments = new Set(["left", "center", "right", "justify"]);
   const editors = new WeakMap();
 
@@ -233,10 +233,21 @@
       sync();
       rememberSelection();
     };
+    const applyFontSize = (size) => {
+      surface.focus();
+      restoreSelection();
+      document.execCommand("fontSize", false, "7");
+      surface.querySelectorAll('font[size="7"]').forEach((font) => {
+        font.removeAttribute("size");
+        font.style.fontSize = size;
+      });
+      sync();
+      rememberSelection();
+    };
     const button = (label, text, command, value = null) => {
       const control = document.createElement("button");
       control.type = "button";
-      control.className = "rich-editor-button";
+      control.className = `rich-editor-button rich-editor-command-${command}`;
       control.setAttribute("aria-label", label);
       control.title = label;
       control.textContent = text;
@@ -256,21 +267,97 @@
       return control;
     };
 
-    toolbar.append(
-      createSelect("글씨체", [["", "글씨체"], ["맑은 고딕", "맑은 고딕"], ["굴림", "굴림"], ["궁서", "궁서체"], ["바탕", "바탕"], ["Arial", "Arial"], ["Georgia", "Georgia"], ["Times New Roman", "Times New Roman"]], (value) => run("fontName", value)),
-      createSelect("글씨 크기", [["", "크기"], ["2", "작게"], ["3", "보통"], ["4", "크게"], ["5", "매우 크게"], ["6", "제목"]], (value) => run("fontSize", value))
-    );
+    const pickerGroup = [];
+    const closePicker = ({ trigger, panel }) => {
+      panel.hidden = true;
+      trigger.setAttribute("aria-expanded", "false");
+    };
+    const createPicker = (className, label, triggerText) => {
+      const picker = document.createElement("div");
+      picker.className = `rich-editor-picker ${className}`;
+      const trigger = document.createElement("button");
+      trigger.type = "button";
+      trigger.className = "rich-editor-picker-trigger";
+      trigger.setAttribute("aria-label", label);
+      trigger.setAttribute("aria-expanded", "false");
+      trigger.innerHTML = `${triggerText}<span aria-hidden="true">⌄</span>`;
+      const panel = document.createElement("div");
+      panel.className = "rich-editor-picker-panel";
+      panel.hidden = true;
+      trigger.addEventListener("mousedown", (event) => event.preventDefault());
+      trigger.addEventListener("click", () => {
+        const willOpen = panel.hidden;
+        pickerGroup.forEach((item) => {
+          if (item.panel !== panel) closePicker(item);
+        });
+        panel.hidden = !willOpen;
+        trigger.setAttribute("aria-expanded", String(!panel.hidden));
+      });
+      picker.append(trigger, panel);
+      const pickerApi = { picker, trigger, panel };
+      pickerGroup.push(pickerApi);
+      return pickerApi;
+    };
 
-    const colorLabel = document.createElement("label");
-    colorLabel.className = "rich-editor-color-label";
-    colorLabel.title = "글씨 색상";
-    colorLabel.innerHTML = '<span aria-hidden="true">A</span><input type="color" value="#17324c" aria-label="글씨 색상" />';
-    colorLabel.querySelector("input").addEventListener("input", (event) => run("foreColor", event.target.value));
+    const sizePicker = createPicker("rich-editor-size-picker", "글씨 크기", "10pt");
+    [
+      ["12px", "9pt"], ["13px", "10pt"], ["15px", "11pt"], ["16px", "12pt"],
+      ["19px", "14pt"], ["24px", "18pt"], ["32px", "24pt"], ["48px", "36pt"]
+    ].forEach(([size, label]) => {
+      const option = document.createElement("button");
+      option.type = "button";
+      option.className = "rich-editor-size-option";
+      option.style.fontSize = size;
+      option.textContent = `가나다라마바사 (${label})`;
+      option.addEventListener("mousedown", (event) => event.preventDefault());
+      option.addEventListener("click", () => {
+        applyFontSize(size);
+        sizePicker.trigger.firstChild.textContent = label;
+        sizePicker.panel.hidden = true;
+        sizePicker.trigger.setAttribute("aria-expanded", "false");
+      });
+      sizePicker.panel.appendChild(option);
+    });
+
+    const palette = [
+      "#ff0000", "#ff6b00", "#ffc400", "#9be000", "#00c9df", "#006cff", "#3d2cff", "#f000c8", "#000000",
+      "#ffd6d6", "#ffe0c2", "#fff1b8", "#dcf4a7", "#c8f1f5", "#cbdcff", "#d8d1ff", "#f8c9ef", "#d9d9d9",
+      "#ff9c9c", "#ffb48f", "#ffe67a", "#bce86b", "#8ddce8", "#86afff", "#a899ff", "#ef8de0", "#ababab",
+      "#f35d5d", "#ed7d45", "#d6aa00", "#75a900", "#14899a", "#145ac7", "#3323a8", "#9b167f", "#555555",
+      "#a90808", "#a43d00", "#927000", "#4d7100", "#066272", "#083c91", "#241476", "#71065b", "#222222"
+    ];
+    const colorPicker = createPicker("rich-editor-color-picker", "글씨 색상", '<span class="rich-editor-color-a">가</span>');
+    palette.forEach((color) => {
+      const swatch = document.createElement("button");
+      swatch.type = "button";
+      swatch.className = "rich-editor-color-swatch";
+      swatch.style.backgroundColor = color;
+      swatch.setAttribute("aria-label", `글씨 색상 ${color}`);
+      swatch.addEventListener("mousedown", (event) => event.preventDefault());
+      swatch.addEventListener("click", () => {
+        run("foreColor", color);
+        colorPicker.trigger.style.color = color;
+        colorPicker.panel.hidden = true;
+        colorPicker.trigger.setAttribute("aria-expanded", "false");
+      });
+      colorPicker.panel.appendChild(swatch);
+    });
+
+    document.addEventListener("mousedown", (event) => {
+      pickerGroup.forEach((item) => {
+        if (!item.picker.contains(event.target)) closePicker(item);
+      });
+    });
+
     toolbar.append(
-      colorLabel,
-      button("굵게", "B", "bold"),
-      button("기울임", "I", "italic"),
-      button("밑줄", "U", "underline"),
+      createSelect("글씨체", [["맑은 고딕", "맑은 고딕"], ["굴림", "굴림"], ["궁서", "궁서체"], ["바탕", "바탕"], ["Arial", "Arial"], ["Georgia", "Georgia"], ["Times New Roman", "Times New Roman"]], (value) => run("fontName", value)),
+      sizePicker.picker
+    );
+    toolbar.append(
+      colorPicker.picker,
+      button("굵게", "가", "bold"),
+      button("기울임", "가", "italic"),
+      button("밑줄", "가", "underline"),
       button("왼쪽 정렬", "≡", "justifyLeft"),
       button("가운데 정렬", "≣", "justifyCenter"),
       button("오른쪽 정렬", "≡", "justifyRight"),
