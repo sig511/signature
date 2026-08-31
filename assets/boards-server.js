@@ -7,6 +7,7 @@ const supabaseClient = window.supabase.createClient(
 const body = document.body;
 const boardName = body.dataset.boardName || "";
 const boardType = body.dataset.boardType || "";
+const isMailSubmissionBoard = boardType === "quote" || boardType === "reservation";
 
 const boardList = document.querySelector(".board-list");
 const boardCount = document.querySelector(".board-count");
@@ -798,13 +799,83 @@ writeForm?.addEventListener("submit", async (event) => {
   const formData = new FormData(writeForm);
   const author = String(formData.get("author") || "").trim();
   const password = String(formData.get("password") || "").trim();
+  const submissionPassword = password || crypto.randomUUID();
   const title = String(formData.get("title") || "").trim();
   const content = String(formData.get("content") || "").trim();
   const secret = formData.get("secret") === "on";
   const attachmentFile = writeForm.querySelector('input[name="attachment"]')?.files?.[0] || null;
 
-  if (!author || !password || !title || !content) {
+  if (!author || !title || !content) {
     window.alert(TEXT.fillAll);
+    return;
+  }
+
+  if (isMailSubmissionBoard) {
+    const email = String(formData.get("email") || "").trim();
+    const phone1 = String(formData.get("phone1") || "").trim();
+    const phone2 = String(formData.get("phone2") || "").trim();
+    const phone3 = String(formData.get("phone3") || "").trim();
+    const category = String(formData.get("category") || "").trim();
+    const consent = formData.get("privacyConsent") === "on";
+
+    if (!email || !phone1 || !phone2 || !phone3 || !category || !consent) {
+      window.alert(TEXT.fillAll);
+      return;
+    }
+    if (attachmentFile && attachmentFile.size > 25 * 1024 * 1024) {
+      window.alert("첨부파일은 25MB 이하로 업로드해 주세요.");
+      return;
+    }
+
+    const submitButton = writeForm.querySelector('.board-action[type="submit"]');
+    const originalButtonText = submitButton?.textContent || "접수하기";
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "접수 중...";
+    }
+
+    try {
+      const formAction = writeForm.getAttribute("action") || "";
+      if (!formAction) {
+        throw new Error("메일 접수 주소가 설정되지 않았습니다.");
+      }
+
+      const mailData = new FormData(writeForm);
+      mailData.set("phone", `${phone1}-${phone2}-${phone3}`);
+      mailData.set("request_type", boardName);
+      mailData.set("_subject", `[홈페이지 ${boardName}] ${title}`);
+      mailData.delete("password");
+      mailData.delete("secret");
+      mailData.delete("privacyConsent");
+      mailData.delete("phone1");
+      mailData.delete("phone2");
+      mailData.delete("phone3");
+
+      const response = await fetch(formAction, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: mailData,
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        const formspreeErrors = Array.isArray(result?.errors)
+          ? result.errors.map((item) => item?.message).filter(Boolean)
+          : [];
+        throw new Error(
+          formspreeErrors[0] || result?.error || result?.message || "메일 접수 중 오류가 발생했습니다."
+        );
+      }
+
+      writeForm.reset();
+      window.alert(`${boardName}이 성공적으로 접수되었습니다.`);
+      window.location.replace(window.location.pathname);
+    } catch (error) {
+      window.alert(error.message || "메일 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    }
     return;
   }
 
@@ -812,7 +883,7 @@ writeForm?.addEventListener("submit", async (event) => {
   if (editingPostId) {
     post = await updatePost({
       postId: editingPostId,
-      password: editingPassword || password,
+      password: editingPassword || submissionPassword,
       author,
       title,
       content,
@@ -822,7 +893,7 @@ writeForm?.addEventListener("submit", async (event) => {
   } else {
     post = await createPost({
       author,
-      password,
+      password: submissionPassword,
       title,
       content,
       secret,
@@ -854,7 +925,11 @@ writeForm?.addEventListener("submit", async (event) => {
   enhancePasswordInputs();
   writePanel.classList.add("hidden");
   window.alert(`${boardName}${editingPostId ? TEXT.updatedSuffix : TEXT.registeredSuffix}`);
-  const reopenPassword = editingPostId ? editingPassword || password : secret ? password : "";
+  const reopenPassword = editingPostId
+    ? editingPassword || submissionPassword
+    : secret
+      ? submissionPassword
+      : "";
   resetWriteFormState();
 
   await loadPosts();
@@ -891,6 +966,11 @@ enhancePasswordInputs();
 resetWriteFormState();
 
 window.addEventListener("load", async () => {
+  if (isMailSubmissionBoard) {
+    postView?.classList.add("hidden");
+    scheduleHeightSync();
+    return;
+  }
   try {
     await loadPosts();
   } catch (error) {
