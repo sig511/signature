@@ -501,6 +501,16 @@ td {
   font-synthesis: weight;
 }
 
+.rich-editor-surface i,
+.rich-editor-surface em,
+.rich-editor-surface [style*="font-style"],
+.post-view-body i,
+.post-view-body em,
+.post-view-body [style*="font-style"] {
+  font-style: italic !important;
+  font-synthesis: style;
+}
+
 @media (max-width: 720px) {
   .rich-editor-toolbar {
     gap: 5px;
