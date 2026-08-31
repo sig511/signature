@@ -3096,6 +3096,23 @@ body.business-hours-banner .brand-banner-yellow-glow {
   margin-top: 12px;
 }
 
+.greeting-signature-image {
+  display: block;
+  width: clamp(150px, 24vw, 210px);
+  height: auto;
+  margin: 14px 0 6px;
+}
+
+.greeting-copy-item .greeting-signature-office {
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .greeting-signature-image {
+    width: min(170px, 58vw);
+  }
+}
+
 @media (max-width: 900px) {
   .subpage-main .page-hero .container,
   .subpage-main .content-section > .container {
