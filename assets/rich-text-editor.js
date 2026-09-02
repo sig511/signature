@@ -147,7 +147,6 @@
     });
     select.addEventListener("change", () => {
       if (select.value) command(select.value);
-      select.selectedIndex = 0;
     });
     return select;
   };
