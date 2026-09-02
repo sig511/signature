@@ -397,6 +397,41 @@ td {
   text-underline-offset: 3px;
 }
 
+.rich-editor-align-icon {
+  display: flex;
+  width: 18px;
+  height: 16px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rich-editor-align-line {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+.rich-editor-align-line.is-long {
+  width: 18px;
+}
+
+.rich-editor-align-line.is-short {
+  width: 12px;
+}
+
+.rich-editor-align-icon.is-left .rich-editor-align-line {
+  align-self: flex-start;
+}
+
+.rich-editor-align-icon.is-center .rich-editor-align-line {
+  align-self: center;
+}
+
+.rich-editor-align-icon.is-right .rich-editor-align-line {
+  align-self: flex-end;
+}
+
 .rich-editor-button:hover,
 .rich-editor-button:focus-visible,
 .rich-editor-color-label:hover {
