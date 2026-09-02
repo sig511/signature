@@ -560,13 +560,13 @@ td {
   user-select: text !important;
   box-sizing: border-box;
   border-radius: 0 0 18px 18px;
-  font-family: "맑은 고딕", "Malgun Gothic", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 .rich-editor-surface:empty::before {
   content: attr(data-placeholder);
-  color: #7b8794;
-  font-weight: 600;
+  color: #a3adba;
+  font-weight: 500;
   pointer-events: none;
 }
 
