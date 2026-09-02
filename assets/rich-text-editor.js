@@ -249,10 +249,22 @@
       control.className = `rich-editor-button rich-editor-command-${command}`;
       control.setAttribute("aria-label", label);
       control.title = label;
-      control.textContent = text;
+      if (text instanceof Node) control.appendChild(text);
+      else control.textContent = text;
       control.addEventListener("mousedown", (event) => event.preventDefault());
       control.addEventListener("click", () => run(command, value));
       return control;
+    };
+    const alignmentIcon = (alignment) => {
+      const icon = document.createElement("span");
+      icon.className = `rich-editor-align-icon is-${alignment}`;
+      icon.setAttribute("aria-hidden", "true");
+      ["long", "short", "long", "short"].forEach((length) => {
+        const line = document.createElement("span");
+        line.className = `rich-editor-align-line is-${length}`;
+        icon.appendChild(line);
+      });
+      return icon;
     };
     const actionButton = (label, text, action) => {
       const control = document.createElement("button");
@@ -357,9 +369,9 @@
       button("굵게", "가", "bold"),
       button("기울임", "가", "italic"),
       button("밑줄", "가", "underline"),
-      button("왼쪽 정렬", "≡", "justifyLeft"),
-      button("가운데 정렬", "≣", "justifyCenter"),
-      button("오른쪽 정렬", "≡", "justifyRight"),
+      button("왼쪽 정렬", alignmentIcon("left"), "justifyLeft"),
+      button("가운데 정렬", alignmentIcon("center"), "justifyCenter"),
+      button("오른쪽 정렬", alignmentIcon("right"), "justifyRight"),
       button("글머리표", "• 목록", "insertUnorderedList"),
       button("번호 목록", "1. 목록", "insertOrderedList"),
       button("서식 지우기", "서식 제거", "removeFormat")
