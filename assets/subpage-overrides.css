@@ -3463,7 +3463,7 @@ body.business-theme-medical .subpage-content.is-overview,
 }
 
 .medical-fda-class-image {
-  width: min(100%, 480px);
+  width: min(100%, 600px);
 }
 
 #medical-fda .medical-fda-copy > p:not(.medical-fda-heading) + .medical-fda-heading {
