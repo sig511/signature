@@ -2811,7 +2811,7 @@ body.business-hours-banner .brand-banner-yellow-glow {
 
 .bio-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   margin-top: 18px;
 }
@@ -2827,6 +2827,10 @@ body.business-hours-banner .brand-banner-yellow-glow {
   margin: 0 0 14px;
   color: var(--navy);
   font-size: 1.05rem;
+}
+
+.bio-card .bio-card-subheading {
+  margin-top: 22px;
 }
 
 .bio-card ul {
