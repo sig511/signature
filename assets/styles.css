@@ -1761,6 +1761,29 @@ body.business-hours-banner .brand-banner-yellow-glow {
   object-fit: contain;
 }
 
+.rail-naver-image {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 8px;
+  border-radius: 7px;
+  object-fit: contain;
+}
+
+.floating-rail-naver-text {
+  display: inline-grid;
+  gap: 1px;
+}
+
+.floating-rail-naver-text span {
+  display: block;
+  margin-top: 0;
+  font-size: 0.74rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: inherit;
+}
+
 .hero-showcase-plain .hero-grid.hero-grid-single {
   grid-template-columns: 1fr;
   max-width: 720px;

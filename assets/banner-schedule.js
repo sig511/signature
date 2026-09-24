@@ -68,6 +68,26 @@
   if (bannerImage && businessBannerSrc && defaultBannerSrc) {
     bannerImage.src = shouldShowBusinessBanner ? businessBannerSrc : defaultBannerSrc;
   }
+
+  const kakaoRailCard = document.querySelector(".floating-rail-kakao");
+
+  if (kakaoRailCard && !document.querySelector(".floating-rail-naver")) {
+    const naverTalkCard = document.createElement("a");
+    naverTalkCard.href = "https://talk.naver.com/profile/wcuctzw";
+    naverTalkCard.target = "_blank";
+    naverTalkCard.rel = "noreferrer";
+    naverTalkCard.className =
+      "floating-rail-card floating-rail-kakao floating-rail-naver icon-card";
+    naverTalkCard.setAttribute("aria-label", "네이버 톡톡 상담");
+    naverTalkCard.innerHTML = `
+      <img class="rail-kakao-image rail-naver-image" src="./naver%20images.png" alt="네이버 톡톡" />
+      <strong class="floating-rail-kakao-text floating-rail-naver-text">
+        <span>네이버 톡톡</span>
+        <span>상담하기</span>
+      </strong>
+    `;
+    kakaoRailCard.insertAdjacentElement("afterend", naverTalkCard);
+  }
 })();
 
 
