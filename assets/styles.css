@@ -1761,6 +1761,23 @@ body.business-hours-banner .brand-banner-yellow-glow {
   object-fit: contain;
 }
 
+.rail-phone-image {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.floating-rail-call-title {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 0 !important;
+}
+
 .rail-naver-image {
   display: block;
   width: 30px;

@@ -83,7 +83,6 @@
       <img class="rail-kakao-image rail-naver-image" src="./naver%20images.png" alt="네이버 톡톡" />
       <strong class="floating-rail-kakao-text floating-rail-naver-text">
         <span>네이버 톡톡</span>
-        <span>상담하기</span>
       </strong>
     `;
     kakaoRailCard.insertAdjacentElement("afterend", naverTalkCard);
