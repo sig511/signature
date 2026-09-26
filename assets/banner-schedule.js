@@ -87,6 +87,46 @@
     `;
     kakaoRailCard.insertAdjacentElement("afterend", naverTalkCard);
   }
+
+  const mainNavigation = document.querySelector(".main-nav");
+
+  if (mainNavigation && !mainNavigation.querySelector(".header-date-time")) {
+    const dateTimeBox = document.createElement("div");
+    dateTimeBox.className = "header-date-time";
+    dateTimeBox.setAttribute("aria-label", "현재 날짜와 시간");
+    dateTimeBox.innerHTML = `
+      <span class="header-current-date"></span>
+      <time class="header-current-time"></time>
+    `;
+    mainNavigation.appendChild(dateTimeBox);
+
+    const dateNode = dateTimeBox.querySelector(".header-current-date");
+    const timeNode = dateTimeBox.querySelector(".header-current-time");
+    const dateFormatter = new Intl.DateTimeFormat("ko-KR", {
+      timeZone: "Asia/Seoul",
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      weekday: "short",
+    });
+    const timeFormatter = new Intl.DateTimeFormat("ko-KR", {
+      timeZone: "Asia/Seoul",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23",
+    });
+
+    const updateHeaderDateTime = () => {
+      const now = new Date();
+      dateNode.textContent = dateFormatter.format(now);
+      timeNode.textContent = timeFormatter.format(now);
+      timeNode.dateTime = now.toISOString();
+    };
+
+    updateHeaderDateTime();
+    window.setInterval(updateHeaderDateTime, 1000);
+  }
 })();
 
 
