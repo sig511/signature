@@ -313,9 +313,26 @@
         color: #17633a;
       }
 
-      .visit-device-badge.unknown {
-        background: #f2f3f5;
-        color: #68727d;
+      .visit-device-group-row th {
+        padding: 14px 18px;
+        border-top: 2px solid #d3e0ea;
+        background: #eaf2f8;
+        color: var(--board-accent);
+        text-align: left;
+      }
+
+      .visit-device-group-row th span {
+        font-size: 0.95rem;
+      }
+
+      .visit-device-group-row th strong {
+        float: right;
+        font-size: 0.85rem;
+      }
+
+      .visit-device-group-empty td {
+        color: var(--board-muted);
+        text-align: center;
       }
 
       .admin-main {
@@ -607,6 +624,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./assets/supabase-config.js?v=20260516a"></script>
-    <script src="./assets/admin-analytics-20260926.js"></script>
+    <script src="./assets/admin-analytics-20260926b.js"></script>
   </body>
 </html>
