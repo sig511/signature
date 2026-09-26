@@ -118,6 +118,24 @@
         background: linear-gradient(145deg, #f8fbfe 0%, #eef4f8 100%);
       }
 
+      #admin-dashboard:not(.hidden) {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #admin-dashboard > .admin-toolbar {
+        order: 1;
+      }
+
+      #admin-dashboard > .admin-main {
+        order: 2;
+      }
+
+      #admin-dashboard > .visit-stats {
+        order: 3;
+        margin-top: 26px;
+      }
+
       .visit-stats-head {
         display: flex;
         align-items: center;
@@ -347,6 +365,45 @@
         color: var(--board-muted);
       }
 
+      .admin-back-to-top {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 50;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        border: 0;
+        border-radius: 50%;
+        background: var(--board-accent);
+        color: #fff;
+        box-shadow: 0 12px 28px rgba(13, 39, 66, 0.26);
+        font: inherit;
+        font-size: 1.65rem;
+        font-weight: 800;
+        line-height: 1;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(12px);
+        transition: opacity 160ms ease, transform 160ms ease, background 160ms ease;
+      }
+
+      .admin-back-to-top:hover,
+      .admin-back-to-top:focus-visible {
+        background: #2b6798;
+        outline: 3px solid rgba(43, 103, 152, 0.25);
+        outline-offset: 3px;
+      }
+
+      .admin-back-to-top.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
       .admin-list-button {
         display: block;
         width: 100%;
@@ -475,6 +532,14 @@
         .visit-stats-head {
           align-items: flex-start;
           flex-direction: column;
+        }
+
+        .admin-back-to-top {
+          right: 16px;
+          bottom: 16px;
+          width: 46px;
+          height: 46px;
+          font-size: 1.4rem;
         }
       }
     </style>
@@ -622,8 +687,10 @@
       </section>
     </main>
 
+    <button class="admin-back-to-top" id="admin-back-to-top" type="button" aria-label="페이지 맨 위로 이동" title="맨 위로">↑</button>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./assets/supabase-config.js?v=20260516a"></script>
-    <script src="./assets/admin-analytics-20260926b.js"></script>
+    <script src="./assets/admin-analytics-20260926c.js"></script>
   </body>
 </html>
