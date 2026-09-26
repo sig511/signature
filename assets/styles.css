@@ -153,13 +153,50 @@ body.business-hours-banner .brand-banner-yellow-glow {
 .main-nav {
   display: flex;
   align-items: stretch;
+  flex-wrap: nowrap;
   gap: 4px;
   font-size: 1rem;
   color: var(--muted);
 }
 
+.header-date-time {
+  align-self: center;
+  display: grid;
+  justify-items: center;
+  flex: 0 0 auto;
+  min-width: 108px;
+  margin-left: 18px;
+  margin-right: -32px;
+  padding: 7px 6px;
+  border-left: 1px solid rgba(13, 39, 66, 0.16);
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.header-current-date {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.header-current-time {
+  margin-top: 2px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 1180px) {
+  .header-date-time {
+    display: none;
+  }
+}
+
 .main-nav-item {
   position: relative;
+  flex: 0 0 auto;
 }
 
 .main-nav a {
@@ -172,6 +209,7 @@ body.business-hours-banner .brand-banner-yellow-glow {
   min-height: 68px;
   padding: 8px 14px;
   color: var(--navy);
+  white-space: nowrap;
 }
 
 .main-nav-item > a::after {
