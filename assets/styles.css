@@ -2560,11 +2560,12 @@ body.business-hours-banner .brand-banner-yellow-glow {
 
 .brand-banner-link {
   width: min(315px, 100%);
-  margin-left: -46px;
+  margin-left: -84px;
 }
 
 .main-nav {
-  margin-right: -57px;
+  margin-right: -81px;
+  transform: translateX(51px);
 }
 
 .main-nav-item > a::after {
@@ -4259,6 +4260,7 @@ body.home-page .notice-toggle {
     display: flex !important;
     flex-wrap: nowrap !important;
     justify-content: flex-start !important;
+    transform: none !important;
     gap: 8px !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
