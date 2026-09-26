@@ -183,6 +183,7 @@ body.business-hours-banner .brand-banner-yellow-glow {
 
 .header-current-time {
   margin-top: 2px;
+  color: var(--muted);
   font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.03em;
@@ -1989,7 +1990,7 @@ body.business-hours-banner .brand-banner-yellow-glow {
 }
 
 .main-nav {
-  gap: 24px;
+  gap: 16px;
   font-size: 1rem;
 }
 
@@ -2560,7 +2561,7 @@ body.business-hours-banner .brand-banner-yellow-glow {
 
 .brand-banner-link {
   width: min(315px, 100%);
-  margin-left: -84px;
+  margin-left: -46px;
 }
 
 .main-nav {
