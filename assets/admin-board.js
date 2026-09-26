@@ -20,6 +20,12 @@ const replyInput = document.getElementById("admin-reply-input");
 const replyFileInput = document.getElementById("admin-reply-file");
 const replyFileLink = document.getElementById("admin-reply-file-link");
 const replySaveButton = document.getElementById("admin-reply-save");
+const todayVisitors = document.getElementById("today-visitors");
+const totalVisitors = document.getElementById("total-visitors");
+const todayViews = document.getElementById("today-views");
+const visitWeekly = document.getElementById("visit-weekly");
+const visitStatsStatus = document.getElementById("visit-stats-status");
+const visitStatsRefresh = document.getElementById("visit-stats-refresh");
 const sharedAdminKey = "signature-admin-auth";
 const sharedAdminLogoutKey = "signature-admin-logged-out";
 const adminEmailKey = "signature-admin-email";
@@ -51,6 +57,7 @@ let activeBoardKey = "quote";
 let currentPostId = null;
 let postsCache = [];
 let adminSession = null;
+const numberFormatter = new Intl.NumberFormat("ko-KR");
 
 function escapeHtml(value) {
   return String(value || "")
@@ -120,6 +127,51 @@ async function ensureAdminSession() {
   }
 
   return session;
+}
+
+function formatVisitDate(value) {
+  const parts = String(value || "").split("-");
+  return parts.length === 3 ? `${Number(parts[1])}/${Number(parts[2])}` : String(value || "");
+}
+
+function renderVisitStats(stats) {
+  const dailyRows = Array.isArray(stats?.last_7_days) ? stats.last_7_days : [];
+  const maxVisitors = Math.max(1, ...dailyRows.map((row) => Number(row.visitors || 0)));
+
+  todayVisitors.textContent = numberFormatter.format(Number(stats?.today_visitors || 0));
+  totalVisitors.textContent = numberFormatter.format(Number(stats?.total_visitors || 0));
+  todayViews.textContent = numberFormatter.format(Number(stats?.today_views || 0));
+  visitWeekly.innerHTML = dailyRows
+    .map((row) => {
+      const visitors = Number(row.visitors || 0);
+      const barHeight = Math.max(4, Math.round((visitors / maxVisitors) * 100));
+      return `
+        <div class="visit-day" title="${escapeHtml(row.date)}: 방문자 ${visitors}명, 조회 ${Number(row.views || 0)}회">
+          <div class="visit-day-bar-wrap"><span class="visit-day-bar" style="height:${barHeight}%"></span></div>
+          <strong>${numberFormatter.format(visitors)}명</strong>
+          <span>${escapeHtml(formatVisitDate(row.date))}</span>
+        </div>
+      `;
+    })
+    .join("");
+  visitStatsStatus.textContent = "최근 7일 방문자 수를 한국 시간 기준으로 집계했습니다.";
+}
+
+async function loadVisitStats() {
+  await ensureAdminSession();
+  visitStatsStatus.textContent = "방문 통계를 불러오는 중입니다.";
+  visitStatsRefresh.disabled = true;
+
+  const { data, error } = await adminSupabase.rpc("get_site_visit_stats");
+  visitStatsRefresh.disabled = false;
+
+  if (error) {
+    visitStatsStatus.textContent = "방문 통계를 불러오지 못했습니다. Supabase 설정 SQL 실행 여부를 확인해 주세요.";
+    throw new Error(error.message || "방문 통계를 불러오지 못했습니다.");
+  }
+
+  const stats = Array.isArray(data) ? data[0] : data;
+  renderVisitStats(stats || {});
 }
 
 async function listPosts(boardKey) {
@@ -294,6 +346,7 @@ async function showDashboard() {
   loginCard.classList.add("hidden");
   dashboard.classList.remove("hidden");
   await loadPosts();
+  loadVisitStats().catch(() => {});
 }
 
 async function deleteCurrentPost() {
@@ -373,6 +426,10 @@ replySaveButton.addEventListener("click", () => {
   saveReply().catch((error) => {
     window.alert(error.message || ADMIN_TEXT.replyFailed);
   });
+});
+
+visitStatsRefresh.addEventListener("click", () => {
+  loadVisitStats().catch(() => {});
 });
 
 window.addEventListener("load", async () => {
