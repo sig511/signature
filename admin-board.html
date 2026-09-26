@@ -152,7 +152,7 @@
 
       .visit-stat-cards {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(5, minmax(0, 1fr));
         gap: 12px;
       }
 
@@ -179,15 +179,33 @@
         font-variant-numeric: tabular-nums;
       }
 
-      .visit-weekly {
+      .visit-chart-title {
+        margin: 18px 0 8px;
+        color: var(--board-accent);
+        font-size: 0.95rem;
+      }
+
+      .visit-chart-scroll {
+        overflow-x: auto;
+      }
+
+      .visit-weekly,
+      .visit-monthly {
         display: grid;
-        grid-template-columns: repeat(7, minmax(0, 1fr));
         align-items: end;
         gap: 8px;
         min-height: 130px;
-        margin-top: 16px;
         padding-top: 14px;
         border-top: 1px solid rgba(13, 39, 66, 0.08);
+      }
+
+      .visit-weekly {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+      }
+
+      .visit-monthly {
+        grid-template-columns: repeat(12, minmax(54px, 1fr));
+        min-width: 760px;
       }
 
       .visit-day {
@@ -429,8 +447,21 @@
               <span class="visit-stat-label">오늘 페이지 조회수</span>
               <strong class="visit-stat-value" id="today-views">-</strong>
             </article>
+            <article class="visit-stat-card">
+              <span class="visit-stat-label">이번 달 방문자</span>
+              <strong class="visit-stat-value" id="this-month-visitors">-</strong>
+            </article>
+            <article class="visit-stat-card">
+              <span class="visit-stat-label">이번 달 페이지 조회수</span>
+              <strong class="visit-stat-value" id="this-month-views">-</strong>
+            </article>
           </div>
+          <h3 class="visit-chart-title">최근 7일 방문자</h3>
           <div class="visit-weekly" id="visit-weekly" aria-label="최근 7일 방문자 추이"></div>
+          <h3 class="visit-chart-title">최근 12개월 방문자</h3>
+          <div class="visit-chart-scroll">
+            <div class="visit-monthly" id="visit-monthly" aria-label="최근 12개월 방문자 추이"></div>
+          </div>
           <p class="visit-stats-status" id="visit-stats-status">방문 통계를 불러오는 중입니다.</p>
         </section>
 
@@ -487,6 +518,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./assets/supabase-config.js?v=20260516a"></script>
-    <script src="./assets/admin-board.js?v=20260926v1"></script>
+    <script src="./assets/admin-board.js?v=20260926v2"></script>
   </body>
 </html>
