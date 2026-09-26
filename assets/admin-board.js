@@ -23,7 +23,10 @@ const replySaveButton = document.getElementById("admin-reply-save");
 const todayVisitors = document.getElementById("today-visitors");
 const totalVisitors = document.getElementById("total-visitors");
 const todayViews = document.getElementById("today-views");
+const thisMonthVisitors = document.getElementById("this-month-visitors");
+const thisMonthViews = document.getElementById("this-month-views");
 const visitWeekly = document.getElementById("visit-weekly");
+const visitMonthly = document.getElementById("visit-monthly");
 const visitStatsStatus = document.getElementById("visit-stats-status");
 const visitStatsRefresh = document.getElementById("visit-stats-refresh");
 const sharedAdminKey = "signature-admin-auth";
@@ -134,13 +137,22 @@ function formatVisitDate(value) {
   return parts.length === 3 ? `${Number(parts[1])}/${Number(parts[2])}` : String(value || "");
 }
 
+function formatVisitMonth(value) {
+  const parts = String(value || "").split("-");
+  return parts.length >= 2 ? `${String(parts[0]).slice(2)}.${Number(parts[1])}` : String(value || "");
+}
+
 function renderVisitStats(stats) {
   const dailyRows = Array.isArray(stats?.last_7_days) ? stats.last_7_days : [];
+  const monthlyRows = Array.isArray(stats?.last_12_months) ? stats.last_12_months : [];
   const maxVisitors = Math.max(1, ...dailyRows.map((row) => Number(row.visitors || 0)));
+  const maxMonthlyVisitors = Math.max(1, ...monthlyRows.map((row) => Number(row.visitors || 0)));
 
   todayVisitors.textContent = numberFormatter.format(Number(stats?.today_visitors || 0));
   totalVisitors.textContent = numberFormatter.format(Number(stats?.total_visitors || 0));
   todayViews.textContent = numberFormatter.format(Number(stats?.today_views || 0));
+  thisMonthVisitors.textContent = numberFormatter.format(Number(stats?.this_month_visitors || 0));
+  thisMonthViews.textContent = numberFormatter.format(Number(stats?.this_month_views || 0));
   visitWeekly.innerHTML = dailyRows
     .map((row) => {
       const visitors = Number(row.visitors || 0);
@@ -154,7 +166,21 @@ function renderVisitStats(stats) {
       `;
     })
     .join("");
-  visitStatsStatus.textContent = "최근 7일 방문자 수를 한국 시간 기준으로 집계했습니다.";
+  visitMonthly.innerHTML = monthlyRows
+    .map((row) => {
+      const visitors = Number(row.visitors || 0);
+      const views = Number(row.views || 0);
+      const barHeight = Math.max(4, Math.round((visitors / maxMonthlyVisitors) * 100));
+      return `
+        <div class="visit-day" title="${escapeHtml(row.month)}: 방문자 ${visitors}명, 조회 ${views}회">
+          <div class="visit-day-bar-wrap"><span class="visit-day-bar" style="height:${barHeight}%"></span></div>
+          <strong>${numberFormatter.format(visitors)}명</strong>
+          <span>${escapeHtml(formatVisitMonth(row.month))}</span>
+        </div>
+      `;
+    })
+    .join("");
+  visitStatsStatus.textContent = "일별·월별 방문자 수를 한국 시간 기준으로 집계했습니다.";
 }
 
 async function loadVisitStats() {
