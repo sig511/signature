@@ -235,6 +235,11 @@ html.is-embedded .inquiry-consent-wrap {
   font-weight: 700;
 }
 
+.board-required-mark {
+  margin-left: 4px;
+  color: #ae4d3f;
+}
+
 .board-form input,
 .board-form textarea,
 .inquiry-card input,
@@ -596,6 +601,15 @@ td {
   box-sizing: border-box;
   border-radius: 0 0 18px 18px;
   font-family: "Noto Sans KR", sans-serif;
+  cursor: text;
+  touch-action: auto;
+}
+
+.rich-editor-surface *,
+.rich-editor-surface *::before,
+.rich-editor-surface *::after {
+  -webkit-user-select: text !important;
+  user-select: text !important;
 }
 
 .rich-editor-surface:empty::before {

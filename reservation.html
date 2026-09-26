@@ -9,7 +9,7 @@
         document.documentElement.classList.add("is-embedded");
       }
     </script>
-    <link rel="stylesheet" href="boards.css?v=20260902r2" />
+    <link rel="stylesheet" href="boards.css?v=20260926r1" />
     <style>
       .board-guide-head h1,
       .board-list-head .board-subsection-title {
@@ -323,11 +323,11 @@
             <form class="board-form write-form" action="https://formspree.io/f/xwvydbda" method="POST" enctype="multipart/form-data">
               <h3>방문 상담 예약 작성</h3>
               <div class="board-form-grid">
-                <label>성명<input name="author" type="text" placeholder="성명을 입력해 주세요" required /></label>
+                <label><span>성명<span class="board-required-mark">*</span></span><input name="author" type="text" placeholder="성명을 입력해 주세요" required /></label>
                 <input name="password" type="hidden" value="" />
-                <label>이메일<input name="email" type="email" placeholder="example@domain.com" required /></label>
+                <label><span>이메일<span class="board-required-mark">*</span></span><input name="email" type="email" placeholder="example@domain.com" required /></label>
               </div>
-              <label>연락처
+              <label><span>연락처<span class="board-required-mark">*</span></span>
                 <div class="contact-phone-inline">
                   <input name="phone1" type="text" inputmode="numeric" placeholder="010" maxlength="3" required />
                   <span>-</span>
@@ -336,7 +336,7 @@
                   <input name="phone3" type="text" inputmode="numeric" placeholder="5678" maxlength="4" required />
                 </div>
               </label>
-              <label>상담분야
+              <label><span>상담분야<span class="board-required-mark">*</span></span>
                 <select name="category" required>
                   <option value="" selected>선택</option>
                   <option value="일반행정 컨설팅">일반행정 컨설팅</option>
@@ -345,8 +345,8 @@
                 </select>
                 <p class="write-form-note">상담을 원하시는 분야를 선택하신 후 방문 상담 예약 내용을 자세히 적어주세요.</p>
               </label>
-              <label>제목<input name="title" type="text" placeholder="제목을 입력해 주세요" required /></label>
-              <label>내용<textarea name="content" rows="7" placeholder="방문상담 희망일자와 시간, 구체적인 상담요청 사항, 관련 자료를 아래 “첨부파일” 링크에 첨부해 주세요." data-rich-text="true" required></textarea></label>
+              <label><span>제목<span class="board-required-mark">*</span></span><input name="title" type="text" placeholder="제목을 입력해 주세요" required /></label>
+              <label><span>내용<span class="board-required-mark">*</span></span><textarea name="content" rows="7" placeholder="방문상담 희망일자와 시간, 구체적인 상담요청 사항, 관련 자료를 아래 “첨부파일” 링크에 첨부해 주세요." data-rich-text="true" required></textarea></label>
               <label>첨부파일
                 <div class="file-inline-wrap">
                   <input name="attachment" type="file" />
@@ -483,6 +483,6 @@
     <script src="./assets/supabase-config.js?v=20260516a"></script>
     <script src="./assets/rich-text-editor.js?v=20260902r2"></script>
     <script src="./assets/boards-server.js?v=20260831r3"></script>
-    <script src="./assets/protect-images.js"></script>
+    <script src="./assets/protect-images.js?v=20260926r1"></script>
   </body>
 </html>
