@@ -32,7 +32,10 @@
     }
   }
 
-  const pagePath = window.location.pathname.slice(0, 500) || "/";
+  const sectionValue = new URLSearchParams(window.location.search).get("section") || "";
+  const safeSection = /^[a-z0-9-]{1,80}$/i.test(sectionValue) ? sectionValue : "";
+  const basePath = window.location.pathname || "/";
+  const pagePath = `${basePath}${safeSection ? `?section=${encodeURIComponent(safeSection)}` : ""}`.slice(0, 500);
 
   fetch(`${config.url}/rest/v1/site_visits`, {
     method: "POST",

@@ -29,6 +29,11 @@ const visitWeekly = document.getElementById("visit-weekly");
 const visitMonthly = document.getElementById("visit-monthly");
 const visitStatsStatus = document.getElementById("visit-stats-status");
 const visitStatsRefresh = document.getElementById("visit-stats-refresh");
+const visitPageBreakdown = document.getElementById("visit-page-breakdown");
+const visitPageBreakdownTitle = document.getElementById("visit-page-breakdown-title");
+const visitPageBreakdownList = document.getElementById("visit-page-breakdown-list");
+const visitPageBreakdownEmpty = document.getElementById("visit-page-breakdown-empty");
+const visitPageBreakdownClose = document.getElementById("visit-page-breakdown-close");
 const sharedAdminKey = "signature-admin-auth";
 const sharedAdminLogoutKey = "signature-admin-logged-out";
 const adminEmailKey = "signature-admin-email";
@@ -60,7 +65,60 @@ let activeBoardKey = "quote";
 let currentPostId = null;
 let postsCache = [];
 let adminSession = null;
+let visitStatsCache = null;
+let activeBreakdownPeriod = "";
 const numberFormatter = new Intl.NumberFormat("ko-KR");
+
+const PAGE_LABELS = {
+  "index.html": "메인",
+  "company.html": "사무소 소개",
+  "business.html": "컨설팅 업무",
+  "contact.html": "고객지원 센터",
+  "notice.html": "공지사항",
+  "inquiry.html": "온라인 상담·문의",
+  "quote.html": "견적 요청",
+  "reservation.html": "방문 상담 예약",
+  "portfolio.html": "포트폴리오",
+  "pc-mobile-index.html": "메인(모바일)",
+  "pc-mobile-company.html": "사무소 소개(모바일)",
+  "pc-mobile-business.html": "컨설팅 업무(모바일)",
+  "pc-mobile-contact.html": "고객지원 센터(모바일)",
+  "m-company-refined.html": "사무소 소개(모바일 전용)",
+  "m-contact-refined.html": "고객지원 센터(모바일 전용)",
+};
+
+const SECTION_LABELS = {
+  greeting: "대표 인사말씀",
+  identity: "CI 소개",
+  "location-map": "오시는 길",
+  general: "일반행정 컨설팅",
+  "general-license": "인·허가 행정",
+  "general-rights": "권익구제 행정",
+  "general-corporate": "법인·단체 설립 행정",
+  "general-business": "기업 행정",
+  "general-immigration": "출입국 민원 행정",
+  "general-procurement": "공공조달 행정",
+  "general-compensation": "손실보상 행정",
+  "general-civil": "생활민원 행정",
+  translation: "공인번역 컨설팅",
+  "translation-apostille": "아포스티유",
+  "translation-consular": "영사확인",
+  "translation-certification": "번역확인증명",
+  "translation-notarization": "번역공증 대행",
+  "translation-business": "기업 번역",
+  "translation-ip": "IP(특허) 번역",
+  "translation-documents": "제 증명서 번역",
+  "translation-other": "기타 전문 번역",
+  medical: "의료기기 컨설팅",
+  "medical-approval": "의료기기 인·허가",
+  "medical-quality": "품질경영시스템",
+  "medical-global": "해외 인·허가",
+  support: "고객지원 센터",
+  "support-notice": "공지사항",
+  "support-inquiry": "상담·문의",
+  "support-quote": "견적 요청",
+  "support-reservation": "방문 상담 예약",
+};
 
 function escapeHtml(value) {
   return String(value || "")
@@ -142,7 +200,47 @@ function formatVisitMonth(value) {
   return parts.length >= 2 ? `${String(parts[0]).slice(2)}.${Number(parts[1])}` : String(value || "");
 }
 
+function getPageLabel(path) {
+  try {
+    const pageUrl = new URL(String(path || "/"), "https://signature.local");
+    const fileName = pageUrl.pathname.split("/").filter(Boolean).pop() || "index.html";
+    const section = pageUrl.searchParams.get("section") || "";
+    return SECTION_LABELS[section] || PAGE_LABELS[fileName] || fileName;
+  } catch {
+    return String(path || "알 수 없는 페이지");
+  }
+}
+
+function renderPageBreakdown(period) {
+  if (!visitStatsCache) return;
+  activeBreakdownPeriod = period;
+  const isToday = period === "today";
+  const rows = isToday
+    ? visitStatsCache.today_page_views
+    : visitStatsCache.this_month_page_views;
+  const pageRows = Array.isArray(rows) ? rows : [];
+
+  visitPageBreakdownTitle.textContent = isToday
+    ? "오늘 페이지별 조회수"
+    : "이번 달 페이지별 조회수";
+  visitPageBreakdownList.innerHTML = pageRows
+    .map((row) => `
+      <tr>
+        <td>
+          <strong>${escapeHtml(getPageLabel(row.path))}</strong>
+          <div class="visit-page-path">${escapeHtml(row.path)}</div>
+        </td>
+        <td>${numberFormatter.format(Number(row.views || 0))}회</td>
+      </tr>
+    `)
+    .join("");
+  visitPageBreakdownEmpty.classList.toggle("hidden", pageRows.length > 0);
+  visitPageBreakdown.classList.remove("hidden");
+  visitPageBreakdown.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
 function renderVisitStats(stats) {
+  visitStatsCache = stats;
   const dailyRows = Array.isArray(stats?.last_7_days) ? stats.last_7_days : [];
   const monthlyRows = Array.isArray(stats?.last_12_months) ? stats.last_12_months : [];
   const maxVisitors = Math.max(1, ...dailyRows.map((row) => Number(row.visitors || 0)));
@@ -181,6 +279,7 @@ function renderVisitStats(stats) {
     })
     .join("");
   visitStatsStatus.textContent = "일별·월별 방문자 수를 한국 시간 기준으로 집계했습니다.";
+  if (activeBreakdownPeriod) renderPageBreakdown(activeBreakdownPeriod);
 }
 
 async function loadVisitStats() {
@@ -456,6 +555,17 @@ replySaveButton.addEventListener("click", () => {
 
 visitStatsRefresh.addEventListener("click", () => {
   loadVisitStats().catch(() => {});
+});
+
+document.querySelectorAll("[data-page-breakdown]").forEach((button) => {
+  button.addEventListener("click", () => {
+    renderPageBreakdown(button.dataset.pageBreakdown);
+  });
+});
+
+visitPageBreakdownClose.addEventListener("click", () => {
+  activeBreakdownPeriod = "";
+  visitPageBreakdown.classList.add("hidden");
 });
 
 window.addEventListener("load", async () => {
