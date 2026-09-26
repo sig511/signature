@@ -1,7 +1,12 @@
 (function () {
   const isEditableTarget = (target) => {
-    if (!(target instanceof Element)) return false;
-    return Boolean(target.closest("input, textarea, select, [contenteditable='true'], [contenteditable='']"));
+    const element = target instanceof Element ? target : target?.parentElement;
+    if (!element) return false;
+    return Boolean(
+      element.closest(
+        "input, textarea, select, [contenteditable='true'], [contenteditable=''], .rich-editor-surface"
+      )
+    );
   };
 
   const stopEvent = (event) => {
@@ -45,10 +50,12 @@
     document.documentElement.style.userSelect = "none";
     document.body.style.webkitUserSelect = "none";
     document.body.style.userSelect = "none";
-    document.querySelectorAll("input, textarea, select").forEach((field) => {
-      field.style.webkitUserSelect = "text";
-      field.style.userSelect = "text";
-    });
+    document
+      .querySelectorAll("input, textarea, select, [contenteditable='true'], [contenteditable=''], .rich-editor-surface")
+      .forEach((field) => {
+        field.style.webkitUserSelect = "text";
+        field.style.userSelect = "text";
+      });
   };
 
   const disableImageDragging = () => {
