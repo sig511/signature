@@ -1787,6 +1787,25 @@ body.business-hours-banner .brand-banner-yellow-glow {
   object-fit: contain;
 }
 
+.rail-schedule-image {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 8px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.rail-consult-image {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 8px;
+  border-radius: 7px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
 .floating-rail-naver-text {
   display: inline-grid;
   gap: 1px;
