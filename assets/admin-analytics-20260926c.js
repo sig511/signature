@@ -1,0 +1,652 @@
+﻿const adminSupabase = window.supabase.createClient(
+  window.SIGNATURE_SUPABASE.url,
+  window.SIGNATURE_SUPABASE.publishableKey
+);
+
+const loginCard = document.getElementById("admin-login-card");
+const loginForm = document.getElementById("admin-login-form");
+const dashboard = document.getElementById("admin-dashboard");
+const logoutButton = document.getElementById("admin-logout-button");
+const countBox = document.getElementById("admin-board-count");
+const postList = document.getElementById("admin-post-list");
+const emptyBox = document.getElementById("admin-empty");
+const detailTitle = document.getElementById("admin-detail-title");
+const detailMeta = document.getElementById("admin-detail-meta");
+const detailBody = document.getElementById("admin-detail-body");
+const deleteButton = document.getElementById("admin-delete-button");
+const secretBadge = document.getElementById("admin-secret-badge");
+const replyCard = document.getElementById("admin-reply-card");
+const replyInput = document.getElementById("admin-reply-input");
+const replyFileInput = document.getElementById("admin-reply-file");
+const replyFileLink = document.getElementById("admin-reply-file-link");
+const replySaveButton = document.getElementById("admin-reply-save");
+const todayVisitors = document.getElementById("today-visitors");
+const totalVisitors = document.getElementById("total-visitors");
+const todayViews = document.getElementById("today-views");
+const thisMonthVisitors = document.getElementById("this-month-visitors");
+const thisMonthViews = document.getElementById("this-month-views");
+const visitWeekly = document.getElementById("visit-weekly");
+const visitMonthly = document.getElementById("visit-monthly");
+const visitStatsStatus = document.getElementById("visit-stats-status");
+const visitStatsRefresh = document.getElementById("visit-stats-refresh");
+const visitPageBreakdown = document.getElementById("visit-page-breakdown");
+const visitPageBreakdownTitle = document.getElementById("visit-page-breakdown-title");
+const visitPageBreakdownList = document.getElementById("visit-page-breakdown-list");
+const visitPageBreakdownEmpty = document.getElementById("visit-page-breakdown-empty");
+const visitPageBreakdownClose = document.getElementById("visit-page-breakdown-close");
+const backToTopButton = document.getElementById("admin-back-to-top");
+const sharedAdminKey = "signature-admin-auth";
+const sharedAdminLogoutKey = "signature-admin-logged-out";
+const adminEmailKey = "signature-admin-email";
+const boardSessionKeys = [
+  "signature-admin-notice",
+  "signature-admin-quote",
+  "signature-admin-reservation",
+];
+
+const ADMIN_TEXT = {
+  countPrefix: "총 ",
+  countSuffix: "건",
+  choosePost: "게시글을 선택해 주세요.",
+  choosePostGuide: "목록에서 글을 클릭하면 비밀글 포함 전체 내용을 확인할 수 있습니다.",
+  noPostSelected: "아직 선택된 글이 없습니다.",
+  secret: "비밀글",
+  public: "일반글",
+  replyTag: "[답변]",
+  deleteConfirm: "이 글을 삭제하시겠습니까?",
+  deleteDone: "게시글이 삭제되었습니다.",
+  replySaved: "답변이 저장되었습니다.",
+  loginFailed: "관리자 로그인에 실패했습니다.",
+  loadFailed: "목록을 불러오지 못했습니다.",
+  deleteFailed: "삭제하지 못했습니다.",
+  replyFailed: "답변을 저장하지 못했습니다.",
+};
+
+let activeBoardKey = "quote";
+let currentPostId = null;
+let postsCache = [];
+let adminSession = null;
+let visitStatsCache = null;
+let activeBreakdownPeriod = "";
+const numberFormatter = new Intl.NumberFormat("ko-KR");
+
+const PAGE_LABELS = {
+  "index.html": "메인",
+  "company.html": "사무소 소개",
+  "business.html": "컨설팅 업무",
+  "contact.html": "고객지원 센터",
+  "notice.html": "공지사항",
+  "inquiry.html": "온라인 상담·문의",
+  "quote.html": "견적 요청",
+  "reservation.html": "방문 상담 예약",
+  "portfolio.html": "포트폴리오",
+  "pc-mobile-index.html": "메인",
+  "pc-mobile-company.html": "사무소 소개",
+  "pc-mobile-business.html": "컨설팅 업무",
+  "pc-mobile-contact.html": "고객지원 센터",
+  "m-company-refined.html": "사무소 소개",
+  "m-contact-refined.html": "고객지원 센터",
+};
+
+const SECTION_LABELS = {
+  greeting: "대표 인사말씀",
+  identity: "CI 소개",
+  "location-map": "오시는 길",
+  general: "일반행정 컨설팅",
+  "general-license": "인·허가 행정",
+  "general-rights": "권익구제 행정",
+  "general-corporate": "법인·단체 설립 행정",
+  "general-business": "기업 행정",
+  "general-immigration": "출입국 민원 행정",
+  "general-procurement": "공공조달 행정",
+  "general-compensation": "손실보상 행정",
+  "general-civil": "생활민원 행정",
+  translation: "공인번역 컨설팅",
+  "translation-apostille": "아포스티유",
+  "translation-consular": "영사확인",
+  "translation-certification": "번역확인증명",
+  "translation-notarization": "번역공증 대행",
+  "translation-business": "기업 번역",
+  "translation-ip": "IP(특허) 번역",
+  "translation-documents": "제 증명서 번역",
+  "translation-other": "기타 전문 번역",
+  medical: "의료기기 컨설팅",
+  "medical-approval": "의료기기 인·허가",
+  "medical-quality": "품질경영시스템",
+  "medical-global": "해외 인·허가",
+  support: "고객지원 센터",
+  "support-notice": "공지사항",
+  "support-inquiry": "상담·문의",
+  "support-quote": "견적 요청",
+  "support-reservation": "방문 상담 예약",
+};
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function formatContent(content) {
+  return escapeHtml(content).replaceAll("\n", "<br>");
+}
+
+async function createAttachmentUrl(path) {
+  if (!path) return "";
+  const { data, error } = await adminSupabase.storage.from("board-attachments").createSignedUrl(path, 1800);
+  if (error) {
+    throw new Error(error.message || ADMIN_TEXT.loadFailed);
+  }
+  return data?.signedUrl || "";
+}
+
+async function uploadReplyAttachment(file, postId, oldPath = "") {
+  if (!file) {
+    return {
+      reply_attachment_name: null,
+      reply_attachment_path: oldPath || null,
+      reply_attachment_type: null,
+      reply_attachment_size: null,
+    };
+  }
+
+  const safeName = String(file.name || "attachment").replace(/[^a-zA-Z0-9._-]/g, "_");
+  const filePath = `reply/${postId}/${Date.now()}-${safeName}`;
+  if (oldPath) {
+    await adminSupabase.storage.from("board-attachments").remove([oldPath]);
+  }
+  const { error } = await adminSupabase.storage.from("board-attachments").upload(filePath, file, {
+    upsert: true,
+  });
+  if (error) {
+    throw new Error(error.message || ADMIN_TEXT.replyFailed);
+  }
+
+  return {
+    reply_attachment_name: file.name || safeName,
+    reply_attachment_path: filePath,
+    reply_attachment_type: file.type || "",
+    reply_attachment_size: Number(file.size || 0),
+  };
+}
+
+async function authHeaders() {
+  if (!adminSession) {
+    const { data } = await adminSupabase.auth.getSession();
+    adminSession = data.session || null;
+  }
+
+  return adminSession;
+}
+
+async function ensureAdminSession() {
+  const session = await authHeaders();
+  if (!session?.access_token) {
+    throw new Error("관리자 로그인이 필요합니다.");
+  }
+
+  return session;
+}
+
+function formatVisitDate(value) {
+  const parts = String(value || "").split("-");
+  return parts.length === 3 ? `${Number(parts[1])}/${Number(parts[2])}` : String(value || "");
+}
+
+function formatVisitMonth(value) {
+  const parts = String(value || "").split("-");
+  return parts.length >= 2 ? `${String(parts[0]).slice(2)}.${Number(parts[1])}` : String(value || "");
+}
+
+function getPageLabel(path) {
+  try {
+    const pageUrl = new URL(String(path || "/"), "https://signature.local");
+    const fileName = pageUrl.pathname.split("/").filter(Boolean).pop() || "index.html";
+    const section = pageUrl.searchParams.get("section") || "";
+    return SECTION_LABELS[section] || PAGE_LABELS[fileName] || fileName;
+  } catch {
+    return String(path || "알 수 없는 페이지");
+  }
+}
+
+function getDeviceDisplay(device) {
+  if (device === "mobile") return { label: "모바일", className: "mobile" };
+  return { label: "PC", className: "pc" };
+}
+
+function renderPageBreakdown(period) {
+  if (!visitStatsCache) return;
+  activeBreakdownPeriod = period;
+  const isToday = period === "today";
+  const rows = isToday
+    ? visitStatsCache.today_page_views
+    : visitStatsCache.this_month_page_views;
+  const pageRows = (Array.isArray(rows) ? rows : []).map((row) => ({
+    ...row,
+    device: row.device === "mobile" ? "mobile" : "pc",
+  }));
+
+  visitPageBreakdownTitle.textContent = isToday
+    ? "오늘 페이지별 조회수"
+    : "이번 달 페이지별 조회수";
+  const deviceGroups = [
+    { key: "pc", label: "PC 접속" },
+    { key: "mobile", label: "모바일 접속" },
+  ];
+
+  visitPageBreakdownList.innerHTML = pageRows.length
+    ? deviceGroups
+        .map((group) => {
+          const groupRows = pageRows
+            .filter((row) => row.device === group.key)
+            .sort(
+              (a, b) =>
+                Number(b.views || 0) - Number(a.views || 0) ||
+                getPageLabel(a.path).localeCompare(getPageLabel(b.path), "ko") ||
+                String(a.path).localeCompare(String(b.path), "ko")
+            );
+          const groupViews = groupRows.reduce(
+            (total, row) => total + Number(row.views || 0),
+            0
+          );
+          const renderedRows = groupRows.length
+            ? groupRows
+                .map((row) => {
+                  const device = getDeviceDisplay(row.device);
+                  return `
+        <tr>
+          <td>
+            <strong>${escapeHtml(getPageLabel(row.path))}</strong>
+            <div class="visit-page-path">${escapeHtml(row.path)}</div>
+          </td>
+          <td><span class="visit-device-badge ${device.className}">${device.label}</span></td>
+          <td>${numberFormatter.format(Number(row.views || 0))}회</td>
+        </tr>
+      `;
+                })
+                .join("")
+            : '<tr class="visit-device-group-empty"><td colspan="3">집계된 조회수가 없습니다.</td></tr>';
+
+          return `
+            <tr class="visit-device-group-row">
+              <th colspan="3">
+                <span>${group.label}</span>
+                <strong>총 ${numberFormatter.format(groupViews)}회</strong>
+              </th>
+            </tr>
+            ${renderedRows}
+          `;
+        })
+        .join("")
+    : "";
+  visitPageBreakdownEmpty.classList.toggle("hidden", pageRows.length > 0);
+  visitPageBreakdown.classList.remove("hidden");
+  visitPageBreakdown.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function renderVisitStats(stats) {
+  visitStatsCache = stats;
+  const dailyRows = Array.isArray(stats?.last_7_days) ? stats.last_7_days : [];
+  const monthlyRows = Array.isArray(stats?.last_12_months) ? stats.last_12_months : [];
+  const maxVisitors = Math.max(1, ...dailyRows.map((row) => Number(row.visitors || 0)));
+  const maxMonthlyVisitors = Math.max(1, ...monthlyRows.map((row) => Number(row.visitors || 0)));
+
+  todayVisitors.textContent = numberFormatter.format(Number(stats?.today_visitors || 0));
+  totalVisitors.textContent = numberFormatter.format(Number(stats?.total_visitors || 0));
+  todayViews.textContent = numberFormatter.format(Number(stats?.today_views || 0));
+  thisMonthVisitors.textContent = numberFormatter.format(Number(stats?.this_month_visitors || 0));
+  thisMonthViews.textContent = numberFormatter.format(Number(stats?.this_month_views || 0));
+  visitWeekly.innerHTML = dailyRows
+    .map((row) => {
+      const visitors = Number(row.visitors || 0);
+      const barHeight = Math.max(4, Math.round((visitors / maxVisitors) * 100));
+      return `
+        <div class="visit-day" title="${escapeHtml(row.date)}: 방문자 ${visitors}명, 조회 ${Number(row.views || 0)}회">
+          <div class="visit-day-bar-wrap"><span class="visit-day-bar" style="height:${barHeight}%"></span></div>
+          <strong>${numberFormatter.format(visitors)}명</strong>
+          <span>${escapeHtml(formatVisitDate(row.date))}</span>
+        </div>
+      `;
+    })
+    .join("");
+  visitMonthly.innerHTML = monthlyRows
+    .map((row) => {
+      const visitors = Number(row.visitors || 0);
+      const views = Number(row.views || 0);
+      const barHeight = Math.max(4, Math.round((visitors / maxMonthlyVisitors) * 100));
+      return `
+        <div class="visit-day" title="${escapeHtml(row.month)}: 방문자 ${visitors}명, 조회 ${views}회">
+          <div class="visit-day-bar-wrap"><span class="visit-day-bar" style="height:${barHeight}%"></span></div>
+          <strong>${numberFormatter.format(visitors)}명</strong>
+          <span>${escapeHtml(formatVisitMonth(row.month))}</span>
+        </div>
+      `;
+    })
+    .join("");
+  visitStatsStatus.textContent = "일별·월별 방문자 수를 한국 시간 기준으로 집계했습니다.";
+  if (activeBreakdownPeriod) renderPageBreakdown(activeBreakdownPeriod);
+}
+
+async function loadVisitStats() {
+  await ensureAdminSession();
+  visitStatsStatus.textContent = "방문 통계를 불러오는 중입니다.";
+  visitStatsRefresh.disabled = true;
+
+  const { data, error } = await adminSupabase.rpc("get_site_visit_stats");
+  visitStatsRefresh.disabled = false;
+
+  if (error) {
+    visitStatsStatus.textContent = "방문 통계를 불러오지 못했습니다. Supabase 설정 SQL 실행 여부를 확인해 주세요.";
+    throw new Error(error.message || "방문 통계를 불러오지 못했습니다.");
+  }
+
+  const stats = Array.isArray(data) ? data[0] : data;
+  renderVisitStats(stats || {});
+}
+
+async function listPosts(boardKey) {
+  await ensureAdminSession();
+  const { data, error } = await adminSupabase
+    .from("board_posts")
+    .select("id, board_type, title, author, is_secret, created_at, admin_reply, reply_attachment_name, reply_attachment_path")
+    .eq("board_type", boardKey)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    throw new Error(error.message || ADMIN_TEXT.loadFailed);
+  }
+
+  return Array.isArray(data) ? data : [];
+}
+
+async function getPost(postId) {
+  await ensureAdminSession();
+  const { data, error } = await adminSupabase
+    .from("board_posts")
+    .select("*")
+    .eq("id", postId)
+    .single();
+
+  if (error) {
+    throw new Error(error.message || ADMIN_TEXT.loadFailed);
+  }
+
+  return data;
+}
+
+async function deletePost(postId) {
+  await ensureAdminSession();
+  const { error } = await adminSupabase.from("board_posts").delete().eq("id", postId);
+  if (error) {
+    throw new Error(error.message || ADMIN_TEXT.deleteFailed);
+  }
+}
+
+async function updateReply(postId, adminReply) {
+  await ensureAdminSession();
+  const currentPost = await getPost(postId);
+  const replyFile = replyFileInput?.files?.[0] || null;
+  const replyAttachmentPayload = await uploadReplyAttachment(
+    replyFile,
+    postId,
+    currentPost?.reply_attachment_path || ""
+  );
+  const { error } = await adminSupabase
+    .from("board_posts")
+    .update({
+      admin_reply: adminReply,
+      replied_at: adminReply ? new Date().toISOString() : null,
+      ...replyAttachmentPayload,
+    })
+    .eq("id", postId);
+
+  if (error) {
+    throw new Error(error.message || ADMIN_TEXT.replyFailed);
+  }
+}
+
+function renderDetail(post) {
+  if (!post) {
+    currentPostId = null;
+    detailTitle.textContent = ADMIN_TEXT.choosePost;
+    detailMeta.textContent = ADMIN_TEXT.choosePostGuide;
+    detailBody.textContent = ADMIN_TEXT.noPostSelected;
+    deleteButton.classList.add("hidden");
+    secretBadge.classList.add("hidden");
+    replyCard.classList.add("hidden");
+    replyInput.value = "";
+    return;
+  }
+
+  currentPostId = post.id;
+  const attachmentHtml =
+    post.attachment_url && post.attachment_name
+      ? `<div style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(13,39,66,0.08);"><strong style="display:block;margin-bottom:8px;color:#204b72;">첨부파일</strong><a href="${escapeHtml(post.attachment_url)}" target="_blank" rel="noreferrer" style="color:#204b72;font-weight:700;text-decoration:underline;word-break:break-all;">${escapeHtml(post.attachment_name)}</a></div>`
+      : "";
+  const replyAttachmentHtml =
+    post.reply_attachment_url && post.reply_attachment_name
+      ? `<div style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(13,39,66,0.08);"><strong style="display:block;margin-bottom:8px;color:#204b72;">답변 첨부파일</strong><a href="${escapeHtml(post.reply_attachment_url)}" target="_blank" rel="noreferrer" style="color:#204b72;font-weight:700;text-decoration:underline;word-break:break-all;">${escapeHtml(post.reply_attachment_name)}</a></div>`
+      : "";
+  detailTitle.textContent = post.title || "";
+  detailMeta.textContent = `${post.author || ""} | ${String(post.created_at || "").slice(0, 10)}${post.is_secret ? " | 비밀글" : ""}`;
+  detailBody.innerHTML = `${formatContent(post.content || "")}${attachmentHtml}${replyAttachmentHtml}`;
+  deleteButton.classList.remove("hidden");
+  secretBadge.classList.toggle("hidden", !post.is_secret);
+  replyCard.classList.remove("hidden");
+  replyInput.value = post.admin_reply || "";
+  if (replyFileInput) replyFileInput.value = "";
+  if (replyFileLink) {
+    if (post.reply_attachment_url && post.reply_attachment_name) {
+      replyFileLink.href = post.reply_attachment_url;
+      replyFileLink.textContent = post.reply_attachment_name;
+      replyFileLink.classList.remove("hidden");
+    } else {
+      replyFileLink.href = "#";
+      replyFileLink.textContent = "";
+      replyFileLink.classList.add("hidden");
+    }
+  }
+}
+
+function renderList() {
+  postList.innerHTML = "";
+  countBox.textContent = `${ADMIN_TEXT.countPrefix}${postsCache.length}${ADMIN_TEXT.countSuffix}`;
+  emptyBox.classList.toggle("hidden", postsCache.length > 0);
+
+  postsCache.forEach((post, index) => {
+    const tr = document.createElement("tr");
+    const replyTag = post.admin_reply ? ` <span style="color:#b0602d;font-weight:800;">${ADMIN_TEXT.replyTag}</span>` : "";
+    const lockHtml = post.is_secret
+      ? '<span class="secret-lock" aria-label="secret">&#128274;</span>'
+      : '<span class="secret-lock"></span>';
+
+    tr.innerHTML = `
+      <td>${postsCache.length - index}</td>
+      <td>
+        <button class="admin-list-button" type="button" data-post-id="${post.id}">
+          <strong>${lockHtml}${escapeHtml(post.title)}${replyTag}</strong>
+          <div class="admin-list-meta">${post.is_secret ? ADMIN_TEXT.secret : ADMIN_TEXT.public}</div>
+        </button>
+      </td>
+      <td>${escapeHtml(post.author)}</td>
+      <td>${escapeHtml(String(post.created_at || "").slice(0, 10))}</td>
+    `;
+
+    postList.appendChild(tr);
+  });
+
+  postList.querySelectorAll(".admin-list-button").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const post = await getPost(button.dataset.postId);
+      if (post?.attachment_path) {
+        post.attachment_url = await createAttachmentUrl(post.attachment_path);
+      }
+      if (post?.reply_attachment_path) {
+        post.reply_attachment_url = await createAttachmentUrl(post.reply_attachment_path);
+      }
+      renderDetail(post || null);
+    });
+  });
+
+  const selectedPostStillVisible = currentPostId && postsCache.some((post) => post.id === currentPostId);
+  if (!selectedPostStillVisible) {
+    renderDetail(null);
+  }
+}
+
+async function loadPosts() {
+  postsCache = await listPosts(activeBoardKey);
+  renderList();
+}
+
+function switchBoard(boardKey) {
+  activeBoardKey = boardKey;
+  currentPostId = null;
+  renderDetail(null);
+  document.querySelectorAll(".admin-tab").forEach((tab) => {
+    tab.classList.toggle("active", tab.dataset.boardKey === boardKey);
+  });
+
+  loadPosts().catch((error) => {
+    window.alert(error.message || ADMIN_TEXT.loadFailed);
+  });
+}
+
+async function showDashboard() {
+  loginCard.classList.add("hidden");
+  dashboard.classList.remove("hidden");
+  await loadPosts();
+  loadVisitStats().catch(() => {});
+}
+
+async function deleteCurrentPost() {
+  if (!currentPostId) return;
+  if (!window.confirm(ADMIN_TEXT.deleteConfirm)) return;
+
+  await deletePost(currentPostId);
+
+  currentPostId = null;
+  await loadPosts();
+  window.alert(ADMIN_TEXT.deleteDone);
+}
+
+async function saveReply() {
+  if (!currentPostId) return;
+
+  await updateReply(currentPostId, replyInput.value.trim());
+
+  await loadPosts();
+  const post = await getPost(currentPostId);
+  if (post?.attachment_path) {
+    post.attachment_url = await createAttachmentUrl(post.attachment_path);
+  }
+  if (post?.reply_attachment_path) {
+    post.reply_attachment_url = await createAttachmentUrl(post.reply_attachment_path);
+  }
+  renderDetail(post || null);
+  window.alert(ADMIN_TEXT.replySaved);
+}
+
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const formData = new FormData(loginForm);
+  const email = String(formData.get("adminEmail") || "").trim();
+  const password = String(formData.get("adminPassword") || "").trim();
+
+  const { error } = await adminSupabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    window.alert(ADMIN_TEXT.loginFailed);
+    return;
+  }
+
+  const { data } = await adminSupabase.auth.getSession();
+  adminSession = data.session || null;
+  localStorage.setItem(sharedAdminKey, "true");
+  localStorage.removeItem(sharedAdminLogoutKey);
+  localStorage.setItem(adminEmailKey, email);
+  await showDashboard();
+});
+
+logoutButton.addEventListener("click", async () => {
+  await adminSupabase.auth.signOut();
+  adminSession = null;
+  localStorage.removeItem(sharedAdminKey);
+  localStorage.setItem(sharedAdminLogoutKey, "true");
+  boardSessionKeys.forEach((key) => sessionStorage.removeItem(key));
+  window.location.reload();
+});
+
+document.querySelectorAll(".admin-tab").forEach((tab) => {
+  tab.addEventListener("click", () => {
+    switchBoard(tab.dataset.boardKey);
+  });
+});
+
+deleteButton.addEventListener("click", () => {
+  deleteCurrentPost().catch((error) => {
+    window.alert(error.message || ADMIN_TEXT.deleteFailed);
+  });
+});
+
+replySaveButton.addEventListener("click", () => {
+  saveReply().catch((error) => {
+    window.alert(error.message || ADMIN_TEXT.replyFailed);
+  });
+});
+
+visitStatsRefresh.addEventListener("click", () => {
+  loadVisitStats().catch(() => {});
+});
+
+document.querySelectorAll("[data-page-breakdown]").forEach((button) => {
+  button.addEventListener("click", () => {
+    renderPageBreakdown(button.dataset.pageBreakdown);
+  });
+});
+
+visitPageBreakdownClose.addEventListener("click", () => {
+  activeBreakdownPeriod = "";
+  visitPageBreakdown.classList.add("hidden");
+});
+
+function syncBackToTopButton() {
+  backToTopButton.classList.toggle("visible", window.scrollY > 360);
+}
+
+backToTopButton.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+window.addEventListener("scroll", syncBackToTopButton, { passive: true });
+syncBackToTopButton();
+
+window.addEventListener("load", async () => {
+  if (localStorage.getItem(sharedAdminLogoutKey) === "true") {
+    adminSession = null;
+    localStorage.removeItem(sharedAdminKey);
+    boardSessionKeys.forEach((key) => sessionStorage.removeItem(key));
+    try {
+      await adminSupabase.auth.signOut();
+    } catch {}
+    return;
+  }
+
+  const { data } = await adminSupabase.auth.getSession();
+  adminSession = data.session || null;
+  if (adminSession) {
+    localStorage.setItem(sharedAdminKey, "true");
+    localStorage.removeItem(sharedAdminLogoutKey);
+    await showDashboard();
+  } else {
+    localStorage.removeItem(sharedAdminKey);
+    localStorage.setItem(sharedAdminLogoutKey, "true");
+    boardSessionKeys.forEach((key) => sessionStorage.removeItem(key));
+  }
+});
