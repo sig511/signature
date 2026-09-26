@@ -79,12 +79,12 @@ const PAGE_LABELS = {
   "quote.html": "견적 요청",
   "reservation.html": "방문 상담 예약",
   "portfolio.html": "포트폴리오",
-  "pc-mobile-index.html": "메인(모바일)",
-  "pc-mobile-company.html": "사무소 소개(모바일)",
-  "pc-mobile-business.html": "컨설팅 업무(모바일)",
-  "pc-mobile-contact.html": "고객지원 센터(모바일)",
-  "m-company-refined.html": "사무소 소개(모바일 전용)",
-  "m-contact-refined.html": "고객지원 센터(모바일 전용)",
+  "pc-mobile-index.html": "메인",
+  "pc-mobile-company.html": "사무소 소개",
+  "pc-mobile-business.html": "컨설팅 업무",
+  "pc-mobile-contact.html": "고객지원 센터",
+  "m-company-refined.html": "사무소 소개",
+  "m-contact-refined.html": "고객지원 센터",
 };
 
 const SECTION_LABELS = {
@@ -211,6 +211,12 @@ function getPageLabel(path) {
   }
 }
 
+function getDeviceDisplay(device) {
+  if (device === "pc") return { label: "PC", className: "pc" };
+  if (device === "mobile") return { label: "모바일", className: "mobile" };
+  return { label: "기존 기록", className: "unknown" };
+}
+
 function renderPageBreakdown(period) {
   if (!visitStatsCache) return;
   activeBreakdownPeriod = period;
@@ -224,15 +230,19 @@ function renderPageBreakdown(period) {
     ? "오늘 페이지별 조회수"
     : "이번 달 페이지별 조회수";
   visitPageBreakdownList.innerHTML = pageRows
-    .map((row) => `
-      <tr>
-        <td>
-          <strong>${escapeHtml(getPageLabel(row.path))}</strong>
-          <div class="visit-page-path">${escapeHtml(row.path)}</div>
-        </td>
-        <td>${numberFormatter.format(Number(row.views || 0))}회</td>
-      </tr>
-    `)
+    .map((row) => {
+      const device = getDeviceDisplay(row.device);
+      return `
+        <tr>
+          <td>
+            <strong>${escapeHtml(getPageLabel(row.path))}</strong>
+            <div class="visit-page-path">${escapeHtml(row.path)}</div>
+          </td>
+          <td><span class="visit-device-badge ${device.className}">${device.label}</span></td>
+          <td>${numberFormatter.format(Number(row.views || 0))}회</td>
+        </tr>
+      `;
+    })
     .join("");
   visitPageBreakdownEmpty.classList.toggle("hidden", pageRows.length > 0);
   visitPageBreakdown.classList.remove("hidden");

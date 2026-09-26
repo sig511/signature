@@ -36,6 +36,10 @@
   const safeSection = /^[a-z0-9-]{1,80}$/i.test(sectionValue) ? sectionValue : "";
   const basePath = window.location.pathname || "/";
   const pagePath = `${basePath}${safeSection ? `?section=${encodeURIComponent(safeSection)}` : ""}`.slice(0, 500);
+  const userAgentMobile = navigator.userAgentData?.mobile === true;
+  const narrowTouchScreen = window.matchMedia("(max-width: 900px) and (pointer: coarse)").matches;
+  const mobileUserAgent = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || "");
+  const deviceType = userAgentMobile || narrowTouchScreen || mobileUserAgent ? "mobile" : "pc";
 
   fetch(`${config.url}/rest/v1/site_visits`, {
     method: "POST",
@@ -48,6 +52,7 @@
     body: JSON.stringify({
       visitor_id: getVisitorId(),
       path: pagePath,
+      device_type: deviceType,
     }),
     keepalive: true,
   }).catch(() => {});
