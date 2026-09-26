@@ -158,9 +158,25 @@
 
       .visit-stat-card {
         padding: 16px;
+        border: 0;
         border-radius: 16px;
         background: #fff;
         box-shadow: 0 8px 22px rgba(13, 39, 66, 0.06);
+        text-align: left;
+        font: inherit;
+      }
+
+      .visit-stat-card-button {
+        cursor: pointer;
+        transition: transform 160ms ease, box-shadow 160ms ease;
+      }
+
+      .visit-stat-card-button:hover,
+      .visit-stat-card-button:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(13, 39, 66, 0.13);
+        outline: 2px solid rgba(32, 75, 114, 0.28);
+        outline-offset: 2px;
       }
 
       .visit-stat-label {
@@ -244,6 +260,38 @@
         margin: 12px 0 0;
         color: var(--board-muted);
         font-size: 0.86rem;
+      }
+
+      .visit-page-breakdown {
+        margin-top: 18px;
+        padding: 18px;
+        border: 1px solid rgba(13, 39, 66, 0.1);
+        border-radius: 18px;
+        background: #fff;
+      }
+
+      .visit-page-breakdown-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 12px;
+      }
+
+      .visit-page-breakdown-head h3 {
+        margin: 0;
+        color: var(--board-accent);
+        font-size: 1rem;
+      }
+
+      .visit-page-breakdown table {
+        width: 100%;
+      }
+
+      .visit-page-path {
+        color: var(--board-muted);
+        font-size: 0.8rem;
+        word-break: break-all;
       }
 
       .admin-main {
@@ -443,18 +491,18 @@
               <span class="visit-stat-label">전체 방문자</span>
               <strong class="visit-stat-value" id="total-visitors">-</strong>
             </article>
-            <article class="visit-stat-card">
+            <button class="visit-stat-card visit-stat-card-button" type="button" data-page-breakdown="today" aria-controls="visit-page-breakdown">
               <span class="visit-stat-label">오늘 페이지 조회수</span>
               <strong class="visit-stat-value" id="today-views">-</strong>
-            </article>
+            </button>
             <article class="visit-stat-card">
               <span class="visit-stat-label">이번 달 방문자</span>
               <strong class="visit-stat-value" id="this-month-visitors">-</strong>
             </article>
-            <article class="visit-stat-card">
+            <button class="visit-stat-card visit-stat-card-button" type="button" data-page-breakdown="month" aria-controls="visit-page-breakdown">
               <span class="visit-stat-label">이번 달 페이지 조회수</span>
               <strong class="visit-stat-value" id="this-month-views">-</strong>
-            </article>
+            </button>
           </div>
           <h3 class="visit-chart-title">최근 7일 방문자</h3>
           <div class="visit-weekly" id="visit-weekly" aria-label="최근 7일 방문자 추이"></div>
@@ -463,6 +511,22 @@
             <div class="visit-monthly" id="visit-monthly" aria-label="최근 12개월 방문자 추이"></div>
           </div>
           <p class="visit-stats-status" id="visit-stats-status">방문 통계를 불러오는 중입니다.</p>
+          <section class="visit-page-breakdown hidden" id="visit-page-breakdown" aria-live="polite">
+            <div class="visit-page-breakdown-head">
+              <h3 id="visit-page-breakdown-title">페이지별 조회수</h3>
+              <button class="visit-stats-refresh" id="visit-page-breakdown-close" type="button">닫기</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>페이지</th>
+                  <th>조회수</th>
+                </tr>
+              </thead>
+              <tbody id="visit-page-breakdown-list"></tbody>
+            </table>
+            <div class="admin-empty hidden" id="visit-page-breakdown-empty">집계된 페이지 조회수가 없습니다.</div>
+          </section>
         </section>
 
         <div class="admin-main">
@@ -518,6 +582,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./assets/supabase-config.js?v=20260516a"></script>
-    <script src="./assets/admin-board.js?v=20260926v2"></script>
+    <script src="./assets/admin-board.js?v=20260926v3"></script>
   </body>
 </html>
