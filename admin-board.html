@@ -294,6 +294,30 @@
         word-break: break-all;
       }
 
+      .visit-device-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 68px;
+        min-height: 30px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: var(--board-accent-soft);
+        color: var(--board-accent);
+        font-size: 0.82rem;
+        font-weight: 800;
+      }
+
+      .visit-device-badge.mobile {
+        background: #e8f6ee;
+        color: #17633a;
+      }
+
+      .visit-device-badge.unknown {
+        background: #f2f3f5;
+        color: #68727d;
+      }
+
       .admin-main {
         display: grid;
         grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
@@ -520,6 +544,7 @@
               <thead>
                 <tr>
                   <th>페이지</th>
+                  <th>접속환경</th>
                   <th>조회수</th>
                 </tr>
               </thead>
@@ -582,6 +607,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./assets/supabase-config.js?v=20260516a"></script>
-    <script src="./assets/admin-board.js?v=20260926v3"></script>
+    <script src="./assets/admin-board.js?v=20260926v4"></script>
   </body>
 </html>
