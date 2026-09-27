@@ -3,7 +3,9 @@
   const isWebPage = ["http:", "https:"].includes(window.location.protocol);
   const isLocalHost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
   const privacyOptOut = navigator.globalPrivacyControl === true || navigator.doNotTrack === "1";
-  const isEmbeddedBoard = new URLSearchParams(window.location.search).get("embedded") === "1";
+  const currentParams = new URLSearchParams(window.location.search);
+  const isEmbeddedBoard = currentParams.get("embedded") === "1";
+  const isAdminPreview = currentParams.get("admin_preview") === "1";
 
   if (
     !config?.url ||
@@ -11,7 +13,8 @@
     !isWebPage ||
     isLocalHost ||
     privacyOptOut ||
-    isEmbeddedBoard
+    isEmbeddedBoard ||
+    isAdminPreview
   ) {
     return;
   }

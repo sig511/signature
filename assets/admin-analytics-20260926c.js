@@ -230,6 +230,7 @@ function getPageHref(path) {
   try {
     const pageUrl = new URL(String(path || "/"), window.location.origin);
     if (pageUrl.origin !== window.location.origin) return "";
+    pageUrl.searchParams.set("admin_preview", "1");
     return `${pageUrl.pathname}${pageUrl.search}${pageUrl.hash}`;
   } catch {
     return "";
