@@ -43,24 +43,35 @@
     }
   }
 
+  function classifyExternalReferrer(hostValue) {
+    const host = String(hostValue || "").toLowerCase().replace(/^www\./, "").slice(0, 255);
+    if (!host) return { source: "unknown", host: "" };
+    if (/(^|\.)google\./.test(host)) return { source: "google", host };
+    if (/(^|\.)naver\.com$/.test(host)) return { source: "naver", host };
+    if (/(^|\.)(daum\.net|kakao\.com)$/.test(host)) return { source: "daum", host };
+    if (/(^|\.)bing\.com$/.test(host)) return { source: "bing", host };
+    if (/(^|\.)(yahoo\.|zum\.com$)/.test(host)) return { source: "other_search", host };
+    return { source: "external", host };
+  }
+
   function getReferrerInfo() {
+    try {
+      const handedOffHost = window.sessionStorage.getItem("signatureExternalReferrerHost") || "";
+      window.sessionStorage.removeItem("signatureExternalReferrerHost");
+      if (handedOffHost) return classifyExternalReferrer(handedOffHost);
+    } catch {}
+
     if (!document.referrer) return { source: "direct", host: "" };
 
     try {
       const referrerUrl = new URL(document.referrer);
       const host = referrerUrl.hostname.toLowerCase().replace(/^www\./, "").slice(0, 255);
       if (referrerUrl.origin === window.location.origin) return { source: "internal", host };
-      if (/(^|\.)google\./.test(host)) return { source: "google", host };
-      if (/(^|\.)naver\.com$/.test(host)) return { source: "naver", host };
-      if (/(^|\.)(daum\.net|kakao\.com)$/.test(host)) return { source: "daum", host };
-      if (/(^|\.)bing\.com$/.test(host)) return { source: "bing", host };
-      if (/(^|\.)(yahoo\.|zum\.com$)/.test(host)) return { source: "other_search", host };
-      return { source: "external", host };
+      return classifyExternalReferrer(host);
     } catch {
       return { source: "unknown", host: "" };
     }
   }
-
   const referrer = getReferrerInfo();
   const sectionValue = new URLSearchParams(window.location.search).get("section") || "";
   const safeSection = /^[a-z0-9-]{1,80}$/i.test(sectionValue) ? sectionValue : "";
