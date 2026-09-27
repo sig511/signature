@@ -281,6 +281,45 @@
         font-size: 0.86rem;
       }
 
+      .visit-referrer-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .visit-referrer-panel {
+        overflow: hidden;
+        border: 1px solid rgba(13, 39, 66, 0.1);
+        border-radius: 18px;
+        background: #fff;
+      }
+
+      .visit-referrer-panel h3 {
+        margin: 0;
+        padding: 16px 18px;
+        color: var(--board-accent);
+        background: var(--board-accent-soft);
+        font-size: 1rem;
+      }
+
+      .visit-referrer-panel table {
+        width: 100%;
+      }
+
+      .visit-referrer-panel th,
+      .visit-referrer-panel td {
+        padding: 12px 14px;
+      }
+
+      .visit-referrer-host {
+        display: block;
+        margin-top: 3px;
+        color: var(--board-muted);
+        font-size: 0.78rem;
+        word-break: break-all;
+      }
+
       .visit-page-breakdown {
         margin-top: 18px;
         padding: 18px;
@@ -538,6 +577,10 @@
           justify-content: flex-start;
         }
 
+        .visit-referrer-grid {
+          grid-template-columns: 1fr;
+        }
+
         .visit-stat-cards {
           grid-template-columns: 1fr;
         }
@@ -630,6 +673,22 @@
             <div class="visit-monthly" id="visit-monthly" aria-label="최근 12개월 방문자 추이"></div>
           </div>
           <p class="visit-stats-status" id="visit-stats-status">방문 통계를 불러오는 중입니다.</p>
+          <div class="visit-referrer-grid" aria-label="홈페이지 유입 경로 통계">
+            <section class="visit-referrer-panel">
+              <h3>오늘 유입 경로</h3>
+              <table>
+                <thead><tr><th>유입 경로</th><th>방문자</th><th>조회수</th></tr></thead>
+                <tbody id="today-referrers"></tbody>
+              </table>
+            </section>
+            <section class="visit-referrer-panel">
+              <h3>이번 달 유입 경로</h3>
+              <table>
+                <thead><tr><th>유입 경로</th><th>방문자</th><th>조회수</th></tr></thead>
+                <tbody id="this-month-referrers"></tbody>
+              </table>
+            </section>
+          </div>
           <section class="visit-page-breakdown hidden" id="visit-page-breakdown" aria-live="polite">
             <div class="visit-page-breakdown-head">
               <h3 id="visit-page-breakdown-title">페이지별 조회수</h3>
@@ -704,6 +763,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./assets/supabase-config.js?v=20260516a"></script>
-    <script src="./assets/admin-analytics-20260926c.js?v=20260927d"></script>
+    <script src="./assets/admin-analytics-20260926c.js?v=20260927e"></script>
   </body>
 </html>
