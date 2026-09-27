@@ -50,6 +50,12 @@
         const isSmallScreen = window.matchMedia("(max-width: 900px)").matches;
         const redirected = sessionStorage.getItem("signatureMobileStayDesktop") === "1";
         if (isSmallScreen && !redirected) {
+          try {
+            const referrerUrl = new URL(document.referrer);
+            if (referrerUrl.origin !== window.location.origin) {
+              sessionStorage.setItem("signatureExternalReferrerHost", referrerUrl.hostname.toLowerCase().replace(/^www\./, "").slice(0, 255));
+            }
+          } catch {}
           window.location.replace("./pc-mobile-index.html");
         }
       })();
@@ -543,7 +549,7 @@
     <script src="./assets/supabase-config.js?v=20260516a"></script>
     <script src="./assets/main-notices.js?v=20260830r1"></script>
     <script src="./assets/protect-images.js"></script>
-      <script src="./assets/visitor-tracker.js?v=20260927v6"></script>
+      <script src="./assets/visitor-tracker.js?v=20260928v8"></script>
   </body>
 </html>
 
