@@ -3,8 +3,16 @@
   const isWebPage = ["http:", "https:"].includes(window.location.protocol);
   const isLocalHost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
   const privacyOptOut = navigator.globalPrivacyControl === true || navigator.doNotTrack === "1";
+  const isEmbeddedBoard = new URLSearchParams(window.location.search).get("embedded") === "1";
 
-  if (!config?.url || !config?.publishableKey || !isWebPage || isLocalHost || privacyOptOut) {
+  if (
+    !config?.url ||
+    !config?.publishableKey ||
+    !isWebPage ||
+    isLocalHost ||
+    privacyOptOut ||
+    isEmbeddedBoard
+  ) {
     return;
   }
 
@@ -36,10 +44,14 @@
   const safeSection = /^[a-z0-9-]{1,80}$/i.test(sectionValue) ? sectionValue : "";
   const basePath = window.location.pathname || "/";
   const pagePath = `${basePath}${safeSection ? `?section=${encodeURIComponent(safeSection)}` : ""}`.slice(0, 500);
+  const isMobilePagePath =
+    basePath.includes("/pc-mobile-") ||
+    /\/m-(?:index|company|contact)-refined\.html$/i.test(basePath);
   const userAgentMobile = navigator.userAgentData?.mobile === true;
   const narrowTouchScreen = window.matchMedia("(max-width: 900px) and (pointer: coarse)").matches;
   const mobileUserAgent = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || "");
-  const deviceType = userAgentMobile || narrowTouchScreen || mobileUserAgent ? "mobile" : "pc";
+  const deviceType =
+    isMobilePagePath || userAgentMobile || narrowTouchScreen || mobileUserAgent ? "mobile" : "pc";
 
   fetch(`${config.url}/rest/v1/site_visits`, {
     method: "POST",
