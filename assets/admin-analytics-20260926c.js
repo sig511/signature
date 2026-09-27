@@ -1,4 +1,4 @@
-﻿const adminSupabase = window.supabase.createClient(
+const adminSupabase = window.supabase.createClient(
   window.SIGNATURE_SUPABASE.url,
   window.SIGNATURE_SUPABASE.publishableKey
 );
@@ -27,6 +27,8 @@ const thisMonthVisitors = document.getElementById("this-month-visitors");
 const thisMonthViews = document.getElementById("this-month-views");
 const visitWeekly = document.getElementById("visit-weekly");
 const visitMonthly = document.getElementById("visit-monthly");
+const todayReferrers = document.getElementById("today-referrers");
+const thisMonthReferrers = document.getElementById("this-month-referrers");
 const visitStatsStatus = document.getElementById("visit-stats-status");
 const visitStatsRefresh = document.getElementById("visit-stats-refresh");
 const visitPageBreakdown = document.getElementById("visit-page-breakdown");
@@ -121,6 +123,18 @@ const SECTION_LABELS = {
   "support-reservation": "방문 상담 예약",
 };
 
+const REFERRER_LABELS = {
+  direct: "직접 접속·즐겨찾기",
+  internal: "홈페이지 내부 이동",
+  google: "Google 검색",
+  naver: "네이버 검색",
+  daum: "다음 검색",
+  bing: "Bing 검색",
+  other_search: "기타 검색사이트",
+  external: "기타 외부 사이트",
+  unknown: "기존 기록·알 수 없음",
+};
+
 function escapeHtml(value) {
   return String(value || "")
     .replaceAll("&", "&amp;")
@@ -212,6 +226,16 @@ function getPageLabel(path) {
   }
 }
 
+function getPageHref(path) {
+  try {
+    const pageUrl = new URL(String(path || "/"), window.location.origin);
+    if (pageUrl.origin !== window.location.origin) return "";
+    return `${pageUrl.pathname}${pageUrl.search}${pageUrl.hash}`;
+  } catch {
+    return "";
+  }
+}
+
 function getDeviceDisplay(device) {
   if (device === "mobile") return { label: "모바일", className: "mobile" };
   return { label: "PC", className: "pc" };
@@ -256,10 +280,15 @@ function renderPageBreakdown(period) {
             ? groupRows
                 .map((row) => {
                   const device = getDeviceDisplay(row.device);
+                  const pageLabel = escapeHtml(getPageLabel(row.path));
+                  const pageHref = getPageHref(row.path);
+                  const pageTitle = pageHref
+                    ? `<a class="visit-page-link" href="${escapeHtml(pageHref)}" target="_blank" rel="noopener noreferrer" title="해당 페이지 열기">${pageLabel}</a>`
+                    : pageLabel;
                   return `
         <tr>
           <td>
-            <strong>${escapeHtml(getPageLabel(row.path))}</strong>
+            <strong>${pageTitle}</strong>
             <div class="visit-page-path">${escapeHtml(row.path)}</div>
           </td>
           <td><span class="visit-device-badge ${device.className}">${device.label}</span></td>
@@ -285,6 +314,29 @@ function renderPageBreakdown(period) {
   visitPageBreakdownEmpty.classList.toggle("hidden", pageRows.length > 0);
   visitPageBreakdown.classList.remove("hidden");
   visitPageBreakdown.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function renderReferrerRows(target, rows) {
+  const referrerRows = Array.isArray(rows) ? rows : [];
+  target.innerHTML = referrerRows.length
+    ? referrerRows
+        .map((row) => {
+          const source = String(row.source || "unknown");
+          const label = REFERRER_LABELS[source] || REFERRER_LABELS.unknown;
+          const host = String(row.host || "");
+          const hostDetail = host
+            ? `<span class="visit-referrer-host">${escapeHtml(host)}</span>`
+            : "";
+          return `
+            <tr>
+              <td><strong>${escapeHtml(label)}</strong>${hostDetail}</td>
+              <td>${numberFormatter.format(Number(row.visitors || 0))}명</td>
+              <td>${numberFormatter.format(Number(row.views || 0))}회</td>
+            </tr>
+          `;
+        })
+        .join("")
+    : '<tr><td colspan="3" class="admin-empty">집계된 유입 정보가 없습니다.</td></tr>';
 }
 
 function renderVisitStats(stats) {
@@ -326,7 +378,9 @@ function renderVisitStats(stats) {
       `;
     })
     .join("");
-  visitStatsStatus.textContent = "일별·월별 방문자 수를 한국 시간 기준으로 집계했습니다.";
+  renderReferrerRows(todayReferrers, stats?.today_referrers);
+  renderReferrerRows(thisMonthReferrers, stats?.this_month_referrers);
+  visitStatsStatus.textContent = "일별·월별 방문자와 유입 경로를 한국 시간 기준으로 집계했습니다.";
   if (activeBreakdownPeriod) renderPageBreakdown(activeBreakdownPeriod);
 }
 
