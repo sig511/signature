@@ -471,8 +471,8 @@
               <div class="inquiry-label">첨부파일</div>
               <div class="inquiry-field">
                 <div class="inquiry-file-inline">
-                  <input id="inquiry-attachment" name="attachment" type="file" />
-                  <span class="inquiry-file-note">(최대 25MB까지 가능)</span>
+                  <input id="inquiry-attachment" name="attachment" type="file" multiple />
+                  <span class="inquiry-file-note">(최대 3개, 파일당 25MB까지 가능)</span>
                 </div>
               </div>
             </div>
@@ -702,7 +702,9 @@
         const visaRecord = inquiryForm.querySelector("input[name='inquiry-record']:checked")?.value || "";
         const title = getFieldValue("#inquiry-title");
         const content = getFieldValue("#inquiry-content");
-        const attachmentFile = inquiryForm.querySelector("#inquiry-attachment")?.files?.[0] || null;
+        const attachmentFiles = Array.from(
+          inquiryForm.querySelector("#inquiry-attachment")?.files || []
+        );
         const path = inquiryForm.querySelector("input[name='inquiry-path']:checked")?.value || "";
         const pathOther = getFieldValue("#inquiry-path-other");
         const consent = document.getElementById("inquiry-consent");
@@ -730,7 +732,7 @@
           submitButton.textContent = "접수 중...";
         }
 
-        let attachmentInfo = null;
+        let attachmentInfos = [];
 
         const message = [
           content,
@@ -753,12 +755,17 @@
             throw new Error("Formspree 폼 주소가 아직 설정되지 않았습니다.");
           }
 
-          if (attachmentFile && attachmentFile.size > 25 * 1024 * 1024) {
-            throw new Error("첨부파일은 25MB 이하로 업로드해 주세요.");
+          if (attachmentFiles.length > 3) {
+            throw new Error("첨부파일은 최대 3개까지 선택할 수 있습니다.");
           }
 
-          if (attachmentFile) {
-            attachmentInfo = await uploadInquiryAttachment(attachmentFile);
+          const oversizedFile = attachmentFiles.find((file) => file.size > 25 * 1024 * 1024);
+          if (oversizedFile) {
+            throw new Error(`첨부파일은 파일당 25MB 이하로 업로드해 주세요. (${oversizedFile.name})`);
+          }
+
+          for (const file of attachmentFiles) {
+            attachmentInfos.push(await uploadInquiryAttachment(file));
           }
 
           const formData = new FormData(inquiryForm);
@@ -771,13 +778,16 @@
             "content",
             [
               ...message,
-              attachmentInfo ? "" : "",
-              attachmentInfo ? "[첨부파일 정보]" : "",
-              attachmentInfo ? `파일명: ${attachmentInfo.name}` : "",
-              attachmentInfo ? `Supabase 경로: ${attachmentInfo.path}` : "",
-              attachmentInfo?.signedUrl ? `다운로드 링크: ${attachmentInfo.signedUrl}` : "",
-              attachmentInfo?.type ? `파일 형식: ${attachmentInfo.type}` : "",
-              attachmentInfo?.size ? `파일 크기: ${attachmentInfo.size} bytes` : ""
+              attachmentInfos.length ? "[첨부파일 정보]" : "",
+              ...attachmentInfos.flatMap((attachmentInfo, index) => [
+                `첨부 ${index + 1}`,
+                `파일명: ${attachmentInfo.name}`,
+                `Supabase 경로: ${attachmentInfo.path}`,
+                attachmentInfo.signedUrl ? `다운로드 링크: ${attachmentInfo.signedUrl}` : "",
+                attachmentInfo.type ? `파일 형식: ${attachmentInfo.type}` : "",
+                attachmentInfo.size ? `파일 크기: ${attachmentInfo.size} bytes` : "",
+                ""
+              ])
             ].filter(Boolean).join("\n")
           );
           formData.delete("attachment");

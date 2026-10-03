@@ -350,8 +350,8 @@
               <label><span>내용<span class="board-required-mark">*</span></span><textarea name="content" rows="7" placeholder="방문상담 희망일자와 시간, 구체적인 상담요청 사항, 관련 자료를 아래 “첨부파일” 링크에 첨부해 주세요." data-rich-text="true" required></textarea></label>
               <label>첨부파일
                 <div class="file-inline-wrap">
-                  <input name="attachment" type="file" />
-                  <span class="file-inline-note">(최대 25MB까지 가능)</span>
+                  <input name="attachment" type="file" multiple />
+                  <span class="file-inline-note">(최대 3개, 파일당 25MB까지 가능)</span>
                 </div>
               </label>
               <input class="board-secret-hidden" name="secret" type="checkbox" checked />
@@ -483,7 +483,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./assets/supabase-config.js?v=20260516a"></script>
     <script src="./assets/rich-text-editor.js?v=20260902r2"></script>
-    <script src="./assets/boards-server.js?v=20260831r3"></script>
+    <script src="./assets/boards-server.js?v=20261003r1"></script>
     <script src="./assets/protect-images.js?v=20260926r1"></script>
       <script src="./assets/visitor-tracker.js?v=20260928v8"></script>
   </body>
