@@ -836,7 +836,10 @@ writeForm?.addEventListener("submit", async (event) => {
   const title = String(formData.get("title") || "").trim();
   const content = String(formData.get("content") || "").trim();
   const secret = formData.get("secret") === "on";
-  const attachmentFile = writeForm.querySelector('input[name="attachment"]')?.files?.[0] || null;
+  const attachmentFiles = Array.from(
+    writeForm.querySelector('input[name="attachment"]')?.files || []
+  );
+  const attachmentFile = attachmentFiles[0] || null;
 
   if (!author || !title || !content) {
     window.alert(TEXT.fillAll);
@@ -855,8 +858,13 @@ writeForm?.addEventListener("submit", async (event) => {
       window.alert(TEXT.fillAll);
       return;
     }
-    if (attachmentFile && attachmentFile.size > 25 * 1024 * 1024) {
-      window.alert("첨부파일은 25MB 이하로 업로드해 주세요.");
+    if (attachmentFiles.length > 3) {
+      window.alert("첨부파일은 최대 3개까지 선택할 수 있습니다.");
+      return;
+    }
+    const oversizedFile = attachmentFiles.find((file) => file.size > 25 * 1024 * 1024);
+    if (oversizedFile) {
+      window.alert(`첨부파일은 파일당 25MB 이하로 업로드해 주세요. (${oversizedFile.name})`);
       return;
     }
 
@@ -873,7 +881,10 @@ writeForm?.addEventListener("submit", async (event) => {
         throw new Error("메일 접수 주소가 설정되지 않았습니다.");
       }
 
-      const attachmentInfo = await uploadMailAttachment(attachmentFile);
+      const attachmentInfos = [];
+      for (const file of attachmentFiles) {
+        attachmentInfos.push(await uploadMailAttachment(file));
+      }
       const mailData = new FormData(writeForm);
       mailData.set("phone", `${phone1}-${phone2}-${phone3}`);
       mailData.set("request_type", boardName);
@@ -882,12 +893,15 @@ writeForm?.addEventListener("submit", async (event) => {
         "content",
         [
           content,
-          attachmentInfo ? "" : "",
-          attachmentInfo ? "[첨부파일 정보]" : "",
-          attachmentInfo ? `파일명: ${attachmentInfo.name}` : "",
-          attachmentInfo ? `다운로드 링크(7일 유효): ${attachmentInfo.signedUrl}` : "",
-          attachmentInfo?.type ? `파일 형식: ${attachmentInfo.type}` : "",
-          attachmentInfo?.size ? `파일 크기: ${attachmentInfo.size} bytes` : "",
+          attachmentInfos.length ? "[첨부파일 정보]" : "",
+          ...attachmentInfos.flatMap((attachmentInfo, index) => [
+            `첨부 ${index + 1}`,
+            `파일명: ${attachmentInfo.name}`,
+            `다운로드 링크(7일 유효): ${attachmentInfo.signedUrl}`,
+            attachmentInfo.type ? `파일 형식: ${attachmentInfo.type}` : "",
+            attachmentInfo.size ? `파일 크기: ${attachmentInfo.size} bytes` : "",
+            ""
+          ]),
         ].filter(Boolean).join("\n")
       );
       mailData.delete("attachment");
