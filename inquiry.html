@@ -640,6 +640,43 @@
       const inquiryModal = document.getElementById("inquiry-success-modal");
       const inquiryModalClose = document.getElementById("inquiry-success-close");
       const inquiryCancel = document.getElementById("inquiry-cancel");
+      const inquiryAttachmentInput = document.getElementById("inquiry-attachment");
+      const MAX_INQUIRY_ATTACHMENTS = 3;
+      const MAX_INQUIRY_ATTACHMENT_SIZE = 25 * 1024 * 1024;
+      let inquirySelectedFiles = [];
+
+      const inquiryFileKey = (file) => `${file.name}:${file.size}:${file.lastModified}`;
+      const syncInquiryAttachmentInput = () => {
+        if (!inquiryAttachmentInput || typeof DataTransfer === "undefined") return;
+        const transfer = new DataTransfer();
+        inquirySelectedFiles.forEach((file) => transfer.items.add(file));
+        inquiryAttachmentInput.files = transfer.files;
+      };
+
+      inquiryAttachmentInput?.addEventListener("change", () => {
+        const newlySelectedFiles = Array.from(inquiryAttachmentInput.files || []);
+        const oversizedFile = newlySelectedFiles.find(
+          (file) => file.size > MAX_INQUIRY_ATTACHMENT_SIZE
+        );
+        if (oversizedFile) {
+          window.alert(`첨부파일은 파일당 25MB 이하로 업로드해 주세요. (${oversizedFile.name})`);
+          syncInquiryAttachmentInput();
+          return;
+        }
+
+        const existingKeys = new Set(inquirySelectedFiles.map(inquiryFileKey));
+        const filesToAdd = newlySelectedFiles.filter(
+          (file) => !existingKeys.has(inquiryFileKey(file))
+        );
+        if (inquirySelectedFiles.length + filesToAdd.length > MAX_INQUIRY_ATTACHMENTS) {
+          window.alert("첨부파일은 최대 3개까지 선택할 수 있습니다.");
+          syncInquiryAttachmentInput();
+          return;
+        }
+
+        inquirySelectedFiles = [...inquirySelectedFiles, ...filesToAdd];
+        syncInquiryAttachmentInput();
+      });
 
       const openInquiryModal = () => {
         inquiryModal?.classList.add("is-open");
@@ -679,6 +716,8 @@
 
       inquiryCancel?.addEventListener("click", () => {
         inquiryForm?.reset();
+        inquirySelectedFiles = [];
+        syncInquiryAttachmentInput();
         syncInquiryPathOther();
       });
 
@@ -809,6 +848,8 @@
           }
 
           inquiryForm.reset();
+          inquirySelectedFiles = [];
+          syncInquiryAttachmentInput();
           syncInquiryPathOther();
           openInquiryModal();
           notifyParentHeight();
