@@ -23,6 +23,45 @@ const postViewBody = document.querySelector(".post-view-body");
 const postDelete = document.querySelector(".post-delete");
 let postEdit = document.querySelector(".post-edit");
 const boardSeedTag = document.getElementById("board-seed");
+const mailAttachmentInput = isMailSubmissionBoard
+  ? writeForm?.querySelector('input[name="attachment"][multiple]')
+  : null;
+const MAX_MAIL_ATTACHMENTS = 3;
+const MAX_MAIL_ATTACHMENT_SIZE = 25 * 1024 * 1024;
+let selectedMailAttachments = [];
+
+const mailAttachmentKey = (file) => `${file.name}:${file.size}:${file.lastModified}`;
+const syncMailAttachmentInput = () => {
+  if (!mailAttachmentInput || typeof DataTransfer === "undefined") return;
+  const transfer = new DataTransfer();
+  selectedMailAttachments.forEach((file) => transfer.items.add(file));
+  mailAttachmentInput.files = transfer.files;
+};
+
+mailAttachmentInput?.addEventListener("change", () => {
+  const newlySelectedFiles = Array.from(mailAttachmentInput.files || []);
+  const oversizedFile = newlySelectedFiles.find(
+    (file) => file.size > MAX_MAIL_ATTACHMENT_SIZE
+  );
+  if (oversizedFile) {
+    window.alert(`첨부파일은 파일당 25MB 이하로 업로드해 주세요. (${oversizedFile.name})`);
+    syncMailAttachmentInput();
+    return;
+  }
+
+  const existingKeys = new Set(selectedMailAttachments.map(mailAttachmentKey));
+  const filesToAdd = newlySelectedFiles.filter(
+    (file) => !existingKeys.has(mailAttachmentKey(file))
+  );
+  if (selectedMailAttachments.length + filesToAdd.length > MAX_MAIL_ATTACHMENTS) {
+    window.alert("첨부파일은 최대 3개까지 선택할 수 있습니다.");
+    syncMailAttachmentInput();
+    return;
+  }
+
+  selectedMailAttachments = [...selectedMailAttachments, ...filesToAdd];
+  syncMailAttachmentInput();
+});
 
 const TEXT = {
   totalPrefix: "총 ",
@@ -686,6 +725,8 @@ function renderPost(post) {
 function resetWriteFormState() {
   editingPostId = null;
   editingPassword = "";
+  selectedMailAttachments = [];
+  syncMailAttachmentInput();
   if (writeForm) {
     const heading = writeForm.querySelector("h3");
     if (heading) heading.textContent = `${boardName} 작성`;
