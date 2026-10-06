@@ -875,7 +875,7 @@
           inquirySelectedFiles = [];
           syncInquiryAttachmentInput();
           syncInquiryPathOther();
-          openInquiryModal();
+          window.alert("상담·문의가 성공적으로 접수되었습니다.");
           notifyParentHeight();
         } catch (error) {
           window.alert(error.message || "문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
