@@ -30,12 +30,38 @@ const MAX_MAIL_ATTACHMENTS = 3;
 const MAX_MAIL_ATTACHMENT_SIZE = 25 * 1024 * 1024;
 let selectedMailAttachments = [];
 
+const mailAttachmentList = document.createElement("div");
+mailAttachmentList.setAttribute("aria-live", "polite");
+mailAttachmentList.style.cssText = "display:grid;gap:8px;margin-top:10px;";
+mailAttachmentInput?.closest(".file-inline-wrap")?.insertAdjacentElement(
+  "afterend",
+  mailAttachmentList
+);
+
 const mailAttachmentKey = (file) => `${file.name}:${file.size}:${file.lastModified}`;
+const renderMailAttachmentList = () => {
+  mailAttachmentList.replaceChildren();
+  selectedMailAttachments.forEach((file, index) => {
+    const row = document.createElement("div");
+    row.style.cssText = "display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;border:1px solid #d8e1e8;border-radius:8px;background:#f8fafc;color:#29445d;font-size:14px;";
+    const name = document.createElement("span");
+    name.textContent = `${index + 1}. ${file.name}`;
+    name.style.cssText = "overflow:hidden;text-overflow:ellipsis;white-space:nowrap;";
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.textContent = "삭제";
+    remove.style.cssText = "flex:0 0 auto;border:0;background:transparent;color:#b33a3a;font:inherit;font-weight:700;cursor:pointer;";
+    remove.addEventListener("click", () => {
+      selectedMailAttachments.splice(index, 1);
+      syncMailAttachmentInput();
+    });
+    row.append(name, remove);
+    mailAttachmentList.append(row);
+  });
+};
 const syncMailAttachmentInput = () => {
-  if (!mailAttachmentInput || typeof DataTransfer === "undefined") return;
-  const transfer = new DataTransfer();
-  selectedMailAttachments.forEach((file) => transfer.items.add(file));
-  mailAttachmentInput.files = transfer.files;
+  if (mailAttachmentInput) mailAttachmentInput.value = "";
+  renderMailAttachmentList();
 };
 
 mailAttachmentInput?.addEventListener("change", () => {
@@ -877,9 +903,9 @@ writeForm?.addEventListener("submit", async (event) => {
   const title = String(formData.get("title") || "").trim();
   const content = String(formData.get("content") || "").trim();
   const secret = formData.get("secret") === "on";
-  const attachmentFiles = Array.from(
-    writeForm.querySelector('input[name="attachment"]')?.files || []
-  );
+  const attachmentFiles = isMailSubmissionBoard
+    ? [...selectedMailAttachments]
+    : Array.from(writeForm.querySelector('input[name="attachment"]')?.files || []);
   const attachmentFile = attachmentFiles[0] || null;
 
   if (!author || !title || !content) {
