@@ -78,7 +78,6 @@ const PAGE_LABELS = {
   "inquiry.html": "온라인 상담·문의",
   "quote.html": "견적 요청",
   "reservation.html": "방문 상담 예약",
-  "portfolio.html": "포트폴리오",
   "pc-mobile-index.html": "메인",
   "pc-mobile-company.html": "사무소 소개",
   "pc-mobile-business.html": "컨설팅 업무",

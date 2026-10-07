@@ -34,6 +34,7 @@ const visitPageBreakdownTitle = document.getElementById("visit-page-breakdown-ti
 const visitPageBreakdownList = document.getElementById("visit-page-breakdown-list");
 const visitPageBreakdownEmpty = document.getElementById("visit-page-breakdown-empty");
 const visitPageBreakdownClose = document.getElementById("visit-page-breakdown-close");
+const backToTopButton = document.getElementById("admin-back-to-top");
 const sharedAdminKey = "signature-admin-auth";
 const sharedAdminLogoutKey = "signature-admin-logged-out";
 const adminEmailKey = "signature-admin-email";
@@ -78,7 +79,6 @@ const PAGE_LABELS = {
   "inquiry.html": "온라인 상담·문의",
   "quote.html": "견적 요청",
   "reservation.html": "방문 상담 예약",
-  "portfolio.html": "포트폴리오",
   "pc-mobile-index.html": "메인",
   "pc-mobile-company.html": "사무소 소개",
   "pc-mobile-business.html": "컨설팅 업무",
@@ -212,9 +212,8 @@ function getPageLabel(path) {
 }
 
 function getDeviceDisplay(device) {
-  if (device === "pc") return { label: "PC", className: "pc" };
   if (device === "mobile") return { label: "모바일", className: "mobile" };
-  return { label: "기존 기록", className: "unknown" };
+  return { label: "PC", className: "pc" };
 }
 
 function renderPageBreakdown(period) {
@@ -224,15 +223,39 @@ function renderPageBreakdown(period) {
   const rows = isToday
     ? visitStatsCache.today_page_views
     : visitStatsCache.this_month_page_views;
-  const pageRows = Array.isArray(rows) ? rows : [];
+  const pageRows = (Array.isArray(rows) ? rows : []).map((row) => ({
+    ...row,
+    device: row.device === "mobile" ? "mobile" : "pc",
+  }));
 
   visitPageBreakdownTitle.textContent = isToday
     ? "오늘 페이지별 조회수"
     : "이번 달 페이지별 조회수";
-  visitPageBreakdownList.innerHTML = pageRows
-    .map((row) => {
-      const device = getDeviceDisplay(row.device);
-      return `
+  const deviceGroups = [
+    { key: "pc", label: "PC 접속" },
+    { key: "mobile", label: "모바일 접속" },
+  ];
+
+  visitPageBreakdownList.innerHTML = pageRows.length
+    ? deviceGroups
+        .map((group) => {
+          const groupRows = pageRows
+            .filter((row) => row.device === group.key)
+            .sort(
+              (a, b) =>
+                Number(b.views || 0) - Number(a.views || 0) ||
+                getPageLabel(a.path).localeCompare(getPageLabel(b.path), "ko") ||
+                String(a.path).localeCompare(String(b.path), "ko")
+            );
+          const groupViews = groupRows.reduce(
+            (total, row) => total + Number(row.views || 0),
+            0
+          );
+          const renderedRows = groupRows.length
+            ? groupRows
+                .map((row) => {
+                  const device = getDeviceDisplay(row.device);
+                  return `
         <tr>
           <td>
             <strong>${escapeHtml(getPageLabel(row.path))}</strong>
@@ -242,8 +265,22 @@ function renderPageBreakdown(period) {
           <td>${numberFormatter.format(Number(row.views || 0))}회</td>
         </tr>
       `;
-    })
-    .join("");
+                })
+                .join("")
+            : '<tr class="visit-device-group-empty"><td colspan="3">집계된 조회수가 없습니다.</td></tr>';
+
+          return `
+            <tr class="visit-device-group-row">
+              <th colspan="3">
+                <span>${group.label}</span>
+                <strong>총 ${numberFormatter.format(groupViews)}회</strong>
+              </th>
+            </tr>
+            ${renderedRows}
+          `;
+        })
+        .join("")
+    : "";
   visitPageBreakdownEmpty.classList.toggle("hidden", pageRows.length > 0);
   visitPageBreakdown.classList.remove("hidden");
   visitPageBreakdown.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -577,6 +614,17 @@ visitPageBreakdownClose.addEventListener("click", () => {
   activeBreakdownPeriod = "";
   visitPageBreakdown.classList.add("hidden");
 });
+
+function syncBackToTopButton() {
+  backToTopButton.classList.toggle("visible", window.scrollY > 360);
+}
+
+backToTopButton.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+window.addEventListener("scroll", syncBackToTopButton, { passive: true });
+syncBackToTopButton();
 
 window.addEventListener("load", async () => {
   if (localStorage.getItem(sharedAdminLogoutKey) === "true") {
