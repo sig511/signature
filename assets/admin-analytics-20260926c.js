@@ -233,11 +233,29 @@ function formatVisitMonth(value) {
 function getPageLabel(path) {
   try {
     const pageUrl = new URL(String(path || "/"), "https://signature.local");
-    const fileName = pageUrl.pathname.split("/").filter(Boolean).pop() || "index.html";
+    const fileName = pageUrl.pathname.endsWith("/")
+      ? "index.html"
+      : pageUrl.pathname.split("/").filter(Boolean).pop() || "index.html";
     const section = pageUrl.searchParams.get("section") || "";
     return SECTION_LABELS[section] || PAGE_LABELS[fileName] || fileName;
   } catch {
     return String(path || "알 수 없는 페이지");
+  }
+}
+
+function normalizeStatsPath(path) {
+  try {
+    const pageUrl = new URL(String(path || "/"), "https://signature.local");
+    const fileName = pageUrl.pathname.split("/").filter(Boolean).pop() || "index.html";
+    if (fileName === "portfolio.html") return "";
+
+    if (["/", "/index.html", "/signature", "/signature/", "/signature/index.html"].includes(pageUrl.pathname)) {
+      return "/signature/";
+    }
+
+    return `${pageUrl.pathname}${pageUrl.search}`;
+  } catch {
+    return String(path || "");
   }
 }
 
@@ -264,10 +282,21 @@ function renderPageBreakdown(period) {
   const rows = isToday
     ? visitStatsCache.today_page_views
     : visitStatsCache.this_month_page_views;
-  const pageRows = (Array.isArray(rows) ? rows : []).map((row) => ({
-    ...row,
-    device: row.device === "mobile" ? "mobile" : "pc",
-  }));
+  const mergedRows = new Map();
+  (Array.isArray(rows) ? rows : []).forEach((row) => {
+    const path = normalizeStatsPath(row.path);
+    if (!path) return;
+    const device = row.device === "mobile" ? "mobile" : "pc";
+    const key = `${device}|${path}`;
+    const current = mergedRows.get(key);
+    mergedRows.set(key, {
+      ...row,
+      path,
+      device,
+      views: Number(current?.views || 0) + Number(row.views || 0),
+    });
+  });
+  const pageRows = Array.from(mergedRows.values());
 
   visitPageBreakdownTitle.textContent = isToday
     ? "오늘 페이지별 조회수"
