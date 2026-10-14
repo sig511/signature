@@ -477,11 +477,11 @@
               </div>
             </div>
             <div class="inquiry-row inquiry-row-path">
-              <div class="inquiry-label inquiry-path-side-label"><span>시그니처 행정사사무소를</span><span>어떻게 알게 되셨나요?</span></div>
+              <div class="inquiry-label inquiry-path-side-label"><span>시그니처 행정사사무소를</span><span>어떻게 알게 되셨나요?<b class="board-required-mark">*</b></span></div>
               <div class="inquiry-field">
                 <div class="inquiry-path-stack">
                   <div class="inquiry-path-options">
-                  <label><input type="radio" name="inquiry-path" value="네이버 검색" /> 네이버 검색</label>
+                  <label><input type="radio" name="inquiry-path" value="네이버 검색" required /> 네이버 검색</label>
                   <label><input type="radio" name="inquiry-path" value="구글 검색" /> 구글 검색</label>
                   <label><input type="radio" name="inquiry-path" value="네이버 지도·플레이스" /> 네이버 지도·플레이스</label>
                   <label><input type="radio" name="inquiry-path" value="가족·지인 소개" /> 가족·지인 소개</label>
@@ -729,8 +729,9 @@
         if (inquiryPathOtherWrap) {
           inquiryPathOtherWrap.hidden = !isOther;
         }
-        if (!isOther && inquiryPathOtherInput) {
-          inquiryPathOtherInput.value = "";
+        if (inquiryPathOtherInput) {
+          inquiryPathOtherInput.required = isOther;
+          if (!isOther) inquiryPathOtherInput.value = "";
         }
         notifyParentHeight();
       };
