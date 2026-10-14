@@ -567,7 +567,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./assets/supabase-config.js?v=20260516a"></script>
-    <script src="./assets/rich-text-editor.js?v=20260902r2"></script>
+    <script src="./assets/rich-text-editor.js?v=20261014r2"></script>
     <script>
       const inquirySupabase = window.supabase.createClient(
         window.SIGNATURE_SUPABASE.url,
@@ -798,8 +798,9 @@
 
         let attachmentInfos = [];
 
+        const plainContent = window.SignatureRichText?.toPlainText?.(content) || content;
         const message = [
-          content,
+          plainContent,
           "",
           visaNationality || visaDeparture || visaStay || visaStatus || visaRecord
             ? "[비자 문의 추가 정보]"
@@ -834,6 +835,8 @@
 
           const formData = new FormData(inquiryForm);
           formData.set("phone", `${phone1}-${phone2}-${phone3}`);
+          formData.set("request_type", "상담·문의");
+          formData.set("_subject", `[홈페이지 상담·문의] ${title}`);
           formData.set("visa_stay", visaStay);
           formData.set("visa_record", visaRecord);
           formData.set("referral_path", path);
@@ -855,6 +858,9 @@
             ].filter(Boolean).join("\n")
           );
           formData.delete("attachment");
+          formData.delete("phone1");
+          formData.delete("phone2");
+          formData.delete("phone3");
 
           const response = await fetch(formAction, {
             method: "POST",
