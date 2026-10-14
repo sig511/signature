@@ -970,7 +970,7 @@ writeForm?.addEventListener("submit", async (event) => {
       for (const file of attachmentFiles) {
         attachmentInfos.push(await uploadMailAttachment(file));
       }
-      const mailContent = window.SignatureRichText?.toPlainText(content) || content;
+      const mailContent = window.SignatureRichText?.toPlainText?.(content) || content;
       const mailData = new FormData(writeForm);
       mailData.set("phone", `${phone1}-${phone2}-${phone3}`);
       mailData.set("request_type", boardName);
