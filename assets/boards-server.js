@@ -30,6 +30,24 @@ const MAX_MAIL_ATTACHMENTS = 3;
 const MAX_MAIL_ATTACHMENT_SIZE = 25 * 1024 * 1024;
 let selectedMailAttachments = [];
 
+const referralOtherWrap = writeForm?.querySelector(".board-referral-other");
+const referralOtherInput = referralOtherWrap?.querySelector('input[name="path_other"]');
+const syncReferralOther = () => {
+  const selectedPath = writeForm?.querySelector('input[name="referral_path"]:checked')?.value || "";
+  const isOther = selectedPath === "기타";
+  if (referralOtherWrap) referralOtherWrap.hidden = !isOther;
+  if (referralOtherInput) {
+    referralOtherInput.required = isOther;
+    if (!isOther) referralOtherInput.value = "";
+  }
+};
+
+writeForm?.querySelectorAll('input[name="referral_path"]').forEach((radio) => {
+  radio.addEventListener("change", syncReferralOther);
+});
+writeForm?.addEventListener("reset", () => setTimeout(syncReferralOther, 0));
+syncReferralOther();
+
 const mailAttachmentList = document.createElement("div");
 mailAttachmentList.setAttribute("aria-live", "polite");
 mailAttachmentList.style.cssText = "display:grid;gap:8px;margin-top:10px;";
