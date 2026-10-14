@@ -10,7 +10,7 @@
         document.documentElement.classList.add("is-embedded");
       }
     </script>
-    <link rel="stylesheet" href="boards.css?v=20260926r1" />
+    <link rel="stylesheet" href="boards.css?v=20261014r7" />
     <style>
       .board-guide-head h1,
       .board-list-head .board-subsection-title {
@@ -354,6 +354,18 @@
                   <span class="file-inline-note">(최대 3개, 파일당 25MB까지 가능)</span>
                 </div>
               </label>
+              <fieldset class="board-referral-field">
+                <legend>시그니처 행정사사무소를<br />어떻게 알게 되셨나요?</legend>
+                <div class="board-referral-options">
+                  <label><input type="radio" name="referral_path" value="네이버 검색" /> 네이버 검색</label>
+                  <label><input type="radio" name="referral_path" value="구글 검색" /> 구글 검색</label>
+                  <label><input type="radio" name="referral_path" value="네이버 지도·플레이스" /> 네이버 지도·플레이스</label>
+                  <label><input type="radio" name="referral_path" value="가족·지인 소개" /> 가족·지인 소개</label>
+                  <label><input type="radio" name="referral_path" value="전문가·업체 소개" /> 전문가·업체 소개</label>
+                  <label><input type="radio" name="referral_path" value="기타" /> 기타</label>
+                  <span class="board-referral-other" hidden><input name="path_other" type="text" placeholder="예: 명함, 지역 커뮤니티 등" /></span>
+                </div>
+              </fieldset>
               <input class="board-secret-hidden" name="secret" type="checkbox" checked />
               <div class="board-consent-wrap">
                 <h4 class="board-consent-title">[개인정보 수집 및 이용 동의]</h4>
@@ -483,7 +495,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./assets/supabase-config.js?v=20260516a"></script>
     <script src="./assets/rich-text-editor.js?v=20261014r1"></script>
-    <script src="./assets/boards-server.js?v=20261014r1"></script>
+    <script src="./assets/boards-server.js?v=20261014r2"></script>
     <script src="./assets/protect-images.js?v=20260926r1"></script>
       <script src="./assets/visitor-tracker.js?v=20260928v8"></script>
   </body>
