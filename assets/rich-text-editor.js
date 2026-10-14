@@ -125,8 +125,14 @@
 
   const plainText = (value) => {
     const template = document.createElement("template");
-    template.innerHTML = sanitizeHtml(value).replaceAll(/<br\s*\/?>/gi, "\n");
-    return (template.content.textContent || "").replaceAll("\u00a0", " ").trim();
+    template.innerHTML = sanitizeHtml(value);
+    template.content.querySelectorAll("br").forEach((node) => node.replaceWith("\n"));
+    template.content.querySelectorAll("div, p, li").forEach((node) => node.append("\n"));
+    return (template.content.textContent || "")
+      .replaceAll("\u00a0", " ")
+      .replace(/[ \t]+\n/g, "\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
   };
 
   const hasContent = (value) => {
