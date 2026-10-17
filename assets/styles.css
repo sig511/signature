@@ -1,9 +1,16 @@
 @font-face {
   font-family: "Copperplate Gothic Light";
-  src: local("Copperplate Gothic Light"),
-       url("file:///C:/Users/JYJ/AppData/Local/Microsoft/Windows/Fonts/copperplate-gothic-light.ttf") format("truetype");
+  src: url("../COPRGTL.TTF") format("truetype");
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Copperplate Gothic Light";
+  src: url("../COPRGTB.TTF") format("truetype");
+  font-style: normal;
+  font-weight: 700;
   font-display: swap;
 }
 
