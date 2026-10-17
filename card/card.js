@@ -27,3 +27,9 @@ document.querySelectorAll('img').forEach(image=>{
   image.draggable=false;
   image.addEventListener('dragstart',event=>event.preventDefault());
 });
+
+const scrollTopButton=document.querySelector('.scroll-top');
+const updateScrollTopButton=()=>scrollTopButton.classList.toggle('show',window.scrollY>320);
+window.addEventListener('scroll',updateScrollTopButton,{passive:true});
+scrollTopButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+updateScrollTopButton();
