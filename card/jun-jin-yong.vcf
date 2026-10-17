@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:전;진용;;;
+FN:전진용
+ORG:시그니처 행정사사무소
+TITLE:대표 행정사
+TEL;TYPE=CELL,VOICE:010-7775-5116
+TEL;TYPE=WORK,VOICE:0507-1380-5116
+EMAIL;TYPE=INTERNET,WORK:SIG511@naver.com
+ADR;TYPE=WORK:;;디지털로 288\, 대륭포스트타워 1차 208호;구로구;서울특별시;;대한민국
+URL:https://sig511.github.io/signature/
+END:VCARD
