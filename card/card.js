@@ -6,7 +6,7 @@ const profile={
   office:'050713805116',
   email:'SIG511@naver.com',
   address:'서울시 구로구 디지털로 288, 대륭포스트타워 1차 208호',
-  website:'https://sig511.github.io/signature/'
+  website:'https://sig511.github.io/signature'
 };
 const toast=document.querySelector('.toast');
 function notify(message){toast.textContent=message;toast.classList.add('show');clearTimeout(notify.timer);notify.timer=setTimeout(()=>toast.classList.remove('show'),1800)}
