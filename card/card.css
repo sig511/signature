@@ -51,5 +51,21 @@ footer p{color:#fff}
 .bottom-dock .dock-image-item{transform:translateY(3px)}
 .bottom-dock .dock-kakao-item{transform:translateY(5px)}
 .bottom-dock .dock-kakao-item .kakao-icon{margin-bottom:7px}
+.hero .eyebrow{font-family:"Copperplate Gothic Light","Copperplate Gothic",Copperplate,serif;font-size:10px;line-height:1.65;letter-spacing:.035em}
+.primary-actions .sms-icon{font-size:22px}
+.bottom-dock a:not(.dock-image-item) span,.bottom-dock button span{font-size:20px}
+.section-kicker{font-size:11px;letter-spacing:.14em}
+.hero .eyebrow,.name-en,.section-kicker,.row-label,footer small{font-family:"Copperplate Gothic","Copperplate Gothic Light",Copperplate,serif}
+.hero .eyebrow{font-weight:700}
+.primary-actions strong{font-size:13px}
+.bottom-dock a,.bottom-dock button{font-size:11px}
+.row-label{font-size:10px}
+.row-label{font-weight:700}
+.service-card p{font-size:13px}
+.service-card .service-en{display:block;color:#dfc08a;font:700 11px/1.5 "Copperplate Gothic","Copperplate Gothic Light",Copperplate,serif;letter-spacing:.14em;margin:5px 0 0}
+footer>p{font-size:19px;line-height:1.65;margin-bottom:54px;color:#fff;word-break:keep-all}
+@media(max-width:390px){footer>p{font-size:17px}}
+.footer-values{list-style:none;margin:32px 0 54px;padding:0}.footer-values li{position:relative;padding-left:22px;color:#fff;font-family:"Malgun Gothic","맑은 고딕",sans-serif;font-size:19px;line-height:1.65;word-break:keep-all}.footer-values li+li{margin-top:4px}.footer-values li:before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;background:#dfc08a;transform:rotate(45deg)}
+@media(max-width:390px){.footer-values li{font-size:17px}}
 @media(min-width:521px){body{padding:28px 0}.bottom-dock{bottom:22px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.toast{transition:none}}
