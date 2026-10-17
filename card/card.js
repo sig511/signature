@@ -20,3 +20,10 @@ if(/Android/i.test(navigator.userAgent)){
 async function shareCard(){const data={title:'전진용 대표 행정사 | 시그니처 행정사사무소',text:'일반행정·공인번역·의료기기 컨설팅',url:location.href};if(navigator.share){try{await navigator.share(data)}catch(error){if(error.name!=='AbortError')copyText(location.href,'명함 주소를 복사했습니다')}}else{copyText(location.href,'명함 주소를 복사했습니다')}}
 document.querySelectorAll('[data-action="share"]').forEach(button=>button.addEventListener('click',shareCard));
 document.querySelector('[data-action="copy-link"]').addEventListener('click',()=>copyText(location.href,'명함 주소를 복사했습니다'));
+
+// 이미지 저장 메뉴와 드래그 저장을 제한합니다.
+document.addEventListener('contextmenu',event=>event.preventDefault());
+document.querySelectorAll('img').forEach(image=>{
+  image.draggable=false;
+  image.addEventListener('dragstart',event=>event.preventDefault());
+});
