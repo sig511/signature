@@ -58,7 +58,10 @@ footer p{color:#fff}
 .bottom-dock .dock-kakao-item{transform:translateY(5px)}
 .bottom-dock .dock-kakao-item .kakao-icon{margin-bottom:7px}
 .hero .eyebrow{font-family:"Copperplate Gothic Light","Copperplate Gothic",Copperplate,serif;font-size:10px;line-height:1.65;letter-spacing:.035em}
-.primary-actions .sms-icon{font-size:22px}
+.primary-actions .sms-icon{font-size:22px;line-height:1}
+.primary-actions .sms-icon svg{display:block;width:22px;height:22px}
+.primary-actions .email-icon{font-weight:800}
+.primary-actions .share-icon svg{display:block;width:21px;height:21px}
 .bottom-dock a:not(.dock-image-item) span,.bottom-dock button span{font-size:20px}
 .section-kicker{font-size:11px;letter-spacing:.14em}
 .hero .eyebrow,.name-en,.section-kicker,.row-label,footer small{font-family:"Copperplate Gothic Web","Copperplate Gothic","Copperplate Gothic Light",Copperplate,serif}
