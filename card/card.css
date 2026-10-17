@@ -67,5 +67,9 @@ footer>p{font-size:19px;line-height:1.65;margin-bottom:54px;color:#fff;word-brea
 @media(max-width:390px){footer>p{font-size:17px}}
 .footer-values{list-style:none;margin:32px 0 54px;padding:0}.footer-values li{position:relative;padding-left:22px;color:#fff;font-family:"Malgun Gothic","맑은 고딕",sans-serif;font-size:19px;line-height:1.65;word-break:keep-all}.footer-values li+li{margin-top:4px}.footer-values li:before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;background:#dfc08a;transform:rotate(45deg)}
 @media(max-width:390px){.footer-values li{font-size:17px}}
+.section-pad h2{font-size:24px}
+.brand,footer>img{width:min(76%,350px)}
+@media(max-width:390px){.brand,footer>img{width:78%}}
+.hero .eyebrow,.section-kicker{font-variant:small-caps;text-transform:none}
 @media(min-width:521px){body{padding:28px 0}.bottom-dock{bottom:22px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.toast{transition:none}}
