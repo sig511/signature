@@ -50,5 +50,6 @@ footer p{color:#fff}
 .bottom-dock>.mobile-phone-icon,.bottom-dock a>.mobile-phone-icon{margin:0 auto 4px}
 .bottom-dock .dock-image-item{transform:translateY(3px)}
 .bottom-dock .dock-kakao-item{transform:translateY(5px)}
+.bottom-dock .dock-kakao-item .kakao-icon{margin-bottom:7px}
 @media(min-width:521px){body{padding:28px 0}.bottom-dock{bottom:22px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.toast{transition:none}}
