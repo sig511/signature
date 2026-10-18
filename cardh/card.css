@@ -1,0 +1,110 @@
+@font-face{font-family:"Copperplate Gothic Web";src:url("../COPRGTL.TTF") format("truetype");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Copperplate Gothic Web";src:url("../COPRGTB.TTF") format("truetype");font-style:normal;font-weight:700;font-display:swap}
+img{-webkit-user-drag:none;-webkit-touch-callout:none;user-select:none}
+.scroll-top{position:fixed;right:max(16px,calc((100vw - 520px)/2 + 16px));bottom:92px;z-index:25;width:42px;height:42px;padding:0;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(105,12,39,.94);box-shadow:0 8px 22px rgba(0,0,0,.25);color:#fff;font:700 21px/1 sans-serif;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .2s,visibility .2s,transform .2s}
+.scroll-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.scroll-top:focus-visible{outline:3px solid #dfc08a;outline-offset:2px}
+:root{--wine:#690b24;--wine-dark:#3e0716;--navy:#152033;--paper:#f7f3ec;--gold:#bda06b;--ink:#22242a;--line:rgba(34,36,42,.16)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#dedbd5;color:var(--ink);font-family:"Malgun Gothic","맑은 고딕",sans-serif}.card-shell{width:min(100%,520px);margin:0 auto;background:var(--paper);box-shadow:0 0 60px rgba(16,18,24,.14);overflow:hidden}.hero{min-height:700px;padding:30px 24px 0;background:linear-gradient(150deg,var(--wine-dark),var(--wine) 58%,#8e1d35);color:#fff;position:relative;overflow:hidden}.hero-pattern{position:absolute;inset:0;opacity:.18;background:linear-gradient(120deg,transparent 0 55%,rgba(255,255,255,.16) 55.2% 55.5%,transparent 55.7%),radial-gradient(circle at 80% 12%,transparent 0 90px,rgba(255,255,255,.22) 91px 92px,transparent 93px)}.brand{position:relative;display:block;width:min(100%,455px);padding:0;background:transparent;z-index:2}.brand img{width:100%;height:auto;display:block;filter:brightness(0) invert(1)}.hero-copy{position:relative;z-index:2;margin-top:54px}.eyebrow{font-size:9px;letter-spacing:.17em;color:#e2cda3;margin:0 0 28px}.position{font-size:15px;margin:0 0 4px}.hero h1{font-family:"Malgun Gothic","맑은 고딕",sans-serif;font-size:58px;line-height:1;margin:0;letter-spacing:-.06em}.name-en{font-size:10px;letter-spacing:.3em;margin:11px 0 0;color:#e2cda3}.hero-message{position:relative;z-index:3;font-family:"Malgun Gothic","맑은 고딕",sans-serif;font-size:19px;line-height:1.55;margin:34px 0 0}.portrait-frame{position:absolute;right:-60px;bottom:0;width:390px;height:485px;z-index:1}.portrait-frame img{position:absolute;right:0;bottom:-20px;width:360px;height:auto;filter:drop-shadow(-15px 12px 24px rgba(0,0,0,.32))}.portrait-ring{position:absolute;width:310px;height:310px;border:1px solid rgba(226,205,163,.55);border-radius:50%;right:24px;top:45px}.primary-actions{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-bottom:1px solid var(--line)}.primary-actions a,.primary-actions button{padding:18px 3px 16px;border:0;border-right:1px solid var(--line);background:none;color:inherit;text-decoration:none;font:inherit;text-align:center;cursor:pointer}.primary-actions>*:last-child{border-right:0}.primary-actions span{display:block;width:34px;height:34px;margin:0 auto 7px;border:1px solid var(--wine);border-radius:50%;display:grid;place-items:center;color:var(--wine);font-size:16px}.primary-actions strong{font-size:11px;font-weight:600}.section-pad{padding:66px 24px}.section-kicker{font-size:9px;letter-spacing:.22em;font-weight:700;color:var(--wine);margin-bottom:10px}.section-kicker.light{color:#dfc08a}.section-pad h2{font-family:"Malgun Gothic","맑은 고딕",sans-serif;font-size:35px;letter-spacing:-.05em;margin:0 0 34px}.contact-list{border-top:1px solid var(--ink)}.contact-row{display:grid;grid-template-columns:70px 1fr 24px;align-items:center;gap:10px;padding:19px 0;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}.row-label{font-size:8px;letter-spacing:.16em;color:#777}.row-value{font-size:15px;font-weight:600}.address-row .row-value{font-size:13px;line-height:1.65}.arrow{font-size:18px;color:var(--wine);text-align:right}.services{background:var(--navy);color:#fff}.service-card{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:25px 0;border-top:1px solid rgba(255,255,255,.2)}.service-card:last-child{border-bottom:1px solid rgba(255,255,255,.2)}.service-no{font-family:"Malgun Gothic","맑은 고딕",sans-serif;font-size:13px;color:#dfc08a}.service-card h3{font-size:19px;margin:0 0 10px}.service-card p{font-size:12px;line-height:1.8;color:#c9ced7;margin:0;word-break:keep-all}.credentials ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}.credentials li{position:relative;padding:15px 4px 15px 24px;border-bottom:1px solid var(--line);font-size:13px;line-height:1.55}.credentials li:before{content:"";position:absolute;left:2px;top:21px;width:7px;height:7px;background:var(--wine);transform:rotate(45deg)}.link-section{padding-top:0}.wide-button{width:100%;min-height:58px;padding:0 18px;margin-top:10px;border:1px solid var(--ink);background:transparent;color:inherit;text-decoration:none;font:600 14px "Malgun Gothic","맑은 고딕",sans-serif;display:flex;align-items:center;justify-content:space-between;cursor:pointer}.wide-button.accent{background:var(--wine);border-color:var(--wine);color:#fff}.wide-button span{font-size:19px}footer{padding:62px 24px 118px;background:#26050e;color:#fff}footer img{width:82%;background:transparent;padding:0;filter:brightness(0) invert(1)}footer p{font-family:"Malgun Gothic","맑은 고딕",sans-serif;font-size:21px;line-height:1.65;margin:32px 0 54px;color:#eadbc0}footer small{font-size:8px;letter-spacing:.13em;color:#a99199}.bottom-dock{position:fixed;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:20;width:min(calc(100% - 20px),500px);display:grid;grid-template-columns:repeat(4,1fr);padding:10px 5px;border-radius:17px;background:rgba(21,32,51,.97);box-shadow:0 12px 36px rgba(0,0,0,.3);backdrop-filter:blur(12px)}.bottom-dock a,.bottom-dock button{border:0;background:none;color:#fff;text-decoration:none;font:9px "Malgun Gothic","맑은 고딕",sans-serif;text-align:center;cursor:pointer}.bottom-dock span{display:block;margin-bottom:4px;color:#dfc08a;font-size:17px}.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,10px);opacity:0;pointer-events:none;z-index:30;padding:11px 16px;border-radius:99px;background:#111;color:#fff;font-size:12px;white-space:nowrap;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+.brand{width:min(94%,430px)}
+.brand img{filter:none}
+.brand-tagline{position:absolute;left:20.4%;bottom:7%;display:block;color:#fff;font:700 clamp(9px,2.35vw,13px)/1.2 "Malgun Gothic","맑은 고딕",sans-serif;letter-spacing:.01em;white-space:nowrap}
+.footer-logo{position:relative;width:82%}
+.footer-logo img{width:100%;filter:none}
+.footer-logo .brand-tagline{left:20.4%}
+.brand,.footer-logo{display:flex;align-items:center;gap:13px;width:100%;text-decoration:none}
+.brand .brand-symbol,.footer-logo .brand-symbol{flex:0 0 auto;width:74px;height:74px;object-fit:contain;filter:none}
+.brand-copy{display:flex;min-width:0;flex-direction:column;color:#fff}
+.brand-copy strong{font:700 clamp(22px,5.2vw,31px)/1.12 "Malgun Gothic","맑은 고딕",sans-serif;letter-spacing:-.075em;white-space:nowrap}
+.brand-copy small{margin-top:6px;font:700 clamp(8px,2vw,11px)/1.2 "Malgun Gothic","맑은 고딕",sans-serif;letter-spacing:-.025em;white-space:nowrap}
+.footer-logo{width:100%}
+.footer-logo .brand-symbol{width:64px;height:64px}
+.footer-logo .brand-copy strong{font-size:clamp(19px,4.8vw,27px)}
+.footer-logo .brand-copy small{font-size:clamp(7px,1.8vw,10px)}
+.brand{display:block;width:min(90%,410px);padding:15px 16px;background:#fff;border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.16)}
+.brand img{width:100%;height:auto;display:block;filter:none}
+footer>img{width:82%;background:#fff;padding:12px;border-radius:3px;filter:none}
+.hero{background:#fff;color:var(--wine)}
+.hero-pattern{opacity:.08;background:linear-gradient(120deg,transparent 0 55%,rgba(105,11,36,.38) 55.2% 55.5%,transparent 55.7%),radial-gradient(circle at 80% 12%,transparent 0 90px,rgba(105,11,36,.42) 91px 92px,transparent 93px)}
+.brand{box-shadow:none}
+.eyebrow,.name-en{color:var(--wine)}
+.position{color:var(--navy)}
+.hero-message{color:var(--navy)}
+.portrait-ring{border-color:rgba(105,11,36,.25)}
+.hero{background:linear-gradient(150deg,var(--wine-dark),var(--wine) 58%,#8e1d35);color:#fff}
+.hero-pattern{opacity:.18;background:linear-gradient(120deg,transparent 0 55%,rgba(255,255,255,.16) 55.2% 55.5%,transparent 55.7%),radial-gradient(circle at 80% 12%,transparent 0 90px,rgba(255,255,255,.22) 91px 92px,transparent 93px)}
+.brand{width:min(76%,350px);padding:0;background:transparent;box-shadow:none}
+.brand img{width:100%;height:auto;display:block;filter:none}
+.eyebrow,.name-en{color:#e2cda3}
+.position,.hero-message{color:#fff}
+.portrait-ring{border-color:rgba(226,205,163,.55)}
+.hero h1{font-size:31px}
+.name-en{font-size:9px}
+footer>img{width:76%;background:transparent;padding:0;border-radius:0;filter:none}
+@media(max-width:390px){.brand{width:78%;padding:0}.hero h1{font-size:29px}}
+@media(max-width:390px){.hero{min-height:650px}.hero h1{font-size:29px}.portrait-frame{right:-92px;width:360px;height:440px}.portrait-frame img{width:330px}.hero-message{font-size:17px}.section-pad{padding-left:20px;padding-right:20px}}
+
+/* Final sizing and footer color */
+.hero h1{font-size:26px}
+footer{background:var(--wine)}
+@media(max-width:390px){.hero h1{font-size:24px}}
+
+footer p{color:#fff}
+.bottom-dock .kakao-icon{display:block;width:19px;height:19px;margin:0 auto 4px;border-radius:4px;object-fit:cover}
+.mobile-phone-icon{display:block;width:21px;height:21px;margin:auto;color:#dfc08a}
+.primary-actions .mobile-phone-icon{color:var(--wine)}
+.bottom-dock>.mobile-phone-icon,.bottom-dock a>.mobile-phone-icon{margin:0 auto 4px}
+.bottom-dock .dock-image-item{transform:translateY(3px)}
+.bottom-dock .dock-kakao-item{transform:translateY(5px)}
+.bottom-dock .dock-kakao-item .kakao-icon{margin-bottom:7px}
+.hero .eyebrow{font-family:"Copperplate Gothic Light","Copperplate Gothic",Copperplate,serif;font-size:10px;line-height:1.65;letter-spacing:.035em}
+.primary-actions .sms-icon{line-height:1}
+.primary-actions .sms-icon svg,.primary-actions .share-icon svg{display:block;width:18px;height:18px}
+.primary-actions .email-icon{font-size:18px;font-weight:800;line-height:1}
+.bottom-dock a:not(.dock-image-item) span,.bottom-dock button span{font-size:20px}
+.section-kicker{font-size:11px;letter-spacing:.14em}
+.hero .eyebrow,.name-en,.section-kicker,.row-label,footer small{font-family:"Copperplate Gothic Web","Copperplate Gothic","Copperplate Gothic Light",Copperplate,serif}
+.hero .eyebrow{font-weight:700}
+.primary-actions strong{font-size:13px}
+.bottom-dock a,.bottom-dock button{font-size:11px}
+.row-label{font-size:10px}
+.row-label{font-weight:700}
+.service-card p{font-size:13px}
+.service-card .service-en{display:block;color:#dfc08a;font:700 11px/1.5 "Copperplate Gothic Web","Copperplate Gothic","Copperplate Gothic Light",Copperplate,serif;letter-spacing:.14em;margin:5px 0 0}
+footer>p{font-size:19px;line-height:1.65;margin-bottom:54px;color:#fff;word-break:keep-all}
+@media(max-width:390px){footer>p{font-size:17px}}
+.footer-values{list-style:none;margin:32px 0 54px;padding:0}.footer-values li{position:relative;padding-left:22px;color:#fff;font-family:"Malgun Gothic","맑은 고딕",sans-serif;font-size:17px;line-height:1.65;word-break:keep-all}.footer-values li+li{margin-top:4px}.footer-values li:before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;background:#dfc08a;transform:rotate(45deg)}
+@media(max-width:390px){.footer-values li{font-size:15px}}
+.section-pad h2{font-size:24px}
+.brand,footer>img{width:min(76%,350px)}
+@media(max-width:390px){.brand,footer>img{width:78%}}
+.hero .eyebrow,.section-kicker{font-variant:small-caps;text-transform:none}
+@media(min-width:521px){body{padding:28px 0}.bottom-dock{bottom:22px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.toast{transition:none}}
+
+/* Horizontal edition */
+html,body{height:100%;overflow:hidden}
+body{padding:0;background:#d8d4cd}
+.card-shell{display:flex;width:100%;max-width:none;height:100dvh;margin:0;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;box-shadow:none;overscroll-behavior-x:contain;scrollbar-width:none}
+.card-shell::-webkit-scrollbar{display:none}
+.horizontal-panel{position:relative;flex:0 0 min(100vw,560px);width:min(100vw,560px);height:100dvh;min-height:620px;overflow-y:auto;scroll-snap-align:start;scroll-snap-stop:always}
+.intro-panel{display:flex;flex-direction:column;background:#fff;overflow:hidden}
+.intro-panel .hero{flex:1;min-height:0}
+.intro-panel .primary-actions{flex:0 0 auto}
+.contact-section,.credentials,.link-section{background:var(--paper)}
+.section-pad{padding:clamp(72px,11vh,110px) clamp(24px,7vw,48px) 150px}
+.services{padding-bottom:150px}
+.link-section{padding-top:clamp(72px,11vh,110px)}
+footer{padding:clamp(72px,11vh,110px) clamp(24px,7vw,48px) 150px}
+.horizontal-nav{position:fixed;left:50%;bottom:94px;transform:translateX(-50%);z-index:24;display:grid;grid-template-columns:42px minmax(132px,auto) 42px;align-items:center;gap:8px;padding:7px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(21,32,51,.92);box-shadow:0 10px 28px rgba(0,0,0,.25);backdrop-filter:blur(12px);color:#fff}
+.panel-arrow{width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font:700 20px/1 sans-serif;cursor:pointer}
+.panel-arrow:disabled{opacity:.28;cursor:default}
+.panel-status{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;justify-content:center;column-gap:5px;min-width:132px;text-align:center}
+.panel-status strong{font:700 15px/1.15 "Copperplate Gothic Web",serif;color:#dfc08a}
+.panel-status span{font:400 11px/1.35 "Copperplate Gothic Web",serif;color:#aaaeb7}
+.panel-status em{grid-column:1/-1;margin-top:2px;font:600 10px/1.2 "Malgun Gothic","맑은 고딕",sans-serif;color:#fff;font-style:normal}
+.bottom-dock{bottom:max(12px,env(safe-area-inset-bottom))}
+.toast{bottom:155px}
+@media(min-width:561px){.card-shell{padding-left:calc((100vw - 560px)/2);scroll-padding-left:calc((100vw - 560px)/2)}.horizontal-panel{border-left:1px solid rgba(0,0,0,.08);border-right:1px solid rgba(0,0,0,.08)}.horizontal-nav{bottom:102px}}
+@media(max-height:700px){.hero{padding-top:20px}.hero-copy{margin-top:32px}.hero-message{margin-top:22px}.portrait-frame{transform:scale(.88);transform-origin:right bottom}.section-pad{padding-top:54px}.horizontal-nav{bottom:86px}}
+@media(prefers-reduced-motion:reduce){.card-shell{scroll-behavior:auto}}
