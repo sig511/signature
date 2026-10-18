@@ -15,7 +15,13 @@ if(/Android/i.test(navigator.userAgent)){
   const encode=value=>encodeURIComponent(value);
   const fallback=encode(new URL('./jun-jin-yong.vcf',location.href).href);
   const contactIntent=`intent://contacts/people/#Intent;scheme=content;action=android.intent.action.INSERT;type=vnd.android.cursor.dir/contact;S.name=${encode(profile.name)};S.phone=${encode(profile.mobile)};S.secondary_phone=${encode(profile.office)};S.email=${encode(profile.email)};S.company=${encode(profile.organization)};S.job_title=${encode(profile.title)};S.postal=${encode(profile.address)};S.postal_type=업무;S.website=${encode(profile.website)};S.notes=${encode(`홈페이지: ${profile.website}`)};S.browser_fallback_url=${fallback};end`;
-  document.querySelectorAll('[data-contact-link]').forEach(link=>link.href=contactIntent);
+  document.querySelectorAll('[data-contact-link]').forEach(link=>{
+    link.href=contactIntent;
+    link.addEventListener('click',event=>{
+      event.preventDefault();
+      location.href=contactIntent;
+    });
+  });
 }
 async function shareCard(){const data={title:'전진용 대표 행정사 | 시그니처 행정사사무소',text:'일반행정·공인번역·의료기기 컨설팅',url:location.href};if(navigator.share){try{await navigator.share(data)}catch(error){if(error.name!=='AbortError')copyText(location.href,'명함 주소를 복사했습니다')}}else{copyText(location.href,'명함 주소를 복사했습니다')}}
 document.querySelectorAll('[data-action="share"]').forEach(button=>button.addEventListener('click',shareCard));
