@@ -88,6 +88,22 @@
     kakaoRailCard.insertAdjacentElement("afterend", naverTalkCard);
   }
 
+  const reservationRailCard = document.querySelector(".floating-rail-location");
+
+  if (reservationRailCard && !document.querySelector(".floating-rail-quote")) {
+    const quoteRailCard = document.createElement("a");
+    const reservationUrl = new URL(reservationRailCard.href, window.location.href);
+    reservationUrl.searchParams.set("section", "support-quote");
+    quoteRailCard.href = `${reservationUrl.pathname.split("/").pop()}?${reservationUrl.searchParams.toString()}`;
+    quoteRailCard.className = "floating-rail-card floating-rail-quote";
+    quoteRailCard.setAttribute("aria-label", "견적 요청");
+    quoteRailCard.innerHTML = `
+      <img class="rail-schedule-image rail-quote-image" src="./support-quote.png" alt="견적 요청" width="30" height="30" />
+      <strong>견적 요청</strong>
+    `;
+    reservationRailCard.insertAdjacentElement("beforebegin", quoteRailCard);
+  }
+
   const mainNavigation = document.querySelector(".main-nav");
 
   if (mainNavigation && !mainNavigation.querySelector(".header-date-time")) {
